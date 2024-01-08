@@ -5,8 +5,8 @@ var templateParams = {
     name: 'James',
     notes: 'Check this out!'
 };
- function sendEmail() {
-    event.preventDefault();
+ function sendEmail(event) {
+    // event.preventDefault();
     console.log("Sending message...");
     var form = document.getElementById('contact-form');
     var formData = new FormData(form);
