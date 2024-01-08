@@ -10,7 +10,7 @@ function sendEmail(event) {
 
     // Log the form data for debugging
     for(var pair of formData.entries()) {
-        console.log(pair[0]+ ': '+ pair[1]);
+        console.log(pair[0] + ': ' + pair[1]);
     }
 
     // Send the form data using EmailJS
@@ -19,12 +19,21 @@ function sendEmail(event) {
         console.log('SUCCESS!', response.status, response.text);
         Swal.fire({
             title: 'Success!',
-            text: 'Email successfully sent!',
+            text: 'Email successfully sent! Thank you for your message.',
             icon: 'success',
             confirmButtonText: 'Cool'
-            //  ,timer: 3000
+            // ,timer: 3000
         });
         console.log('Timer ended');
         form.reset();
     })
+    .catch(function(error) {
+        console.log('FAILED...', error);
+        Swal.fire({
+            title: 'Error!',
+            text: 'Failed to send email. Please try again Tomorrow.',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
+    });
 }
