@@ -1,4 +1,4 @@
-const serviceID = 'Spark-Games-Website';
+const serviceID = 'service_rzijtbs';
 const templateID = 'template_msg1xrm';
 const publicKey = 'nzkw5r6_a36Y9MEeI';
 var templateParams = {
@@ -6,6 +6,7 @@ var templateParams = {
     notes: 'Check this out!'
 };
  function sendEmail() {
+    event.preventDefault();
     console.log("Sending message...");
     var form = document.getElementById('contact-form');
     var formData = new FormData(form);
