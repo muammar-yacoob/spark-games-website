@@ -16,22 +16,15 @@ function sendEmail(event) {
     // Send the form data using EmailJS
     emailjs.sendForm(serviceID, templateID, form, publicKey)
     .then(function(response) {
-        alert('Email successfully sent!');
+        console.log('SUCCESS!', response.status, response.text);
         Swal.fire({
             title: 'Success!',
             text: 'Email successfully sent!',
             icon: 'success',
             confirmButtonText: 'Cool'
+            //  ,timer: 3000
         });
-        console.log('SUCCESS!', response.status, response.text);
-    }, function(error) {
-        alert('Error sending email!');
-        Swal.fire({
-            title: 'Error!',
-            text: 'Failed to send email: ' + error.text,
-            icon: 'error',
-            confirmButtonText: 'OK'
-        });
-        console.log('FAILED...', error);
-    });
+        console.log('Timer ended');
+        form.reset();
+    })
 }
