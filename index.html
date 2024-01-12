@@ -21,6 +21,7 @@
    })();
 </script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@5.0.15/dark.min.css">
 	</head>
 	<body class="is-preload">
 
@@ -119,7 +120,7 @@
 						<!-- Contact -->
 							<article id="contact">
 								<h2 class="major">Contact</h2>
-								<form id="contact-form" onSubmit="sendEmail(event)" action="#">
+								<form id="contact-form" onSubmit="sendEmail(event, this)" action="#">
 									<div class="fields">
 										<div class="field half">
 											<label for="user_name">Name</label>
