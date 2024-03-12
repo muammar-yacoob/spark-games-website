@@ -1,6 +1,6 @@
 const serviceID = 'service_rzijtbs';
 const templateID = 'template_msg1xrm';
-const publicKey = 'xxxxxxxx';
+const publicKey = 'API_KEY_PLACEHOLDER';
 
 function sendEmail(event, form) {
     event.preventDefault();
