@@ -1,7 +1,6 @@
 name: Build and Deploy
 
 on:
-  dispatch:
   push:
     branches:
       - main
@@ -18,9 +17,11 @@ jobs:
         with:
           node-version: '20'
 
+      - name: List files in assets/js
+        run: ls -lah assets/js/
+
       - name: Replace API Key Placeholder
-        run: |
-          sed -i 's/API_KEY_PLACEHOLDER/${{ secrets.EMAILJS_PUBLIC_KEY }}/g' assets/js/emailjs.js
+        run: sed -i 's/API_KEY_PLACEHOLDER/${{ secrets.EMAILJS_PUBLIC_KEY }}/g' assets/js/emailjs.js
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
