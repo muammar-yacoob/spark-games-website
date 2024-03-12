@@ -1,6 +1,6 @@
 const serviceID = 'service_rzijtbs';
 const templateID = 'template_msg1xrm';
-const publicKey = 'xxxxxxx';
+const publicKey = 'nzkw5r6_a36Y9MEeI';
 
 function sendEmail(event, form) {
     event.preventDefault();
