@@ -23,30 +23,22 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(data => {
                 console.log('Success:', data);
-                if (typeof Swal !== 'undefined') {
-                    Swal.fire({
-                        title: 'Success!',
-                        text: 'Message sent successfully! Thank you for contacting us.',
-                        icon: 'success',
-                        confirmButtonText: 'Cool'
-                    });
-                } else {
-                    alert('Message sent successfully! Thank you for contacting us.');
-                }
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Message sent successfully! Thank you for contacting us.',
+                    icon: 'success',
+                    confirmButtonText: 'Cool'
+                });
                 form.reset();
             })
             .catch((error) => {
                 console.error('Error:', error);
-                if (typeof Swal !== 'undefined') {
-                    Swal.fire({
-                        title: 'Error!',
-                        text: 'Failed to send message. Please try again later or contact us directly at: support@spark-games.co.uk',
-                        icon: 'error',
-                        confirmButtonText: 'OK'
-                    });
-                } else {
-                    alert('Failed to send message. Please try again later or contact us directly at: support@spark-games.co.uk');
-                }
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Failed to send message. Please try again later or contact us directly at: support@spark-games.co.uk',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
             });
         });
     }
