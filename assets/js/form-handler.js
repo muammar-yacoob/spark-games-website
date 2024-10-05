@@ -1,32 +1,37 @@
 document.addEventListener('DOMContentLoaded', function() {
-    var form = document.querySelector('.formspree-ajax');
+    const form = document.getElementById('contact-form');
     if (form) {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            var formData = new FormData(form);
-            var formAction = 'https://formspree.io/f/FORMSPREE_API_KEY_PLACEHOLDER';  // Replace with your actual Formspree endpoint
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
             
-            fetch(formAction, {
+            const data = new FormData(form);
+            const action = form.getAttribute('action');
+
+            fetch(action, {
                 method: 'POST',
-                body: formData,
+                body: data,
                 headers: {
                     'Accept': 'application/json'
                 }
-            }).then(response => response.json())
-            .then(data => {
-                if (data.ok) {
-                    Swal.fire({
-                        title: 'Success!',
-                        text: 'Message sent successfully! Thank you for contacting us.',
-                        icon: 'success',
-                        confirmButtonText: 'Cool'
-                    });
-                    form.reset();
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
                 } else {
-                    throw new Error('Form submission failed');
+                    throw new Error('Network response was not ok.');
                 }
             })
-            .catch(error => {
+            .then(data => {
+                console.log('Success:', data);
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Message sent successfully! Thank you for contacting us.',
+                    icon: 'success',
+                    confirmButtonText: 'Cool'
+                });
+                form.reset();
+            })
+            .catch((error) => {
                 console.error('Error:', error);
                 Swal.fire({
                     title: 'Error!',
