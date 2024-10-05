@@ -1,30 +1,33 @@
-name: Build and Deploy
+name: Deploy to GitHub Pages
 
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Set up Node.js 20
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-
-      - name: List files in assets/js
-        run: ls -lah assets/js/
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Replace API Key Placeholder
         run: sed -i 's/FORMSPREE_API_KEY_PLACEHOLDER/${{ secrets.FORMSPREE_API_KEY }}/g' index.html
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
+          path: '.'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
