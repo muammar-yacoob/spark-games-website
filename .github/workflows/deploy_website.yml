@@ -21,7 +21,7 @@ jobs:
         run: ls -lah assets/js/
 
       - name: Replace API Key Placeholder
-        run: sed -i 's/FORMSPREE_API_KEY_PLACEHOLDER/${{ secrets.FORMSPREE_API_KEY  }}/g' index.html
+        run: sed -i 's/FORMSPREE_API_KEY_PLACEHOLDER/${{ secrets.FORMSPREE_API_KEY }}/g' index.html
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
