@@ -17,8 +17,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Replace API Key Placeholder
-        run: sed -i 's/FORMSPREE_API_KEY_PLACEHOLDER/${{ secrets.FORMSPREE_API_KEY }}/g' index.html
+      - name: Replace Formspree Endpoint
+        run: sed -i 's|FORMSPREE_ENDPOINT_PLACEHOLDER|${{ secrets.FORMSPREE_API_KEY }}|g' config.json
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
