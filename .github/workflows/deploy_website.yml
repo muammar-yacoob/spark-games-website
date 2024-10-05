@@ -17,11 +17,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Replace Formspree Endpoint
+      - name: Replace Formspree API Key
         run: |
-          sed -i 's|FORMSPREE_ENDPOINT_PLACEHOLDER|${{ secrets.FORMSPREE_API_KEY }}|g' config.json
+          sed -i 's|FORMSPREE_API_KEY|${{ secrets.FORMSPREE_API_KEY }}|g' index.html
           echo "Replacement done. Checking result:"
-          cat config.json
+          grep -n "formspree.io" index.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
