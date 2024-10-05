@@ -18,7 +18,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Replace Formspree Endpoint
-        run: sed -i 's|FORMSPREE_ENDPOINT_PLACEHOLDER|${{ secrets.FORMSPREE_API_KEY }}|g' config.json
+        run: |
+          sed -i 's|FORMSPREE_ENDPOINT_PLACEHOLDER|${{ secrets.FORMSPREE_API_KEY }}|g' config.json
+          echo "Replacement done. Checking result:"
+          cat config.json
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
