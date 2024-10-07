@@ -17,11 +17,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Replace Formspree API Key
+      - name: Replace EmailJS Public Key 🔑
         run: |
-          sed -i 's|FORMSPREE_API_KEY|${{ secrets.FORMSPREE_API_KEY }}|g' index.html
+          sed -i 's|API_KEY_PLACEHOLDER|${{ secrets.EMAILJS_PUBLIC_KEY }}|g' assets/js/form-handler.js
           echo "Replacement done. Checking result:"
-          grep -n "formspree.io" index.html
+          grep -n "publicKey" assets/js/form-handler.js
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
