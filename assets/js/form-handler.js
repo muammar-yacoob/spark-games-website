@@ -1,8 +1,9 @@
+(function() {
+    emailjs.init("API_KEY_PLACEHOLDER");
+})();
+
 const serviceID = 'service_rzijtbs';
 const templateID = 'template_msg1xrm';
-const publicKey = 'API_KEY_PLACEHOLDER';
-
-emailjs.init(publicKey);
 
 function sendEmail(event, form) {
     event.preventDefault();
