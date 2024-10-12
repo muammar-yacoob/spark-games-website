@@ -38,7 +38,7 @@ html, body {
 
 body {
     background: #1b1f22;
-    overflow-y: overlay;
+    overflow-y: auto;
     -webkit-text-size-adjust: none;
 }
 
@@ -92,6 +92,7 @@ body {
 		body.is-preload *, body.is-preload *:before, body.is-preload *:after {
 			animation: none !important;
 			transition: none !important;
+			overflow-y: auto;
 		}
 
 /* Type */
@@ -1073,7 +1074,7 @@ body {
     width: 100%;
     padding: 4rem 2rem;
     z-index: 3;
-	overflow-y: overlay;
+	overflow-y: auto;
 }
 	
 
@@ -1477,6 +1478,6 @@ body {
 		
 	#ad-banner h2 {
 		font-size: 1.2em;
-		margin-bottom: 1em;
+		margin-bottom: 0.01em;
 		color: #888;
 	}
