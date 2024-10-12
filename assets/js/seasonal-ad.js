@@ -1,11 +1,15 @@
 function updateSeasonalBanner() {
     const banners = {
         'winter': ['12', '01'],
+        'lunar-new-year': ['01', '02'],
         'spring': ['03', '04', '05'],
+        'may-madness': ['05'],
         'summer': ['06', '07', '08'],
-        'halloween': ['09', '10', '11'],
+        'back-to-school': ['08', '09'],
+        'autumn': ['09', '10'],
         'halloween': ['10'],
-        'blackfriday': ['11'],
+        'black-friday': ['11'],
+        'holiday': ['12']
     };
 
     const date = new Date();
@@ -21,5 +25,3 @@ function updateSeasonalBanner() {
 
     document.getElementById('seasonal-ad').src = `images/AffiliateBanners/${season}.png`;
 }
-
-document.addEventListener('DOMContentLoaded', updateSeasonalBanner);
