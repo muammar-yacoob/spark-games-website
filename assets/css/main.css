@@ -362,6 +362,7 @@ body {
 		padding: 0 1rem;
 		text-decoration: none;
 		width: 100%;
+		resize: none;
 	}
 
 		input[type="text"]:invalid,
@@ -1460,24 +1461,37 @@ body {
 		}
 
 /* Ad Banner */
+#ad-banner {
+    margin: 1em 0;
+    border-radius: 10px;
+    display: block;
+    overflow: hidden;
+    opacity: 0; /* Start with the banner invisible */
+    transition: opacity 1s ease; /* Smooth transition for opacity */
+}
 
-	#ad-banner {
-		margin-top: 2em;
-		padding: 2em 0;
-		background-color: rgba(255, 255, 255, 0.05);
-	}
-		
-	#ad-banner .inner {
-		text-align: center;
-	}
-		
-	.ad-container {
-		margin: 0 auto;
-		max-width: 728px;
-	}
-		
-	#ad-banner h2 {
-		font-size: 1.2em;
-		margin-bottom: 0.01em;
-		color: #888;
-	}
+/* Rest of your ad banner styles remain the same */
+#ad-banner .inner {
+    padding: 0;
+    margin: 0;
+}
+
+.ad-container {
+    margin: 0 auto;
+    padding: 0;
+    max-width: 728px;
+    line-height: 0;
+}
+
+.ad-container img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+}
+
+#ad-banner h2 {
+    font-size: 1.2em;
+    margin: 0 0 0.5em 0;
+    color: #888;
+}
