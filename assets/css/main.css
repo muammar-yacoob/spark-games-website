@@ -1463,13 +1463,14 @@ body {
 /* Ad Banner */
 #ad-banner {
     margin: 1em 0;
-    border-radius: 10px; /* Increased border-radius for more noticeable curves */
+    border-radius: 10px;
     display: block;
-    overflow: hidden; /* Ensures content doesn't spill out of rounded corners */
+    overflow: hidden;
+    opacity: 0; /* Start with the banner invisible */
+    transition: opacity 1s ease; /* Smooth transition for opacity */
 }
 
-
-/* Common styles for both options */
+/* Rest of your ad banner styles remain the same */
 #ad-banner .inner {
     padding: 0;
     margin: 0;
