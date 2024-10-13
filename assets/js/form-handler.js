@@ -1,24 +1,31 @@
-// The public key placeholder will be replaced during deployment
 const EMAILJS_PUBLIC_KEY = 'API_KEY_PLACEHOLDER';
 const serviceID = 'service_rzijtbs';
 const templateID = 'template_msg1xrm';
 
+const MESSAGES = {
+    EMAIL_JS_INIT_SUCCESS: 'EmailJS initialized',
+    EMAIL_JS_INIT_ERROR: 'EmailJS library not loaded. Please check your internet connection and try again.',
+    EMAIL_SEND_SUCCESS: 'Email successfully sent! Thank you for your message.',
+    EMAIL_SEND_ERROR: 'Failed to send email. Please try again later or contact us directly at:',
+    CONTACT_EMAIL: 'support@spark-games.co.uk'
+};
+
+const CONTACT_LINK = `<a href="mailto:${MESSAGES.CONTACT_EMAIL}" style="color: #00ccff;">${MESSAGES.CONTACT_EMAIL}</a>`;
+
 function initEmailJS() {
     if (typeof emailjs !== 'undefined') {
         emailjs.init(EMAILJS_PUBLIC_KEY);
-        console.log('EmailJS initialized');
+        console.log(MESSAGES.EMAIL_JS_INIT_SUCCESS);
     } else {
-        console.error('EmailJS library not loaded. Please check your internet connection and try again.');
+        console.error(MESSAGES.EMAIL_JS_INIT_ERROR);
     }
 }
 
 function sendEmail(event) {
     event.preventDefault();
-    console.log('Send email function called');
-
+    
     if (typeof emailjs === 'undefined') {
-        console.error('EmailJS not initialized. Unable to send email.');
-        showMessage('Error', 'Unable to send email. Please try again later or contact us directly.');
+        showMessage('Error', `${MESSAGES.EMAIL_SEND_ERROR} ${CONTACT_LINK}`);
         return;
     }
 
@@ -29,17 +36,14 @@ function sendEmail(event) {
         message: form.message.value
     };
 
-    console.log('Sending email with params:', templateParams);
-
     emailjs.send(serviceID, templateID, templateParams)
         .then(function(response) {
-            console.log('SUCCESS!', response.status, response.text);
-            showMessage('Success', 'Email successfully sent! Thank you for your message.');
+            showMessage('Success', MESSAGES.EMAIL_SEND_SUCCESS);
             form.reset();
         })
         .catch(function(error) {
-            console.error('FAILED...', error);
-            showMessage('Error', 'Failed to send email. Please try again later or contact us directly.');
+            console.error('Failed to send email:', error);
+            showMessage('Error', `${MESSAGES.EMAIL_SEND_ERROR} ${CONTACT_LINK}`);
         });
 }
 
@@ -47,27 +51,27 @@ function showMessage(title, message) {
     if (typeof Swal !== 'undefined') {
         Swal.fire({
             title: title,
-            text: message,
+            html: message,
             icon: title.toLowerCase(),
             confirmButtonText: 'OK',
+            background: '#19191a',
+            color: '#fff',
             customClass: {
                 popup: 'swal2-dark',
                 confirmButton: 'swal2-dark'
             }
         });
     } else {
-        alert(title + ': ' + message);
+        alert(`${title}: ${message}`);
     }
 }
 
 function setupFormListener() {
-    // Use event delegation
     document.addEventListener('submit', function(event) {
         if (event.target.id === 'contact-form') {
             sendEmail(event);
         }
     });
-    console.log('Form listener set up using event delegation');
 }
 
 initEmailJS();
