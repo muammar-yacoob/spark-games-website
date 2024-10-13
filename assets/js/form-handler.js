@@ -1,5 +1,5 @@
-// Replace 'YOUR_PUBLIC_KEY' with your actual EmailJS public key
-const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+// The public key placeholder will be replaced during deployment
+const EMAILJS_PUBLIC_KEY = 'API_KEY_PLACEHOLDER';
 const serviceID = 'service_rzijtbs';
 const templateID = 'template_msg1xrm';
 
@@ -18,7 +18,7 @@ function sendEmail(event) {
 
     if (typeof emailjs === 'undefined') {
         console.error('EmailJS not initialized. Unable to send email.');
-        showError('Unable to send email. Please try again later or contact us directly.');
+        showMessage('Error', 'Unable to send email. Please try again later or contact us directly.');
         return;
     }
 
@@ -34,50 +34,38 @@ function sendEmail(event) {
     emailjs.send(serviceID, templateID, templateParams)
         .then(function(response) {
             console.log('SUCCESS!', response.status, response.text);
-            showSuccess('Email successfully sent! Thank you for your message.');
+            showMessage('Success', 'Email successfully sent! Thank you for your message.');
             form.reset();
         })
         .catch(function(error) {
             console.error('FAILED...', error);
-            showError('Failed to send email. Please try again later or contact us directly.');
+            showMessage('Error', 'Failed to send email. Please try again later or contact us directly.');
         });
 }
 
-function showSuccess(message) {
+function showMessage(title, message) {
     if (typeof Swal !== 'undefined') {
         Swal.fire({
-            title: 'Success!',
+            title: title,
             text: message,
-            icon: 'success',
+            icon: title.toLowerCase(),
             confirmButtonText: 'OK'
         });
     } else {
-        alert(message);
+        alert(title + ': ' + message);
     }
 }
 
-function showError(message) {
-    if (typeof Swal !== 'undefined') {
-        Swal.fire({
-            title: 'Error!',
-            text: message,
-            icon: 'error',
-            confirmButtonText: 'OK'
-        });
-    } else {
-        alert(message);
-    }
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM content loaded, initializing EmailJS');
-    initEmailJS();
-
+function attachFormListener() {
     const form = document.getElementById('contact-form');
     if (form) {
         console.log('Contact form found, adding event listener');
         form.addEventListener('submit', sendEmail);
     } else {
-        console.error('Contact form not found in the DOM');
+        console.log('Contact form not found in the DOM');
     }
-});
+}
+
+initEmailJS();
+document.addEventListener('DOMContentLoaded', attachFormListener);
+window.attachFormListener = attachFormListener;
