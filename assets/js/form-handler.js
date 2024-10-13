@@ -56,16 +56,16 @@ function showMessage(title, message) {
     }
 }
 
-function attachFormListener() {
-    const form = document.getElementById('contact-form');
-    if (form) {
-        console.log('Contact form found, adding event listener');
-        form.addEventListener('submit', sendEmail);
-    } else {
-        console.log('Contact form not found in the DOM');
-    }
+function setupFormListener() {
+    // Use event delegation
+    document.addEventListener('submit', function(event) {
+        // Check if the submitted form is our contact form
+        if (event.target.id === 'contact-form') {
+            sendEmail(event);
+        }
+    });
+    console.log('Form listener set up using event delegation');
 }
 
 initEmailJS();
-document.addEventListener('DOMContentLoaded', attachFormListener);
-window.attachFormListener = attachFormListener;
+document.addEventListener('DOMContentLoaded', setupFormListener);
