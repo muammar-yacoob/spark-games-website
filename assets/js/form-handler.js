@@ -49,7 +49,11 @@ function showMessage(title, message) {
             title: title,
             text: message,
             icon: title.toLowerCase(),
-            confirmButtonText: 'OK'
+            confirmButtonText: 'OK',
+            customClass: {
+                popup: 'swal2-dark',
+                confirmButton: 'swal2-dark'
+            }
         });
     } else {
         alert(title + ': ' + message);
@@ -59,7 +63,6 @@ function showMessage(title, message) {
 function setupFormListener() {
     // Use event delegation
     document.addEventListener('submit', function(event) {
-        // Check if the submitted form is our contact form
         if (event.target.id === 'contact-form') {
             sendEmail(event);
         }
