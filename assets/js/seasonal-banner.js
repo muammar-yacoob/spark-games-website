@@ -3,15 +3,15 @@
 function updateSeasonalBanner() {
     try {
         const banners = [
-            { name: 'winter', months: [12, 1] },
-            { name: 'lunar-new-year', months: [2] },
-            { name: 'spring', months: [3, 4] },
-            { name: 'may-madness', months: [5] },
-            { name: 'summer', months: [6, 7] },
-            { name: 'back-to-school', months: [8] },
-            { name: 'halloween', months: [9, 10] },
-            { name: 'black-friday', months: [11] },
-            { name: 'holiday', months: [12] }
+            { name: 'winter.png', months: [12, 1] },
+            { name: 'lunar-new-year.png', months: [2] },
+            { name: 'spring.png', months: [3, 4] },
+            { name: 'may-madness.png', months: [5] },
+            { name: 'summer.png', months: [6, 7] },
+            { name: 'back-to-school.png', months: [8] },
+            { name: 'unity-halloween.png', months: [9, 10] },
+            { name: 'unity-xmas.mp4', months: [11] },
+            { name: 'unity-xmas.mp4', months: [12] }
         ];
 
         const date = new Date();
@@ -26,8 +26,8 @@ function updateSeasonalBanner() {
         }
         const seasonalAd = document.getElementById('seasonal-ad');
         if (seasonalAd) {
-            seasonalAd.src = `images/AffiliateBanners/${season}.png`;
-            console.log("Loading banner:", `images/AffiliateBanners/${season}.png`);
+            seasonalAd.src = `images/AffiliateBanners/${season}`;
+            console.log("Loading banner:", `images/AffiliateBanners/${season}`);
         } else {
             console.error("Seasonal ad element not found");
         }
