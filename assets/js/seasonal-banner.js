@@ -1,5 +1,3 @@
-// assets/js/seasonal-banner.js
-
 function updateSeasonalBanner() {
     try {
         const banners = [
@@ -17,20 +15,47 @@ function updateSeasonalBanner() {
         const date = new Date();
         const currentMonth = date.getMonth() + 1; // getMonth() returns 0-11
 
-        let season = 'default';
+        let season = 'default.png';
         for (const banner of banners) {
             if (banner.months.includes(currentMonth)) {
                 season = banner.name;
                 break;
             }
         }
-        const seasonalAd = document.getElementById('seasonal-ad');
-        if (seasonalAd) {
-            seasonalAd.src = `images/AffiliateBanners/${season}`;
-            console.log("Loading banner:", `images/AffiliateBanners/${season}`);
+
+        const adContainer = document.getElementById('seasonal-ad').parentElement;
+        const fileExtension = season.split('.').pop().toLowerCase();
+        const basePath = 'images/AffiliateBanners/';
+        const fullPath = `${basePath}${season}`;
+
+        // Remove existing content
+        adContainer.innerHTML = '';
+
+        // Create new element based on file type
+        if (fileExtension === 'mp4') {
+            const video = document.createElement('video');
+            video.id = 'seasonal-ad';
+            video.src = fullPath;
+            video.autoplay = true;
+            video.loop = true;
+            video.muted = true;
+            video.playsInline = true;
+            video.style.width = '100%';
+            video.style.maxWidth = '728px';
+            video.style.height = 'auto';
+            adContainer.appendChild(video);
         } else {
-            console.error("Seasonal ad element not found");
+            const img = document.createElement('img');
+            img.id = 'seasonal-ad';
+            img.src = fullPath;
+            img.alt = 'Unity Asset Store';
+            img.style.width = '100%';
+            img.style.maxWidth = '728px';
+            img.style.height = 'auto';
+            adContainer.appendChild(img);
         }
+
+        console.log("Loading banner:", fullPath);
     } catch (error) {
         console.error("Error in updateSeasonalBanner:", error);
     }
