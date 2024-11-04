@@ -9,7 +9,7 @@ function updateSeasonalBanner() {
             { name: 'back-to-school.png', months: [8] },
             { name: 'unity-halloween.png', months: [9, 10] },
             { name: 'black-friday.png', months: [11] },
-            { name: 'unity-xmas.mp4', months: [12] }
+            { name: 'unity-xmas.gif', months: [12] }
         ];
 
         const date = new Date();
