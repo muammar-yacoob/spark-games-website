@@ -2,7 +2,7 @@ function updateSeasonalBanner() {
     try {
         const banners = [
             { name: 'new-year.gif', months: [1] },
-            { name: 'lunar-new-year.png', months: [2] },
+            { name: 'valentine.png', months: [2] },
             { name: 'spring.png', months: [3, 4] },
             { name: 'may-madness.png', months: [5] },
             { name: 'summer.png', months: [6, 7] },
