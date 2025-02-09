@@ -1,0 +1,25 @@
+{
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Spark Games",
+    "url": "https://spark-games.co.uk",
+    "logo": "https://spark-games.co.uk/images/logo.png",
+    "description": "Crafting seasonal gaming wonders and developer solutions for game developers and 3D artists.",
+    "knowsAbout": ["Game Development", "Unity Tools", "3D Games", "VR Games"],
+    "makesOffer": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "Laser Lockdown",
+        "applicationCategory": "Game",
+        "operatingSystem": "VR Platforms",
+        "description": "A Fun and engaging Multiplayer Laser tag battle in VR"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "MultiPlay",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Windows",
+        "description": "Opens Multiple Unity Editor Windows to test Multiplayer games without building every time!"
+      }
+    ]
+  }
