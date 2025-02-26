@@ -18,5 +18,10 @@
 | SOA    | @              | Primary nameserver: ns71.domaincontrol.com |
 
 
+# Nameservers
+Use GoDaddy's Nameservers<br>
+`ns71.domaincontrol.com`<br>
+`ns72.domaincontrol.com`
+
 # Deployment
 Use [deploy_website.yml](/.github/workflows/deploy_website.yml) workflow to deploy the website to GitHub Pages.
