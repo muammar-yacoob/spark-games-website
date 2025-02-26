@@ -19,4 +19,4 @@
 
 
 # Deployment
-Use [deploy_website.yml](../../spark-games-website/blob/main/.github/workflows/deploy_website.yml) workflow to deploy the website to GitHub Pages.
+Use [deploy_website.yml](/.github/workflows/deploy_website.yml) workflow to deploy the website to GitHub Pages.
