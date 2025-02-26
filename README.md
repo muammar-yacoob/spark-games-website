@@ -18,6 +18,5 @@
 | SOA    | @              | Primary nameserver: ns71.domaincontrol.com |
 
 
-# Start of Selection
 # Deployment
 Use [deploy_website.yml](../.github/workflows/deploy_website.yml) workflow to deploy the website to GitHub Pages.
