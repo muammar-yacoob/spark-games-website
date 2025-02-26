@@ -13,7 +13,7 @@
 | AAAA   | @              | 2606:50c0:8003::153                       |
 | NS     | @              | ns71.domaincontrol.com                    |
 | NS     | @              | ns72.domaincontrol.com                    |
-| CNAME  | www            | ${GITHUB_REPOSITORY}.github.io           |
+| CNAME  | www            | ${{ github.repository }}.github.io           |
 | CNAME  | _domainconnect | _domainconnect.gd.domaincontrol.com      |
 | SOA    | @              | Primary nameserver: ns71.domaincontrol.com |
 
@@ -21,3 +21,13 @@
 # Start of Selection
 # Deployment
 Use [deploy_website.yml](../.github/workflows/deploy_website.yml) workflow to deploy the website to GitHub Pages.
+
+<!--#
+NOUN=mother
+ATTRIBUTION=Mark Wahlberg
+# Start of Selection
+REPO=${{ github.repository }}
+# End of Selection
+$-->
+
+"Current repository: {{ REPO }}"
