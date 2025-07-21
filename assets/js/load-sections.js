@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     updateSeasonalBanner();
     
     // Load all content sections
-    const sections = ['games', 'tools', 'about', 'contact'];
+    const sections = ['games', 'tools', 'about', 'contact', 'careers'];
     
     sections.forEach(section => {
         fetch(`${section}-content.html`)

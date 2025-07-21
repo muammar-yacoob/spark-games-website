@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Spark Games</title>
+    <title>Careers - Spark Games</title>
     <meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
@@ -10,31 +10,27 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@5/dark.css">
 
-
 	<!-- SEO Meta Tags -->
-	<meta name="description" content="Spark Games - Crafting seasonal gaming wonders and developer solutions. We create unique games and tools to empower game developers and 3D artists.">
-	<meta name="keywords" content="game development, unity tools, 3D games, VR games, game developer tools, unity assets, blender tools">
+	<meta name="description" content="Join Spark Games - We're looking for talented game developers, 3D artists, and programmers to join our team and help create amazing gaming experiences.">
+	<meta name="keywords" content="game development jobs, 3D artist jobs, unity jobs, blender jobs, game developer careers, programming jobs">
 
 	<!-- OpenGraph Tags -->
-	<meta property="og:title" content="Spark Games - Seasonal Games and Developer Tools">
-	<meta property="og:description" content="Crafting seasonal gaming wonders and developer solutions for game developers and 3D artists.">
+	<meta property="og:title" content="Careers - Spark Games">
+	<meta property="og:description" content="Join our team! We're looking for talented game developers, 3D artists, and programmers to help create amazing gaming experiences.">
 	<meta property="og:image" content="https://spark-games.co.uk/images/logo.png">
-	<meta property="og:url" content="https://spark-games.co.uk">
+	<meta property="og:url" content="https://spark-games.co.uk/careers.html">
 	<meta property="og:type" content="website">
 
 	<!-- Twitter Card Tags -->
 	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:title" content="Spark Games">
-	<meta name="twitter:description" content="Seasonal Games and productivity tools for game developers and 3D artists.">
+	<meta name="twitter:title" content="Careers - Spark Games">
+	<meta name="twitter:description" content="Join our team! We're looking for talented game developers, 3D artists, and programmers to help create amazing gaming experiences.">
 	<meta name="twitter:image" content="https://spark-games.co.uk/images/logo.png">
 
 	<!-- Favicon -->
 	<link rel="icon" href="images/favicon.ico" type="image/x-icon">
 
-	<script type="application/ld+json" src="assets/json/schema.json"></script>
-
 	<style>
-		/* Careers page specific styles */
 		/* Smooth button zooming animations */
 		.career-button {
 			display: inline-block;
@@ -340,56 +336,25 @@
 			</div>
 			<div class="content">
 				<div class="inner">
-					<h1>Spark Games</h1>
-					<p>Seasonal Games and productivity tools<br>for game developers and 3D artists.</p>
+					<h1>Careers at Spark Games</h1>
+					<p>Join our team and help create amazing gaming experiences<br>for players around the world.</p>
 				</div>
 			</div>
 			<nav>
 				<ul>
-					<li><a href="#games">Games</a></li>
-					<li><a href="#tools">Tools</a></li>
-					<li><a href="#about">About</a></li>
-					<li><a href="#contact">Contact</a></li>
-					<li><a href="#careers">Careers</a></li>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="index.html#games">Games</a></li>
+					<li><a href="index.html#tools">Tools</a></li>
+					<li><a href="index.html#about">About</a></li>
 				</ul>
 			</nav>
 		</header>
 	
 		<div id="main">
-			<article id="games">
-				<h2 class="major">Games</h2>
-				<div id="games-content"></div>
-			</article>
-	
-			<article id="tools">
-				<h2 class="major">Tools</h2>
-				<div id="tools-content"></div>
-			</article>
-	
-			<article id="about">
-				<h2 class="major">About</h2>
-				<div id="about-content"></div>
-			</article>
-	
-			<article id="contact">
-				<h2 class="major">Contact</h2>
-				<div id="contact-content"></div>
-			</article>
-
 			<article id="careers">
-				<h2 class="major">Careers</h2>
+				<h2 class="major">Open Positions</h2>
 				<div id="careers-content"></div>
 			</article>
-		</div>
-	
-		<div id="ad-banner" class="section major">
-			<div class="inner">
-				<div class="ad-container">
-					<a href="https://assetstore.unity.com/?on_sale=true&orderBy=1&rows=96&aid=1011lds77" target="_blank">
-						<div id="seasonal-ad"></div>
-					</a>
-				</div>
-			</div>
 		</div>
 	
 		<footer id="footer">
@@ -402,15 +367,13 @@
 <script src="assets/js/breakpoints.min.js"></script>
 <script src="assets/js/util.js"></script>
 <script src="assets/js/main.js"></script>
-<script src="assets/js/seasonal-banner.js"></script>
-<script src="assets/js/ad-banner-fade.js"></script>
-<script src="assets/js/load-sections.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 <script src="assets/js/form-handler.js"></script>
+<script src="assets/js/load-sections.js"></script>
 
 <script>
-// Careers functionality
+// Job selection functionality
 document.addEventListener('DOMContentLoaded', function() {
     // Wait for content to load
     setTimeout(() => {
@@ -419,29 +382,27 @@ document.addEventListener('DOMContentLoaded', function() {
         const selectedJobTitle = document.getElementById('selected-job-title');
         const selectedJobInput = document.getElementById('selected-job-input');
 
-        if (jobPostings.length > 0) {
-            jobPostings.forEach(job => {
-                job.addEventListener('click', function() {
-                    // Remove selected class from all jobs
-                    jobPostings.forEach(j => j.classList.remove('selected'));
-                    
-                    // Add selected class to clicked job
-                    this.classList.add('selected');
-                    
-                    // Update form with job information
-                    const jobTitle = this.querySelector('.job-title').textContent;
-                    const jobType = this.querySelector('.job-type').textContent;
-                    selectedJobTitle.textContent = jobTitle;
-                    selectedJobInput.value = jobTitle + ' (' + jobType + ')';
-                    
-                    // Show application form
-                    applicationForm.classList.add('active');
-                    
-                    // Scroll to form
-                    applicationForm.scrollIntoView({ behavior: 'smooth' });
-                });
+        jobPostings.forEach(job => {
+            job.addEventListener('click', function() {
+                // Remove selected class from all jobs
+                jobPostings.forEach(j => j.classList.remove('selected'));
+                
+                // Add selected class to clicked job
+                this.classList.add('selected');
+                
+                // Update form with job information
+                const jobTitle = this.querySelector('.job-title').textContent;
+                const jobType = this.querySelector('.job-type').textContent;
+                selectedJobTitle.textContent = jobTitle;
+                selectedJobInput.value = jobTitle + ' (' + jobType + ')';
+                
+                // Show application form
+                applicationForm.classList.add('active');
+                
+                // Scroll to form
+                applicationForm.scrollIntoView({ behavior: 'smooth' });
             });
-        }
+        });
 
         // File upload functionality
         const fileUploadArea = document.getElementById('file-upload-area');
@@ -565,7 +526,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }, 2000);
             }
         });
-    }, 2000); // Wait 2 seconds for content to load
+    }, 1000); // Wait 1 second for content to load
 });
 </script>
 </body>
