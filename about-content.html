@@ -6,13 +6,13 @@
 <div id="unity-game-container" style="overflow: hidden; padding-top: 56.25%; position: relative;">
     <!-- Clickable placeholder -->
     <div id="unity-placeholder" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(155, 241, 255, 0.1), rgba(155, 241, 255, 0.05)); border: 2px solid rgba(155, 241, 255, 0.3); border-radius: 16px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; backdrop-filter: blur(10px);" onclick="window.loadUnityGame && window.loadUnityGame()">
-        <div style="text-align: center; color: white; user-select: none;">
-            <div style="font-size: 4em; margin-bottom: 20px; color: #9bf1ff; transition: all 0.3s ease;" id="play-icon">
+        <div style="text-align: center; color: white; user-select: none; padding: 20px;">
+            <div style="font-size: clamp(2em, 8vw, 4em); margin-bottom: clamp(10px, 3vw, 20px); color: #9bf1ff; transition: all 0.3s ease;" id="play-icon">
                 <i class="fas fa-play-circle"></i>
             </div>
-            <h3 style="margin: 0 0 10px 0; font-size: 1.8em; font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">Interactive 3D Portfolio</h3>
-            <p style="margin: 0; opacity: 0.9; font-size: 1.1em; font-weight: 500;">Click to explore the interactive experience</p>
-            <div style="margin-top: 20px; padding: 12px 24px; background: rgba(155, 241, 255, 0.2); border: 1px solid rgba(155, 241, 255, 0.4); border-radius: 25px; display: inline-block; font-size: 0.9em; font-weight: 600; letter-spacing: 0.5px;">
+            <h3 style="margin: 0 0 clamp(5px, 2vw, 10px) 0; font-size: clamp(1.2em, 4vw, 1.8em); font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">Interactive 3D Portfolio</h3>
+            <p style="margin: 0; opacity: 0.9; font-size: clamp(0.9em, 2.5vw, 1.1em); font-weight: 500;">Click to explore the interactive experience</p>
+            <div style="margin-top: clamp(10px, 3vw, 20px); padding: clamp(8px, 2vw, 12px) clamp(16px, 4vw, 24px); background: rgba(155, 241, 255, 0.2); border: 1px solid rgba(155, 241, 255, 0.4); border-radius: 25px; display: inline-block; font-size: clamp(0.7em, 2vw, 0.9em); font-weight: 600; letter-spacing: 0.5px;">
                 <i class="fas fa-cube" style="margin-right: 8px;"></i>UNITY WEBGL
             </div>
         </div>
@@ -20,12 +20,12 @@
     
     <!-- Loading state (hidden by default) -->
     <div id="unity-loading" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(155, 241, 255, 0.1), rgba(155, 241, 255, 0.05)); border: 2px solid rgba(155, 241, 255, 0.3); border-radius: 16px; display: none; align-items: center; justify-content: center; backdrop-filter: blur(10px);">
-        <div style="text-align: center; color: white;">
-            <div style="font-size: 2em; margin-bottom: 16px; color: #9bf1ff; animation: spin 2s linear infinite;">
+        <div style="text-align: center; color: white; padding: 20px;">
+            <div style="font-size: clamp(1.5em, 5vw, 2em); margin-bottom: clamp(8px, 2vw, 16px); color: #9bf1ff; animation: spin 2s linear infinite;">
                 <i class="fas fa-spinner"></i>
             </div>
-            <h3 style="margin: 0 0 8px 0; font-size: 1.4em; font-weight: 600;">Loading Interactive Portfolio...</h3>
-            <p style="margin: 0; opacity: 0.8; font-size: 1em;">Please wait while the 3D experience loads</p>
+            <h3 style="margin: 0 0 clamp(4px, 1.5vw, 8px) 0; font-size: clamp(1em, 3vw, 1.4em); font-weight: 600;">Loading Interactive Portfolio...</h3>
+            <p style="margin: 0; opacity: 0.8; font-size: clamp(0.8em, 2vw, 1em);">Please wait while the 3D experience loads</p>
         </div>
     </div>
 </div>

@@ -42,6 +42,15 @@ function sendEmail(event) {
             return;
         }
         
+        // Check file size (reasonable limit for CVs)
+        const maxSizeMB = 1.5;
+        const fileSizeMB = file.size / (1024 * 1024);
+        
+        if (fileSizeMB > maxSizeMB) {
+            showMessage('Error', `CV file is too large (${fileSizeMB.toFixed(1)}MB). Please compress your file to under ${maxSizeMB}MB.`);
+            return;
+        }
+        
         // Convert file to base64 and send
         const reader = new FileReader();
         reader.onload = function(e) {
@@ -76,7 +85,13 @@ function sendEmail(event) {
                 })
                 .catch(function(error) {
                     console.error('Failed to send application:', error);
-                    showMessage('Error', `Failed to submit application. Please try again or email us directly at ${CONTACT_LINK}`);
+                    
+                    // Check if it's a file size error from EmailJS
+                    if (error.text && error.text.includes('Variables size limit')) {
+                        showMessage('Error', `Your CV file is too large for our online form. Please email your application directly to ${CONTACT_LINK} with your CV attached.`);
+                    } else {
+                        showMessage('Error', `Failed to submit application. Please try again or email us directly at ${CONTACT_LINK}`);
+                    }
                 });
         };
         
@@ -166,13 +181,13 @@ window.openModal = function(button) {
             modalMemberInfo.style.display = 'flex';
             modalDefaultInfo.style.display = 'none';
             
-            // Set the team member's avatar as background of the modal header
-            if (modalHeader) {
-                modalHeader.style.backgroundImage = `url('${memberAvatar}')`;
-                modalHeader.style.backgroundSize = 'cover';
-                modalHeader.style.backgroundPosition = 'top right';
-                modalHeader.style.backgroundRepeat = 'no-repeat';
-            }
+            			// Set the team member's avatar as background of the modal header
+			if (modalHeader) {
+				modalHeader.style.backgroundImage = `url('${memberAvatar}')`;
+				modalHeader.style.backgroundSize = 'auto 100%';
+				modalHeader.style.backgroundPosition = 'top right';
+				modalHeader.style.backgroundRepeat = 'no-repeat';
+			}
         } else {
             modalJobTitleDefault.textContent = jobTitle;
             modalMemberInfo.style.display = 'none';
