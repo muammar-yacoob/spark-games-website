@@ -2,7 +2,7 @@ const CONTACT_EMAIL = 'support@spark-games.co.uk';
 const CONTACT_LINK = `<a href="mailto:${CONTACT_EMAIL}" style="color: #00ccff;">${CONTACT_EMAIL}</a>`;
 
 // Web3Forms configuration
-const WEB3FORMS_KEY = 'API_KEY_PLACEHOLDER';
+const WEB3FORMS_KEY = 'WEB3FORMS_PUBLIC_KEY';
 
 function showMessage(title, message) {
     if (typeof Swal !== 'undefined') {
@@ -25,6 +25,40 @@ function showMessage(title, message) {
 
 async function submitForm(form) {
     const formData = new FormData(form);
+    
+    // Check if we're in local development
+    const isLocalHost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    
+    if (isLocalHost) {
+        // Local development - simulate success
+        console.log('Local development mode - simulating form submission');
+        console.log('Form data:', Object.fromEntries(formData.entries()));
+        
+        // Simulate delay
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        if (form.id === 'application-form') {
+            showMessage('Success', 'Your application has been submitted successfully! We\'ll be in touch soon. (Local development mode - form not actually sent)');
+            
+            // Close the modal
+            const modal = document.getElementById('application-modal');
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            // Reset file upload UI
+            const fileInfo = document.getElementById('file-info');
+            if (fileInfo) {
+                fileInfo.style.display = 'none';
+            }
+        } else {
+            showMessage('Success', 'Your message has been sent successfully! Thank you for getting in touch. (Local development mode - form not actually sent)');
+        }
+        
+        form.reset();
+        return true;
+    }
     
     // Add Web3Forms access key
     formData.append('access_key', WEB3FORMS_KEY);
