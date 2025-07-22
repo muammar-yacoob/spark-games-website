@@ -155,19 +155,31 @@ window.openModal = function(button) {
         // Show team member info if available
         const modalMemberInfo = document.getElementById('modal-member-info');
         const modalDefaultInfo = document.getElementById('modal-default-info');
-        const modalMemberAvatar = document.getElementById('modal-member-avatar');
         const modalMemberName = document.getElementById('modal-member-name');
         const modalJobTitleDefault = document.getElementById('modal-job-title-default');
+        const modalHeader = document.getElementById('modal-header');
         
         if (memberAvatar && memberName && modalMemberInfo && modalDefaultInfo) {
-            modalMemberAvatar.src = memberAvatar;
             modalMemberName.textContent = memberName;
             modalMemberInfo.style.display = 'flex';
             modalDefaultInfo.style.display = 'none';
+            
+            // Set the team member's avatar as background of the modal header
+            if (modalHeader) {
+                modalHeader.style.backgroundImage = `url('${memberAvatar}')`;
+                modalHeader.style.backgroundSize = 'cover';
+                modalHeader.style.backgroundPosition = 'top right';
+                modalHeader.style.backgroundRepeat = 'no-repeat';
+            }
         } else {
             modalJobTitleDefault.textContent = jobTitle;
             modalMemberInfo.style.display = 'none';
             modalDefaultInfo.style.display = 'block';
+            
+            // Clear background image for default state
+            if (modalHeader) {
+                modalHeader.style.backgroundImage = 'none';
+            }
         }
         
         modal.classList.add('active');

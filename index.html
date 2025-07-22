@@ -563,11 +563,13 @@
 			color: #ffffff;
 			font-size: 1.6em;
 			margin: 0;
+			text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 		}
 
 		.modal-header p {
 			color: #a1a1a1;
 			margin: 8px 0 0;
+			text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
 		}
 
 		.close-modal {
@@ -718,34 +720,7 @@
 			color: #4CAF50;
 		}
 
-		.file-remove-btn {
-			position: relative;
-			width: 32px;
-			height: 32px;
-			border: 1px solid rgba(255, 255, 255, 0.1);
-			background: rgba(255, 255, 255, 0.05);
-			color: #a1a1a1;
-			border-radius: 50%;
-			cursor: pointer;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			transition: all 0.3s ease;
-			flex-shrink: 0;
-			min-width: 32px;
-			min-height: 32px;
-			background-image: url('images/UI/close.png');
-			background-size: contain;
-			background-repeat: no-repeat;
-			background-position: center;
-		}
 
-		.file-remove-btn:hover {
-			background: rgba(255, 255, 255, 0.1);
-			border: 1px solid rgba(155, 241, 255, 0.3);
-			color: #9bf1ff;
-			transform: scale(1.05) rotate(90deg);
-		}
 
 		#application-form button[type="submit"] {
 			appearance: none;
@@ -1110,9 +1085,8 @@
 	<!-- Application Modal for careers section -->
 	<div class="modal-overlay" id="application-modal">
 		<div class="modal-content">
-			<div class="modal-header">
+			<div class="modal-header" id="modal-header" style="position: relative; background-size: cover; background-position: top right; background-repeat: no-repeat;">
 				<div class="modal-header-content" style="position: relative;">
-					<img id="modal-member-avatar" src="" alt="Team member" style="position: absolute; top: -10px; right: -10px; width: 60px; height: 60px; border-radius: 50%; object-fit: cover; z-index: -1; opacity: 0.3; border: 2px solid rgba(155, 241, 255, 0.5); display: none;">
 					<div class="modal-member-info" id="modal-member-info" style="display: none;">
 						<div>
 							<h3>Apply for <span id="modal-job-title">Position</span></h3>
@@ -1189,7 +1163,8 @@
 										<i class="fas fa-file-alt"></i>
 										<span id="file-name"></span>
 									</div>
-									<button type="button" class="file-remove-btn" onclick="removeFile()" aria-label="Remove file">
+									<button type="button" class="close-modal" onclick="removeFile()" aria-label="Remove file">
+										<i class="fas fa-times"></i>
 									</button>
 								</div>
 							</div>
