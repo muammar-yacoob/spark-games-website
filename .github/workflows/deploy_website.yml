@@ -19,7 +19,7 @@ jobs:
 
       - name: Replace EmailJS Public Key 🔑
         run: |
-          sed -i 's|API_KEY_PLACEHOLDER|${{ secrets.EMAILJS_PUBLIC_KEY }}|g' assets/js/form-handler.js
+          sed -i 's|API_KEY_PLACEHOLDER|${{ secrets.WEB3FORMS_PUBLIC_KEY }}|g' assets/js/form-handler.js
           echo "Replacement done. Checking result:"
           grep -n "emailjs.init" assets/js/form-handler.js
 
