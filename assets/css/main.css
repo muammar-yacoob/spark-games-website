@@ -1113,6 +1113,7 @@ body.is-preload #header .content .inner {
 	text-indent: 4rem;
 	overflow: hidden;
 	white-space: nowrap;
+	position: relative;
 }
 
 #main article .close:before {
@@ -1120,15 +1121,16 @@ body.is-preload #header .content .inner {
 	content: '';
 	display: block;
 	position: absolute;
-	top: 0.75rem;
-	left: 0.75rem;
+	top: 50%;
+	left: 50%;
 	width: 2.5rem;
 	height: 2.5rem;
-	border-radius: 100%;
+	border-radius: 50%;
 	background-position: center;
 	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='https://www.w3.org/2000/svg' xmlns:xlink='https://www.w3.org/1999/xlink' width='20px' height='20px' viewBox='0 0 20 20' zoomAndPan='disable'%3E%3Cstyle%3Eline %7B stroke: %23ffffff%3B stroke-width: 1%3B %7D%3C/style%3E%3Cline x1='2' y1='2' x2='18' y2='18' /%3E%3Cline x1='18' y1='2' x2='2' y2='18' /%3E%3C/svg%3E");
 	background-size: 20px 20px;
 	background-repeat: no-repeat;
+	transform: translate(-50%, -50%);
 }
 
 #main article .close:hover:before {
@@ -1207,28 +1209,38 @@ body.is-preload #footer {
 
 /* Careers Page Specific Styles */
 .apply-button, .network-button {
-	background: #9bf1ff;
+	background: linear-gradient(135deg, #00d4ff, #0099cc);
 	color: #000;
 	border: none;
-	border-radius: 6px;
-	padding: 6px 12px;
-	font-weight: 600;
-	font-size: 0.8em;
-	height: 32px;
+	border-radius: 8px;
+	padding: 12px 20px;
+	font-weight: 700;
+	font-size: 0.9em;
+	height: 44px;
 	cursor: pointer;
 	transition: all 0.3s ease;
 	display: inline-flex;
 	align-items: center;
-	gap: 4px;
+	gap: 8px;
 	text-decoration: none;
-	min-width: 80px;
+	min-width: 120px;
 	flex-shrink: 0;
+	box-shadow: 0 2px 8px rgba(0, 212, 255, 0.3);
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
 }
 
 .apply-button:hover, .network-button:hover:not(:disabled) {
-	background: #5ac8d9;
-	border: 1px solid #9bf1ff;
-	transform: scale(1.05);
+	background: linear-gradient(135deg, #33e0ff, #1abfff);
+	box-shadow: 0 2px 8px rgba(0, 212, 255, 0.2);
+	transform: scale(1.05) translateY(-2px);
+	border: none;
+}
+
+.apply-button:active, .network-button:active:not(:disabled) {
+	background: linear-gradient(135deg, #00d4ff, #0099cc);
+	transform: scale(1.02) translateY(-1px);
+	box-shadow: 0 2px 8px rgba(0, 212, 255, 0.3);
 }
 
 .network-button:disabled {
@@ -1263,6 +1275,32 @@ body.is-preload #footer {
 #application-form input[type="url"],
 #application-form select {
 	height: 1.80rem;
+}
+
+/* Resume/CV remove button (file remove X) */
+.file-remove-btn, .cv-remove-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	top: 50%;
+	right: 12px;
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
+	background: rgba(0,0,0,0.2);
+	border: 2px solid #fff;
+	color: #fff;
+	font-size: 1.2em;
+	cursor: pointer;
+	transform: translateY(-50%);
+	transition: background 0.2s, border 0.2s;
+	z-index: 2;
+}
+.file-remove-btn:hover, .cv-remove-btn:hover {
+	background: #ff6b6b;
+	border-color: #ff6b6b;
+	color: #fff;
 }
 
 /* Responsive Design */
@@ -1447,4 +1485,25 @@ body.is-preload #footer {
 	html {
 		font-size: 10pt;
 	}
+}
+
+/* SweetAlert2 custom button styles */
+.swal2-popup .swal2-actions button {
+    height: 2.2rem !important;
+    min-width: 100px;
+    padding: 0 1.2rem !important;
+    font-size: 1rem !important;
+    font-weight: 600;
+    border-radius: 6px !important;
+    line-height: 2.2rem !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    box-shadow: none !important;
+}
+
+.swal2-popup .swal2-actions button:focus {
+    outline: 2px solid #9bf1ff !important;
+    outline-offset: 2px;
 }

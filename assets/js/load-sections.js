@@ -58,6 +58,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 '  <img src="images/Team/vacancy_banner.png" alt="Coming soon!" style="width: 100%; height: 100%; object-fit: contain; display: block;">\n' +
                 '</div>' : '';
             
+            // Pick a random quote if available
+            let selectedQuote = "No quote available";
+            if (member.quotes && Array.isArray(member.quotes) && member.quotes.length > 0) {
+                selectedQuote = member.quotes[Math.floor(Math.random() * member.quotes.length)];
+            } else if (member.quote) {
+                selectedQuote = member.quote;
+            }
+            
             return `
                 <div class="team-member">
                     ${vacancyBanner}
@@ -67,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                     <h3 class="member-name">${member.name}</h3>
                     <p class="member-role">${member.role}</p>
-                    <p class="member-quote">${member.quote}</p>
+                    <p class="member-quote">${selectedQuote}</p>
                     <p class="member-show">- ${member.show}</p>
                     <div class="member-skills">
                         ${skillTags}

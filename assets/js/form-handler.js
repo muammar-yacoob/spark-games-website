@@ -195,5 +195,43 @@ window.openModal = function(button) {
     }
 };
 
+// --- Application form word counter logic ---
+document.addEventListener('DOMContentLoaded', function() {
+    const messageInput = document.getElementById('message');
+    const wordCounter = document.getElementById('word-counter');
+    const wordCountSpan = document.getElementById('word-count');
+    const applicationForm = document.getElementById('application-form');
+    if (messageInput && wordCounter && wordCountSpan && applicationForm) {
+        const minWords = 5;
+        const maxWords = 40;
+        function countWords(str) {
+            // Split by whitespace, filter out empty strings
+            return str.trim().split(/\s+/).filter(Boolean).length;
+        }
+        function updateWordCounter() {
+            const words = countWords(messageInput.value);
+            const remaining = maxWords - words;
+            wordCountSpan.textContent = remaining >= 0 ? remaining : 0;
+            wordCounter.innerHTML = `<span id="word-count">${remaining >= 0 ? remaining : 0}</span> words remaining (${minWords}-${maxWords} words required)`;
+            if (words < minWords || words > maxWords) {
+                wordCounter.style.color = '#ff6b6b';
+                messageInput.setCustomValidity(`Please enter between ${minWords} and ${maxWords} words.`);
+            } else {
+                wordCounter.style.color = '#a1a1a1';
+                messageInput.setCustomValidity('');
+            }
+        }
+        messageInput.addEventListener('input', updateWordCounter);
+        updateWordCounter();
+        applicationForm.addEventListener('submit', function(e) {
+            const words = countWords(messageInput.value);
+            if (words < minWords || words > maxWords) {
+                messageInput.reportValidity();
+                e.preventDefault();
+            }
+        });
+    }
+});
+
 initEmailJS();
 document.addEventListener('DOMContentLoaded', setupFormListener);

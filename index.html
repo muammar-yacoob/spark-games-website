@@ -430,6 +430,9 @@
 			align-items: center;
 			justify-content: center;
 			transition: all 0.3s ease;
+			flex-shrink: 0;
+			min-width: 40px;
+			min-height: 40px;
 		}
 
 		.close-modal:hover {
@@ -599,6 +602,64 @@
 		#application-form button[type="submit"]:active {
 			background-color: rgba(255, 255, 255, 0.175);
 			transform: scale(0.98);
+		}
+
+		/* Submit button states */
+		#submit-application:disabled {
+			background-color: rgba(255, 255, 255, 0.1) !important;
+			color: rgba(255, 255, 255, 0.4) !important;
+			cursor: not-allowed !important;
+			transform: none !important;
+			border-color: rgba(255, 255, 255, 0.2) !important;
+		}
+
+		#submit-application:enabled {
+			background-color: #9bf1ff !important;
+			color: #000 !important;
+			border-color: #9bf1ff !important;
+			cursor: pointer !important;
+		}
+
+		#submit-application:enabled:hover {
+			background-color: #7dd8e6 !important;
+			transform: scale(1.02) !important;
+		}
+
+		/* SweetAlert custom styling */
+		.swal2-popup {
+			background-color: #1a1a1a !important;
+			color: #ffffff !important;
+			border: 1px solid rgba(255, 255, 255, 0.1) !important;
+			border-radius: 8px !important;
+		}
+
+		.swal2-title {
+			color: #ffffff !important;
+			font-size: 1.5em !important;
+		}
+
+		.swal2-content {
+			color: #e0e0e0 !important;
+		}
+
+		.swal2-confirm {
+			background-color: #9bf1ff !important;
+			color: #000 !important;
+			border: none !important;
+			border-radius: 4px !important;
+			font-weight: 600 !important;
+		}
+
+		.swal2-cancel {
+			background-color: transparent !important;
+			color: #9bf1ff !important;
+			border: 1px solid #9bf1ff !important;
+			border-radius: 4px !important;
+			font-weight: 600 !important;
+		}
+
+		.swal2-loader {
+			border-color: #9bf1ff transparent #9bf1ff transparent !important;
 		}
 
 
@@ -908,7 +969,7 @@
 
 					<div class="form-row">
 						<div class="form-group">
-							<label for="portfolio">Portfolio / Website *</label>
+							<label for="portfolio">Portfolio *</label>
 							<input type="url" id="portfolio" name="portfolio" required placeholder="https://your-portfolio.com">
 						</div>
 						<div class="form-group">
@@ -932,7 +993,10 @@
 
 					<div class="form-group">
 						<label for="message">Why are you perfect for this role? *</label>
-						<textarea id="message" name="message" rows="3" required placeholder="Tell us what makes you excited about this opportunity and why you'd be a great fit..."></textarea>
+						<textarea id="message" name="message" rows="3" required placeholder="Tell us what makes you excited about this opportunity and why you'd be a great fit..." maxlength="250"></textarea>
+						<div id="word-counter" style="margin-top: 8px; font-size: 0.85em; color: #a1a1a1; text-align: right;">
+							<span id="word-count">40</span> words remaining (5-40 words required)
+						</div>
 					</div>
 
 					<div class="form-group">
@@ -957,7 +1021,7 @@
 						</div>
 					</div>
 
-					<button type="submit">
+					<button type="submit" id="submit-application" disabled>
 						<i class="fas fa-rocket" style="margin-right: 8px;"></i>
 						Submit Application
 					</button>
@@ -1109,6 +1173,8 @@ document.addEventListener('DOMContentLoaded', function() {
             fileName.textContent = `${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`;
             fileInfo.style.display = 'block';
             uploadButton.style.display = 'none';
+            formHasBeenModified = true;
+            validateForm();
         }
 
         // Global removeFile function
@@ -1119,9 +1185,95 @@ document.addEventListener('DOMContentLoaded', function() {
             uploadButton.style.display = 'flex';
         }
 
-        // Form submission
+        // Form validation and submit button management
         const applicationForm = document.getElementById('application-form');
+        const submitButton = document.getElementById('submit-application');
+        let formHasBeenModified = false;
+        
+        function validateForm() {
+            if (!applicationForm || !submitButton) return false;
+            
+            const fullName = document.getElementById('full-name')?.value.trim();
+            const email = document.getElementById('email')?.value.trim();
+            const portfolio = document.getElementById('portfolio')?.value.trim();
+            const location = document.getElementById('location')?.value.trim();
+            const message = document.getElementById('message')?.value.trim();
+            
+            // Count words in message
+            const wordCount = message ? message.split(/\s+/).filter(word => word.length > 0).length : 0;
+            const isWordCountValid = wordCount >= 5 && wordCount <= 40;
+            
+            // Update word counter display
+            updateWordCounter(wordCount);
+            
+            const allFieldsFilled = fullName && email && portfolio && location && message && selectedFile && isWordCountValid;
+            
+            if (allFieldsFilled) {
+                submitButton.disabled = false;
+            } else {
+                submitButton.disabled = true;
+            }
+            
+            return allFieldsFilled;
+        }
+        
+        function updateWordCounter(currentWords) {
+            const wordCountSpan = document.getElementById('word-count');
+            const wordCounter = document.getElementById('word-counter');
+            
+            if (wordCountSpan && wordCounter) {
+                const remaining = Math.max(0, 40 - currentWords);
+                wordCountSpan.textContent = remaining;
+                
+                // Update styling based on word count
+                if (currentWords < 5) {
+                    wordCounter.style.color = '#ff6b6b'; // Red for too few words
+                    wordCountSpan.textContent = remaining;
+                    wordCounter.innerHTML = `<span id="word-count">${remaining}</span> words remaining (need at least ${5 - currentWords} more)`;
+                } else if (currentWords > 40) {
+                    wordCounter.style.color = '#ff6b6b'; // Red for too many words
+                    wordCountSpan.textContent = 0;
+                    wordCounter.innerHTML = `<span id="word-count">0</span> words remaining (${currentWords - 40} words over limit)`;
+                } else {
+                    wordCounter.style.color = '#9bf1ff'; // Blue for valid count
+                    wordCounter.innerHTML = `<span id="word-count">${remaining}</span> words remaining (${currentWords}/40)`;
+                }
+            }
+        }
+        
+        // Add event listeners to all form fields
         if (applicationForm) {
+            const formInputs = applicationForm.querySelectorAll('input, select, textarea');
+            formInputs.forEach(input => {
+                input.addEventListener('input', () => {
+                    formHasBeenModified = true;
+                    validateForm();
+                });
+                input.addEventListener('change', () => {
+                    formHasBeenModified = true;
+                    validateForm();
+                });
+            });
+            
+            // Special handling for textarea word count
+            const messageTextarea = document.getElementById('message');
+            if (messageTextarea) {
+                messageTextarea.addEventListener('input', () => {
+                    formHasBeenModified = true;
+                    validateForm();
+                });
+                messageTextarea.addEventListener('keyup', () => {
+                    validateForm();
+                });
+                messageTextarea.addEventListener('paste', () => {
+                    setTimeout(() => {
+                        formHasBeenModified = true;
+                        validateForm();
+                    }, 10);
+                });
+            }
+            
+            // Form submission
             applicationForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
@@ -1132,7 +1284,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         icon: 'warning',
                         confirmButtonText: 'OK',
                         background: '#1a1a1a',
-                        color: '#fff'
+                        color: '#fff',
+                        customClass: {
+                            popup: 'swal2-popup',
+                            title: 'swal2-title',
+                            content: 'swal2-content',
+                            confirmButton: 'swal2-confirm'
+                        }
                     });
                     return;
                 }
@@ -1150,7 +1308,13 @@ document.addEventListener('DOMContentLoaded', function() {
                             icon: 'warning',
                             confirmButtonText: 'OK',
                             background: '#1a1a1a',
-                            color: '#fff'
+                            color: '#fff',
+                            customClass: {
+                                popup: 'swal2-popup',
+                                title: 'swal2-title',
+                                content: 'swal2-content',
+                                confirmButton: 'swal2-confirm'
+                            }
                         });
                         return;
                     }
@@ -1160,6 +1324,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     title: 'Sending Application...',
                     text: 'Please wait while we process your submission.',
                     allowOutsideClick: false,
+                    showConfirmButton: false,
+                    background: '#1a1a1a',
+                    color: '#fff',
+                    customClass: {
+                        popup: 'swal2-popup',
+                        title: 'swal2-title',
+                        content: 'swal2-content'
+                    },
                     didOpen: () => {
                         Swal.showLoading();
                     }
@@ -1173,16 +1345,109 @@ document.addEventListener('DOMContentLoaded', function() {
                         icon: 'success',
                         confirmButtonText: 'Great!',
                         background: '#1a1a1a',
-                        color: '#fff'
+                        color: '#fff',
+                        customClass: {
+                            popup: 'swal2-popup',
+                            title: 'swal2-title',
+                            content: 'swal2-content',
+                            confirmButton: 'swal2-confirm'
+                        }
                     });
                     
                     modal.classList.remove('active');
                     document.body.style.overflow = '';
                     applicationForm.reset();
                     removeFile();
+                    formHasBeenModified = false;
+                    updateWordCounter(0);
+                    validateForm();
                 }, 2000);
             });
         }
+        
+        // Warning dialog functions
+        function showUnsavedChangesWarning(callback) {
+            if (formHasBeenModified) {
+                Swal.fire({
+                    title: 'Unsaved Changes',
+                    text: 'You have unsaved changes in your application. Are you sure you want to leave?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, leave',
+                    cancelButtonText: 'Stay',
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#9bf1ff',
+                    background: '#1a1a1a',
+                    color: '#fff',
+                    customClass: {
+                        popup: 'swal2-popup',
+                        title: 'swal2-title',
+                        content: 'swal2-content',
+                        confirmButton: 'swal2-confirm',
+                        cancelButton: 'swal2-cancel'
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        formHasBeenModified = false;
+                        callback();
+                    }
+                });
+            } else {
+                callback();
+            }
+        }
+        
+        // Override close modal functionality
+        const applicationCloseBtn = modal.querySelector('.close-modal');
+        if (applicationCloseBtn) {
+            applicationCloseBtn.removeEventListener('click', () => {});
+            applicationCloseBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                showUnsavedChangesWarning(() => {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                    applicationForm.reset();
+                    removeFile();
+                    formHasBeenModified = false;
+                    updateWordCounter(0);
+                    validateForm();
+                });
+            });
+        }
+        
+        // Override background click close
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                showUnsavedChangesWarning(() => {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                    applicationForm.reset();
+                    removeFile();
+                    formHasBeenModified = false;
+                    updateWordCounter(0);
+                    validateForm();
+                });
+            }
+        });
+        
+        // Add beforeunload warning when form is modified
+        window.addEventListener('beforeunload', function(e) {
+            if (formHasBeenModified && modal.classList.contains('active')) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+        
+        // Update file upload to trigger validation
+        const originalRemoveFile = window.removeFile;
+        window.removeFile = function() {
+            originalRemoveFile();
+            formHasBeenModified = true;
+            validateForm();
+        };
+        
+        // Initial validation
+        validateForm();
     }, 2000);
 });
 
