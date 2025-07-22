@@ -382,6 +382,27 @@
 			background: #1a1a1a;
 			z-index: 10;
 		}
+		
+		.modal-header-content {
+			display: flex;
+			align-items: flex-start;
+		}
+		
+		.modal-member-info {
+			display: flex;
+			align-items: center;
+		}
+		
+		.modal-member-info h3 {
+			margin: 0 0 4px 0;
+			color: #ffffff;
+			font-size: 1.6em;
+		}
+		
+		.modal-member-info p {
+			margin: 0;
+			color: #a1a1a1;
+		}
 
 		.modal-header h3 {
 			color: #ffffff;
@@ -403,7 +424,7 @@
 			border: 1px solid rgba(255, 255, 255, 0.1);
 			background: rgba(255, 255, 255, 0.05);
 			color: #a1a1a1;
-			border-radius: 4px;
+			border-radius: 50%;
 			cursor: pointer;
 			display: flex;
 			align-items: center;
@@ -415,7 +436,7 @@
 			background: rgba(255, 255, 255, 0.1);
 			border: 1px solid rgba(155, 241, 255, 0.3);
 			color: #9bf1ff;
-			transform: scale(1.05);
+			transform: scale(1.05) rotate(90deg);
 		}
 
 		.modal-body {
@@ -853,8 +874,19 @@
 	<div class="modal-overlay" id="application-modal">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h3>Apply for <span id="modal-job-title">Position</span></h3>
-				<p>We're excited to learn more about you!</p>
+				<div class="modal-header-content">
+					<div class="modal-member-info" id="modal-member-info" style="display: none;">
+						<img id="modal-member-avatar" src="" alt="Team member" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover; margin-right: 16px;">
+						<div>
+							<h3>Apply for <span id="modal-job-title">Position</span></h3>
+							<p>Join <span id="modal-member-name"></span>'s team!</p>
+						</div>
+					</div>
+					<div class="modal-default-info" id="modal-default-info">
+						<h3>Apply for <span id="modal-job-title-default">Position</span></h3>
+						<p>We're excited to learn more about you!</p>
+					</div>
+				</div>
 				<button class="close-modal" aria-label="Close">
 					<i class="fas fa-times"></i>
 				</button>
@@ -876,12 +908,12 @@
 
 					<div class="form-row">
 						<div class="form-group">
-							<label for="portfolio">Portfolio / Website</label>
-							<input type="url" id="portfolio" name="portfolio" placeholder="https://your-portfolio.com">
+							<label for="portfolio">Portfolio / Website *</label>
+							<input type="url" id="portfolio" name="portfolio" required placeholder="https://your-portfolio.com">
 						</div>
 						<div class="form-group">
-							<label for="location">Location</label>
-							<select id="location" name="location">
+							<label for="location">Location *</label>
+							<select id="location" name="location" required>
 								<option value="">Select location</option>
 								<option value="London">London</option>
 								<option value="Manchester">Manchester</option>
@@ -1103,6 +1135,25 @@ document.addEventListener('DOMContentLoaded', function() {
                         color: '#fff'
                     });
                     return;
+                }
+                
+                // Validate description word count
+                const messageField = document.getElementById('message');
+                if (messageField) {
+                    const message = messageField.value.trim();
+                    const wordCount = message.split(/\s+/).filter(word => word.length > 0).length;
+                    
+                    if (wordCount < 5 || wordCount > 40) {
+                        Swal.fire({
+                            title: 'Description Length Invalid',
+                            text: `Please provide a description between 5 and 40 words. Current word count: ${wordCount}`,
+                            icon: 'warning',
+                            confirmButtonText: 'OK',
+                            background: '#1a1a1a',
+                            color: '#fff'
+                        });
+                        return;
+                    }
                 }
 
                 Swal.fire({

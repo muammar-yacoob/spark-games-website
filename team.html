@@ -416,7 +416,7 @@ function renderTeamMembers(teamMembers) {
         
         const applyButton = member.isVacancy ? 
             `<div style="margin-top: 20px;">
-                <button class="apply-button" onclick="window.openModal && window.openModal(this)" data-job-title="${member.role}" data-job-type="${member.jobType}">
+                <button class="apply-button" onclick="window.openModal && window.openModal(this)" data-job-title="${member.role}" data-job-type="${member.jobType}" data-member-avatar="${member.avatar}" data-member-name="${member.name}">
                     <i class="fas fa-rocket"></i>
                     Apply Now
                 </button>

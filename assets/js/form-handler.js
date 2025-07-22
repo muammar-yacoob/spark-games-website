@@ -146,9 +146,29 @@ window.openModal = function(button) {
     if (button.hasAttribute('data-job-title')) {
         const jobTitle = button.getAttribute('data-job-title');
         const jobType = button.getAttribute('data-job-type');
+        const memberAvatar = button.getAttribute('data-member-avatar');
+        const memberName = button.getAttribute('data-member-name');
         
         modalJobTitle.textContent = jobTitle;
         jobPositionInput.value = `${jobTitle} (${jobType})`;
+        
+        // Show team member info if available
+        const modalMemberInfo = document.getElementById('modal-member-info');
+        const modalDefaultInfo = document.getElementById('modal-default-info');
+        const modalMemberAvatar = document.getElementById('modal-member-avatar');
+        const modalMemberName = document.getElementById('modal-member-name');
+        const modalJobTitleDefault = document.getElementById('modal-job-title-default');
+        
+        if (memberAvatar && memberName && modalMemberInfo && modalDefaultInfo) {
+            modalMemberAvatar.src = memberAvatar;
+            modalMemberName.textContent = memberName;
+            modalMemberInfo.style.display = 'flex';
+            modalDefaultInfo.style.display = 'none';
+        } else {
+            modalJobTitleDefault.textContent = jobTitle;
+            modalMemberInfo.style.display = 'none';
+            modalDefaultInfo.style.display = 'block';
+        }
         
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
