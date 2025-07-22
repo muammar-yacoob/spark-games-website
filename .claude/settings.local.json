@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find:*)",
+      "Bash(python3:*)",
+      "Bash(mv:*)",
+      "Bash(rm:*)",
+      "Bash(ls:*)",
+      "Bash(cp:*)",
+      "Bash(node:*)",
+      "Bash(python:*)",
+      "Bash(npx http-server:*)",
+      "Bash(git checkout:*)"
+    ],
+    "deny": []
+  }
+}
