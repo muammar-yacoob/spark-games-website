@@ -1,121 +1,8 @@
-const EMAILJS_PUBLIC_KEY = 'API_KEY_PLACEHOLDER';
-const serviceID = 'service_rzijtbs';
-const templateID = 'template_msg1xrm';
+const CONTACT_EMAIL = 'support@spark-games.co.uk';
+const CONTACT_LINK = `<a href="mailto:${CONTACT_EMAIL}" style="color: #00ccff;">${CONTACT_EMAIL}</a>`;
 
-const MESSAGES = {
-    EMAIL_JS_INIT_SUCCESS: 'EmailJS initialized',
-    EMAIL_JS_INIT_ERROR: 'EmailJS library not loaded. Please check your internet connection and try again.',
-    EMAIL_SEND_SUCCESS: 'Email successfully sent! Thank you for your message.',
-    EMAIL_SEND_ERROR: 'Failed to send email. Please try again later or contact us directly at:',
-    CONTACT_EMAIL: 'support@spark-games.co.uk'
-};
-
-const CONTACT_LINK = `<a href="mailto:${MESSAGES.CONTACT_EMAIL}" style="color: #00ccff;">${MESSAGES.CONTACT_EMAIL}</a>`;
-
-function initEmailJS() {
-    if (typeof emailjs !== 'undefined') {
-        emailjs.init(EMAILJS_PUBLIC_KEY);
-        console.log(MESSAGES.EMAIL_JS_INIT_SUCCESS);
-    } else {
-        console.error(MESSAGES.EMAIL_JS_INIT_ERROR);
-    }
-}
-
-function sendEmail(event) {
-    event.preventDefault();
-    
-    if (typeof emailjs === 'undefined') {
-        showMessage('Error', `${MESSAGES.EMAIL_SEND_ERROR} ${CONTACT_LINK}`);
-        return;
-    }
-
-    const form = event.target;
-    const isApplicationForm = form.id === 'application-form';
-    
-    // Handle application form with CV
-    if (isApplicationForm) {
-        const fileInput = form.querySelector('#cv-file');
-        const file = fileInput?.files[0];
-        
-        if (!file) {
-            showMessage('Error', 'Please attach your CV before submitting.');
-            return;
-        }
-        
-        // Check file size (reasonable limit for CVs)
-        const maxSizeMB = 1.5;
-        const fileSizeMB = file.size / (1024 * 1024);
-        
-        if (fileSizeMB > maxSizeMB) {
-            showMessage('Error', `CV file is too large (${fileSizeMB.toFixed(1)}MB). Please compress your file to under ${maxSizeMB}MB.`);
-            return;
-        }
-        
-        // Convert file to base64 and send
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const base64 = e.target.result.split(',')[1];
-            
-            const templateParams = {
-                user_name: form.full_name.value,
-                user_email: form.email.value,
-                message: form.message.value,
-                job_position: form.job_position.value,
-                portfolio: form.portfolio.value || 'Not provided',
-                location: form.location.value || 'Not specified',
-                cv_filename: file.name,
-                cv_content: base64
-            };
-
-            emailjs.send(serviceID, templateID, templateParams)
-                .then(function(response) {
-                    showMessage('Success', 'Your application has been submitted successfully! We\'ll be in touch soon.');
-                    form.reset();
-                    // Close the modal
-                    const modal = document.getElementById('application-modal');
-                    if (modal) {
-                        modal.classList.remove('active');
-                        document.body.style.overflow = '';
-                    }
-                    // Reset file upload UI
-                    const fileInfo = document.getElementById('file-info');
-                    if (fileInfo) {
-                        fileInfo.style.display = 'none';
-                    }
-                })
-                .catch(function(error) {
-                    console.error('Failed to send application:', error);
-                    
-                    // Check if it's a file size error from EmailJS
-                    if (error.text && error.text.includes('Variables size limit')) {
-                        showMessage('Error', `Your CV file is too large for our online form. Please email your application directly to ${CONTACT_LINK} with your CV attached.`);
-                    } else {
-                        showMessage('Error', `Failed to submit application. Please try again or email us directly at ${CONTACT_LINK}`);
-                    }
-                });
-        };
-        
-        reader.readAsDataURL(file);
-    } else {
-        // Handle regular contact form
-        const templateParams = {
-            user_name: form.user_name.value,
-            user_email: form.user_email.value,
-            message: form.message.value
-        };
-
-        emailjs.send(serviceID, templateID, templateParams)
-            .then(function(response) {
-                showMessage('Success', MESSAGES.EMAIL_SEND_SUCCESS);
-                form.reset();
-            })
-            .catch(function(error) {
-                console.error('Failed to send email:', error);
-                showMessage('Error', `${MESSAGES.EMAIL_SEND_ERROR} ${CONTACT_LINK}`);
-            });
-    }
-}
-
+// Web3Forms configuration
+const WEB3FORMS_KEY = 'WEB3FORMS_PUBLIC_KEY';
 
 function showMessage(title, message) {
     if (typeof Swal !== 'undefined') {
@@ -136,17 +23,120 @@ function showMessage(title, message) {
     }
 }
 
+async function submitForm(form) {
+    const formData = new FormData(form);
+    
+    // Check if we're in local development
+    const isLocalHost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    
+    if (isLocalHost) {
+        // Local development - simulate success
+        console.log('Local development mode - simulating form submission');
+        console.log('Form data:', Object.fromEntries(formData.entries()));
+        
+        // Simulate delay
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        if (form.id === 'application-form') {
+            showMessage('Success', 'Your application has been submitted successfully! We\'ll be in touch soon. (Local development mode - form not actually sent)');
+            
+            // Close the modal
+            const modal = document.getElementById('application-modal');
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            // Reset file upload UI
+            const fileInfo = document.getElementById('file-info');
+            if (fileInfo) {
+                fileInfo.style.display = 'none';
+            }
+        } else {
+            showMessage('Success', 'Your message has been sent successfully! Thank you for getting in touch. (Local development mode - form not actually sent)');
+        }
+        
+        form.reset();
+        return true;
+    }
+    
+    // Add Web3Forms access key
+    formData.append('access_key', WEB3FORMS_KEY);
+    
+    // Add redirect URL (optional)
+    formData.append('redirect', 'false');
+    
+    // File size validation for application forms with CV
+    if (form.id === 'application-form') {
+        const fileInput = form.querySelector('#cv-file');
+        const file = fileInput?.files[0];
+        
+        if (!file) {
+            showMessage('Error', 'Please attach your CV before submitting.');
+            return false;
+        }
+        
+        // Web3Forms allows 10MB files
+        const maxSizeMB = 10;
+        const fileSizeMB = file.size / (1024 * 1024);
+        
+        if (fileSizeMB > maxSizeMB) {
+            showMessage('Error', `CV file is too large (${fileSizeMB.toFixed(1)}MB). Please compress your file to under ${maxSizeMB}MB.`);
+            return false;
+        }
+    }
+    
+    try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            body: formData
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            if (form.id === 'application-form') {
+                showMessage('Success', 'Your application has been submitted successfully! We\'ll be in touch soon.');
+                
+                // Close the modal
+                const modal = document.getElementById('application-modal');
+                if (modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+                
+                // Reset file upload UI
+                const fileInfo = document.getElementById('file-info');
+                if (fileInfo) {
+                    fileInfo.style.display = 'none';
+                }
+            } else {
+                showMessage('Success', 'Your message has been sent successfully! Thank you for getting in touch.');
+            }
+            
+            form.reset();
+            return true;
+        } else {
+            throw new Error(data.message || 'Submission failed');
+        }
+    } catch (error) {
+        console.error('Form submission error:', error);
+        showMessage('Error', `Failed to send message. Please try again or email us directly at ${CONTACT_LINK}`);
+        return false;
+    }
+}
+
 function setupFormListener() {
-    document.addEventListener('submit', function(event) {
+    document.addEventListener('submit', async function(event) {
         if (event.target.id === 'contact-form' || event.target.id === 'application-form') {
-            sendEmail(event);
+            event.preventDefault();
+            await submitForm(event.target);
         }
     });
 }
 
 // Global function for careers application modal
 window.openModal = function(button) {
-    
     const modal = document.getElementById('application-modal');
     const modalJobTitle = document.getElementById('modal-job-title');
     const jobPositionInput = document.getElementById('job-position-input');
@@ -181,13 +171,13 @@ window.openModal = function(button) {
             modalMemberInfo.style.display = 'flex';
             modalDefaultInfo.style.display = 'none';
             
-            			// Set the team member's avatar as background of the modal header
-			if (modalHeader) {
-				modalHeader.style.backgroundImage = `url('${memberAvatar}')`;
-				modalHeader.style.backgroundSize = 'auto 100%';
-				modalHeader.style.backgroundPosition = 'top right';
-				modalHeader.style.backgroundRepeat = 'no-repeat';
-			}
+            // Set the team member's avatar as background of the modal header
+            if (modalHeader) {
+                modalHeader.style.backgroundImage = `url('${memberAvatar}')`;
+                modalHeader.style.backgroundSize = 'auto 100%';
+                modalHeader.style.backgroundPosition = 'top right';
+                modalHeader.style.backgroundRepeat = 'no-repeat';
+            }
         } else {
             modalJobTitleDefault.textContent = jobTitle;
             modalMemberInfo.style.display = 'none';
@@ -220,24 +210,27 @@ window.openModal = function(button) {
     }
 };
 
-// --- Application form word counter logic ---
+// Word counter logic for application form
 document.addEventListener('DOMContentLoaded', function() {
     const messageInput = document.getElementById('message');
     const wordCounter = document.getElementById('word-counter');
     const wordCountSpan = document.getElementById('word-count');
     const applicationForm = document.getElementById('application-form');
+    
     if (messageInput && wordCounter && wordCountSpan && applicationForm) {
         const minWords = 5;
         const maxWords = 40;
+        
         function countWords(str) {
-            // Split by whitespace, filter out empty strings
             return str.trim().split(/\s+/).filter(Boolean).length;
         }
+        
         function updateWordCounter() {
             const words = countWords(messageInput.value);
             const remaining = maxWords - words;
             wordCountSpan.textContent = remaining >= 0 ? remaining : 0;
             wordCounter.innerHTML = `<span id="word-count">${remaining >= 0 ? remaining : 0}</span> words remaining (${minWords}-${maxWords} words required)`;
+            
             if (words < minWords || words > maxWords) {
                 wordCounter.style.color = '#ff6b6b';
                 messageInput.setCustomValidity(`Please enter between ${minWords} and ${maxWords} words.`);
@@ -246,8 +239,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 messageInput.setCustomValidity('');
             }
         }
+        
         messageInput.addEventListener('input', updateWordCounter);
         updateWordCounter();
+        
         applicationForm.addEventListener('submit', function(e) {
             const words = countWords(messageInput.value);
             if (words < minWords || words > maxWords) {
@@ -256,7 +251,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+    
+    setupFormListener();
 });
-
-initEmailJS();
-document.addEventListener('DOMContentLoaded', setupFormListener);
