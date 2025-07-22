@@ -992,10 +992,11 @@ body.is-preload #bg:before {
 	padding-left: 0;
 	border: solid 1px #ffffff;
 	border-radius: 4px;
-	flex-wrap: wrap;
+	flex-wrap: nowrap;
 	max-width: 100%;
 	justify-content: center;
 	height: 2.2rem;
+	overflow: hidden;
 }
 
 #header nav ul li {
@@ -1004,16 +1005,18 @@ body.is-preload #bg:before {
 	justify-content: center;
 	height: 2.2rem;
 	position: relative;
+	flex: 1 1 33.3333%;
+	max-width: 33.3333%;
+	min-width: 6.5rem;
 }
 
 #header nav ul li a {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	min-width: 5.5rem;
+	min-width: 6.5rem;
 	height: 2.2rem;
 	line-height: 2.2rem;
-	padding: 0 0.7rem 0 0.7rem;
 	text-transform: uppercase;
 	letter-spacing: 0.2rem;
 	font-size: 0.85rem;
@@ -1023,18 +1026,21 @@ body.is-preload #bg:before {
 	position: relative;
 	width: 100%;
 	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	background: transparent;
 }
 
-#header nav ul li a:hover {
+#header nav ul li a:hover,
+#header nav ul li a:active {
 	background-color: rgba(255, 255, 255, 0.3);
-	transform: scale(1.05);
 	color: #ffffff;
 	transition: all 0.3s ease;
-}
-
-#header nav ul li a:active {
-	background-color: rgba(255, 255, 255, 0.4);
-	transform: scale(1.02);
+	border-radius: 0;
+	box-shadow: none;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
 }
 
 #header nav.use-middle:after {
