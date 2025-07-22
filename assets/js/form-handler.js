@@ -30,22 +30,77 @@ function sendEmail(event) {
     }
 
     const form = event.target;
-    const templateParams = {
-        user_name: form.user_name.value,
-        user_email: form.user_email.value,
-        message: form.message.value
-    };
+    const isApplicationForm = form.id === 'application-form';
+    
+    // Handle application form with CV
+    if (isApplicationForm) {
+        const fileInput = form.querySelector('#cv-file');
+        const file = fileInput?.files[0];
+        
+        if (!file) {
+            showMessage('Error', 'Please attach your CV before submitting.');
+            return;
+        }
+        
+        // Convert file to base64 and send
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const base64 = e.target.result.split(',')[1];
+            
+            const templateParams = {
+                user_name: form.full_name.value,
+                user_email: form.email.value,
+                message: form.message.value,
+                job_position: form.job_position.value,
+                portfolio: form.portfolio.value || 'Not provided',
+                location: form.location.value || 'Not specified',
+                cv_filename: file.name,
+                cv_content: base64
+            };
 
-    emailjs.send(serviceID, templateID, templateParams)
-        .then(function(response) {
-            showMessage('Success', MESSAGES.EMAIL_SEND_SUCCESS);
-            form.reset();
-        })
-        .catch(function(error) {
-            console.error('Failed to send email:', error);
-            showMessage('Error', `${MESSAGES.EMAIL_SEND_ERROR} ${CONTACT_LINK}`);
-        });
+            emailjs.send(serviceID, templateID, templateParams)
+                .then(function(response) {
+                    showMessage('Success', 'Your application has been submitted successfully! We\'ll be in touch soon.');
+                    form.reset();
+                    // Close the modal
+                    const modal = document.getElementById('application-modal');
+                    if (modal) {
+                        modal.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                    // Reset file upload UI
+                    const fileInfo = document.getElementById('file-info');
+                    if (fileInfo) {
+                        fileInfo.style.display = 'none';
+                    }
+                })
+                .catch(function(error) {
+                    console.error('Failed to send application:', error);
+                    showMessage('Error', `Failed to submit application. Please try again or email us directly at ${CONTACT_LINK}`);
+                });
+        };
+        
+        reader.readAsDataURL(file);
+    } else {
+        // Handle regular contact form
+        const templateParams = {
+            user_name: form.user_name.value,
+            user_email: form.user_email.value,
+            message: form.message.value
+        };
+
+        emailjs.send(serviceID, templateID, templateParams)
+            .then(function(response) {
+                showMessage('Success', MESSAGES.EMAIL_SEND_SUCCESS);
+                form.reset();
+            })
+            .catch(function(error) {
+                console.error('Failed to send email:', error);
+                showMessage('Error', `${MESSAGES.EMAIL_SEND_ERROR} ${CONTACT_LINK}`);
+            });
+    }
 }
+
 
 function showMessage(title, message) {
     if (typeof Swal !== 'undefined') {
@@ -68,7 +123,7 @@ function showMessage(title, message) {
 
 function setupFormListener() {
     document.addEventListener('submit', function(event) {
-        if (event.target.id === 'contact-form') {
+        if (event.target.id === 'contact-form' || event.target.id === 'application-form') {
             sendEmail(event);
         }
     });

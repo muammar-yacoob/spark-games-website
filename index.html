@@ -34,6 +34,17 @@
 	<script type="application/ld+json" src="assets/json/schema.json"></script>
 
 	<style>
+		/* Vacant Jobs Banner Animation */
+		@keyframes pulse-dot {
+			0%, 100% { transform: scale(1); opacity: 1; }
+			50% { transform: scale(1.2); opacity: 0.7; }
+		}
+
+		#vacant-jobs-banner:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 12px 32px rgba(155, 241, 255, 0.4);
+		}
+
 		/* Careers page specific styles */
 		/* Smooth button zooming animations */
 		.career-button {
@@ -343,10 +354,10 @@
 		.modal-content {
 			background: #1a1a1a;
 			border: 1px solid rgba(255, 255, 255, 0.1);
-			border-radius: 16px;
+			border-radius: 12px;
 			width: 90%;
-			max-width: 600px;
-			max-height: 90vh;
+			max-width: 500px;
+			max-height: 85vh;
 			overflow-y: auto;
 			position: relative;
 			animation: slideUp 0.3s ease;
@@ -408,47 +419,63 @@
 		}
 
 		.modal-body {
-			padding: 32px;
+			padding: 24px;
 		}
 
-		/* Form styling for modal */
+		/* Form styling for modal - using main.css styles */
 		.form-group {
-			margin-bottom: 24px;
+			margin-bottom: 20px;
 		}
 
 		.form-group label {
 			display: block;
 			color: #ffffff;
-			font-weight: 500;
-			margin-bottom: 8px;
-			font-size: 0.95em;
+			font-weight: 600;
+			margin-bottom: 6px;
+			font-size: 0.9em;
+			letter-spacing: 0.075rem;
 		}
 
-		.form-control {
-			width: 100%;
-			padding: 12px 16px;
-			background: rgba(255, 255, 255, 0.05);
-			border: 1px solid rgba(255, 255, 255, 0.1);
+		#application-form input[type="text"],
+		#application-form input[type="email"],
+		#application-form input[type="url"],
+		#application-form select,
+		#application-form textarea {
+			appearance: none;
+			background-color: transparent;
+			border: solid 1px rgba(255, 255, 255, 0.3);
 			border-radius: 4px;
-			color: #ffffff;
-			font-size: 1em;
+			color: inherit;
+			display: block;
+			outline: 0;
+			padding: 0 1rem;
+			text-decoration: none;
+			width: 100%;
+			height: 2.75rem;
+			font-size: 0.9rem;
 			transition: all 0.3s ease;
 		}
 
-		.form-control:focus {
-			outline: none;
-			border-color: #9bf1ff;
-			background: rgba(255, 255, 255, 0.08);
-			box-shadow: inset 0 0 0 1px rgba(155, 241, 255, 0.3);
+		#application-form input[type="text"]:focus,
+		#application-form input[type="email"]:focus,
+		#application-form input[type="url"]:focus,
+		#application-form select:focus,
+		#application-form textarea:focus {
+			background: rgba(255, 255, 255, 0.075);
+			border-color: #ffffff;
+			box-shadow: 0 0 0 1px #ffffff;
 		}
 
-		.form-control::placeholder {
-			color: #a1a1a1;
-		}
-
-		textarea.form-control {
+		#application-form textarea {
+			height: auto;
+			padding: 0.75rem 1rem;
+			min-height: 80px;
 			resize: vertical;
-			min-height: 100px;
+		}
+
+		#application-form ::placeholder {
+			color: rgba(255, 255, 255, 0.4);
+			opacity: 1;
 		}
 
 		.form-row {
@@ -520,25 +547,37 @@
 			transform: scale(1.05);
 		}
 
-		.submit-button {
-			width: 100%;
-			padding: 14px 28px;
-			background: #4e5a5d;
-			color: #ffffff;
-			border: 1px solid rgba(255, 255, 255, 0.1);
+		#application-form button[type="submit"] {
+			appearance: none;
+			transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, transform 0.2s ease;
+			background-color: transparent;
 			border-radius: 4px;
-			font-weight: 600;
-			font-size: 1.05em;
+			border: solid 1px #ffffff;
+			color: #ffffff !important;
 			cursor: pointer;
-			transition: all 0.3s ease;
-			margin-top: 32px;
+			display: inline-block;
+			font-size: 0.8rem;
+			font-weight: 600;
+			height: 2.75rem;
+			letter-spacing: 0.075rem;
+			line-height: 2.75rem;
+			padding: 0 1.5rem;
+			text-align: center;
+			text-decoration: none;
+			text-transform: uppercase;
+			white-space: nowrap;
+			width: 100%;
+			margin-top: 24px;
 		}
 
-		.submit-button:hover {
-			background: #5ac8d9;
-			border: 1px solid #9bf1ff;
-			transform: scale(1.05);
-			box-shadow: inset 0 0 0 1px rgba(155, 241, 255, 0.3);
+		#application-form button[type="submit"]:hover {
+			background-color: rgba(255, 255, 255, 0.075);
+			transform: scale(1.02);
+		}
+
+		#application-form button[type="submit"]:active {
+			background-color: rgba(255, 255, 255, 0.175);
+			transform: scale(0.98);
 		}
 
 
@@ -798,6 +837,18 @@
 	</div>
 	<div id="bg"></div>
 
+	<!-- Vacant Jobs Banner -->
+	<div id="vacant-jobs-banner" style="display: none; position: fixed; top: 20px; right: 20px; z-index: 1001; padding: 12px 20px; background: linear-gradient(135deg, rgba(155, 241, 255, 0.95), rgba(92, 200, 217, 0.95)); border: 1px solid rgba(155, 241, 255, 0.4); border-radius: 12px; color: #000; font-weight: 600; box-shadow: 0 8px 24px rgba(155, 241, 255, 0.3); backdrop-filter: blur(8px); cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); max-width: 280px;">
+		<div style="display: flex; align-items: center; gap: 12px;">
+			<div style="width: 10px; height: 10px; background: #000; border-radius: 50%; animation: pulse-dot 2s infinite;"></div>
+			<div>
+				<div style="font-size: 0.85em; line-height: 1.2; margin-bottom: 2px;">We're Hiring!</div>
+				<div id="vacant-positions-text" style="font-size: 0.75em; opacity: 0.8; line-height: 1.1;"></div>
+			</div>
+			<i class="fas fa-times" onclick="closeBanner(event)" style="margin-left: auto; padding: 4px; border-radius: 4px; cursor: pointer; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(0,0,0,0.1)'" onmouseout="this.style.background='transparent'"></i>
+		</div>
+	</div>
+
 	<!-- Application Modal for careers section -->
 	<div class="modal-overlay" id="application-modal">
 		<div class="modal-content">
@@ -815,38 +866,41 @@
 					<div class="form-row">
 						<div class="form-group">
 							<label for="full-name">Full Name *</label>
-							<input type="text" class="form-control" id="full-name" name="full_name" required>
+							<input type="text" id="full-name" name="full_name" required placeholder="Your full name">
 						</div>
 						<div class="form-group">
 							<label for="email">Email Address *</label>
-							<input type="email" class="form-control" id="email" name="email" required>
+							<input type="email" id="email" name="email" required placeholder="your@email.com">
 						</div>
 					</div>
 
 					<div class="form-row">
 						<div class="form-group">
-							<label for="phone">Phone Number</label>
-							<input type="tel" class="form-control" id="phone" name="phone" placeholder="Optional">
+							<label for="portfolio">Portfolio / Website</label>
+							<input type="url" id="portfolio" name="portfolio" placeholder="https://your-portfolio.com">
 						</div>
 						<div class="form-group">
-							<label for="location">Your Location</label>
-							<input type="text" class="form-control" id="location" name="location" placeholder="City, Country">
+							<label for="location">Location</label>
+							<select id="location" name="location">
+								<option value="">Select location</option>
+								<option value="London">London</option>
+								<option value="Manchester">Manchester</option>
+								<option value="Birmingham">Birmingham</option>
+								<option value="Glasgow">Glasgow</option>
+								<option value="Edinburgh">Edinburgh</option>
+								<option value="Liverpool">Liverpool</option>
+								<option value="Bristol">Bristol</option>
+								<option value="Leeds">Leeds</option>
+								<option value="Cardiff">Cardiff</option>
+								<option value="Belfast">Belfast</option>
+								<option value="non-uk">Outside UK</option>
+							</select>
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label for="portfolio">Portfolio / Website</label>
-						<input type="url" class="form-control" id="portfolio" name="portfolio" placeholder="https://...">
-					</div>
-
-					<div class="form-group">
-						<label for="message">Why are you interested in this role? *</label>
-						<textarea class="form-control" id="message" name="message" rows="4" required placeholder="Tell us what excites you about this opportunity..."></textarea>
-					</div>
-
-					<div class="form-group">
-						<label for="experience">Relevant Experience *</label>
-						<textarea class="form-control" id="experience" name="experience" rows="3" required placeholder="Brief overview of your relevant skills and experience..."></textarea>
+						<label for="message">Why are you perfect for this role? *</label>
+						<textarea id="message" name="message" rows="3" required placeholder="Tell us what makes you excited about this opportunity and why you'd be a great fit..."></textarea>
 					</div>
 
 					<div class="form-group">
@@ -864,14 +918,15 @@
 										<span id="file-name"></span>
 									</div>
 									<button type="button" class="remove-file" onclick="removeFile()">
-										<i class="fas fa-times"></i> Remove
+										<i class="fas fa-times"></i>
 									</button>
 								</div>
 							</div>
 						</div>
 					</div>
 
-					<button type="submit" class="submit-button">
+					<button type="submit">
+						<i class="fas fa-rocket" style="margin-right: 8px;"></i>
 						Submit Application
 					</button>
 				</form>

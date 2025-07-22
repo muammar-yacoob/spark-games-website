@@ -412,7 +412,7 @@ body {
 	input[type="password"],
 	input[type="email"],
 	select {
-		height: 2.75rem;
+		height: 1.80rem;
 	}
 
 	textarea {
@@ -932,9 +932,9 @@ body {
 		display: inline-block;
 		font-size: 0.8rem;
 		font-weight: 300;
-		height: 2.75rem;
+		height: 2.25rem;
 		letter-spacing: 0.2rem;
-		line-height: 2.75rem;
+		line-height: 2.25rem;
 		outline: 0;
 		padding: 0 1.25rem 0 1.35rem;
 		text-align: center;
@@ -1017,7 +1017,7 @@ body {
 	input[type="reset"],
 	input[type="button"],
 	button {
-		line-height: calc(2.75rem - 2px);
+		line-height: calc(2.25rem - 2px);
 	}
 
 /* BG */
@@ -1571,4 +1571,12 @@ body {
     background: rgba(255, 255, 255, 0.15);
     border-color: rgba(155, 241, 255, 0.5);
     outline: none;
+}
+
+/* Application form specific input heights */
+#application-form input[type="text"],
+#application-form input[type="email"],
+#application-form input[type="url"],
+#application-form select {
+    height: 1.80rem;
 }
