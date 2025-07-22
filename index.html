@@ -433,6 +433,10 @@
 			flex-shrink: 0;
 			min-width: 40px;
 			min-height: 40px;
+			background-image: url('images/UI/close.png');
+			background-size: contain;
+			background-repeat: no-repeat;
+			background-position: center;
 		}
 
 		.close-modal:hover {
@@ -440,6 +444,10 @@
 			border: 1px solid rgba(155, 241, 255, 0.3);
 			color: #9bf1ff;
 			transform: scale(1.05) rotate(90deg);
+		}
+
+		.close-modal i {
+			display: none;
 		}
 
 		.modal-body {
@@ -1013,7 +1021,9 @@
 										<i class="fas fa-file-alt"></i>
 										<span id="file-name"></span>
 									</div>
-									<button type="button" class="file-remove-btn" onclick="removeFile()"></button>
+									<button type="button" class="file-remove-btn" onclick="removeFile()">
+										<i class="fas fa-times"></i>
+									</button>
 								</div>
 							</div>
 						</div>
