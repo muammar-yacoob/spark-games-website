@@ -9,7 +9,8 @@
       "Bash(cp:*)",
       "Bash(node:*)",
       "Bash(python:*)",
-      "Bash(npx http-server:*)"
+      "Bash(npx http-server:*)",
+      "Bash(git checkout:*)"
     ],
     "deny": []
   }

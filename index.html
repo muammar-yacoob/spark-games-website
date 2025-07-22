@@ -106,12 +106,24 @@
 			font-size: 1.2em;
 			font-weight: 600;
 			margin: 0 0 8px 0;
+			letter-spacing: -0.5px;
 		}
 
 		.member-role {
-			color: #9bf1ff;
-			font-size: 1em;
+			color: #00ffff;
+			font-size: 1.1em;
+			font-weight: 900;
 			margin: 0 0 12px 0;
+			text-transform: uppercase;
+			letter-spacing: 0.5px;
+			text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+			transition: all 0.3s ease;
+		}
+
+		.team-member:hover .member-role {
+			color: #00ffff;
+			text-shadow: 0 0 20px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.6), 0 2px 4px rgba(0, 0, 0, 0.9);
+			transform: scale(1.1);
 		}
 
 		.member-quote {
@@ -181,10 +193,10 @@
 
 		.vacancy-banner {
 			position: absolute !important;
-			top: -15px !important;
-			right: -15px !important;
-			width: 100px !important;
-			height: 100px !important;
+			top: -30px !important;
+			right: -30px !important;
+			width: 200px !important;
+			height: 200px !important;
 			z-index: 10 !important;
 			pointer-events: none !important;
 		}
@@ -640,7 +652,7 @@
 			padding: 0 1rem;
 			text-decoration: none;
 			width: 100%;
-			height: 2.75rem;
+			height: 2.25rem;
 			font-size: 0.9rem;
 			transition: all 0.3s ease;
 		}
@@ -1090,12 +1102,12 @@
 					<div class="modal-member-info" id="modal-member-info" style="display: none;">
 						<div>
 							<h3>Apply for <span id="modal-job-title">Position</span></h3>
-							<p>Join <span id="modal-member-name"></span>'s team!</p>
+							<p>Join our amazing team!</p>
 						</div>
 					</div>
 					<div class="modal-default-info" id="modal-default-info">
 						<h3>Apply for <span id="modal-job-title-default">Position</span></h3>
-						<p>We're excited to learn more about you!</p>
+						<p>Join our amazing team!</p>
 					</div>
 				</div>
 				<button class="close-modal" aria-label="Close">
@@ -1109,22 +1121,22 @@
 					<div class="form-row">
 						<div class="form-group">
 							<label for="full-name">Full Name *</label>
-							<input type="text" id="full-name" name="full_name" required placeholder="Your full name">
+							<input type="text" class="form-control" id="full-name" name="full_name" required placeholder="Your full name">
 						</div>
 						<div class="form-group">
 							<label for="email">Email Address *</label>
-							<input type="email" id="email" name="email" required placeholder="your@email.com">
+							<input type="email" class="form-control" id="email" name="email" required placeholder="your@email.com">
 						</div>
 					</div>
 
 					<div class="form-row">
 						<div class="form-group">
 							<label for="portfolio">Portfolio *</label>
-							<input type="url" id="portfolio" name="portfolio" required placeholder="https://your-portfolio.com">
+							<input type="url" class="form-control" id="portfolio" name="portfolio" required placeholder="https://your-portfolio.com">
 						</div>
 						<div class="form-group">
 							<label for="location">Location *</label>
-							<select id="location" name="location" required>
+							<select class="form-control" id="location" name="location" required>
 								<option value="">Select location</option>
 								<option value="London">London</option>
 								<option value="Manchester">Manchester</option>
@@ -1143,7 +1155,7 @@
 
 					<div class="form-group">
 						<label for="message">Why are you perfect for this role? *</label>
-						<textarea id="message" name="message" rows="3" required placeholder="Tell us what makes you excited about this opportunity and why you'd be a great fit..." maxlength="250"></textarea>
+						<textarea class="form-control" id="message" name="message" rows="3" required placeholder="Tell us what makes you excited about this opportunity and why you'd be a great fit..." maxlength="250"></textarea>
 						<div id="word-counter" style="margin-top: 8px; font-size: 0.85em; color: #a1a1a1; text-align: right;">
 							<span id="word-count">40</span> words remaining (5-40 words required)
 						</div>

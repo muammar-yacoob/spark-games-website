@@ -2,7 +2,6 @@
 let memberQuotes = {};
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('=== load-sections.js: DOMContentLoaded ===');
     updateSeasonalBanner();
     
     // Load all content sections
@@ -20,36 +19,22 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add placeholder immediately
     const teamContentDiv = document.getElementById('team-content');
     if (teamContentDiv) {
-        console.log('Found team-content div, adding placeholder...');
         teamContentDiv.innerHTML = '<p style="text-align: center; color: #9bf1ff;">Loading team members...</p>';
-    } else {
-        console.error('team-content div not found on page load!');
     }
     
     // Load team content from JSON
     async function loadTeamContentFromJSON() {
-        console.log('=== loadTeamContentFromJSON called ===');
         try {
-            // Load team data directly
-            console.log('Fetching team.json...');
             const response = await fetch('team.json');
-            console.log('Team.json response status:', response.status);
-            
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             
             const data = await response.json();
-            console.log('Team data loaded:', data);
-            
-            // Render team members in the team-content div
             const teamContentDiv = document.getElementById('team-content');
-            console.log('team-content div found:', !!teamContentDiv);
             
             if (teamContentDiv) {
                 renderTeamMembersForIndex(data.team, teamContentDiv);
-            } else {
-                console.error('team-content div not found!');
             }
         } catch (error) {
             console.error('Error loading team content:', error);
@@ -62,8 +47,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Function to render team members for index.html
     function renderTeamMembersForIndex(teamMembers, container) {
-        console.log('renderTeamMembersForIndex called with', teamMembers.length, 'members');
-        console.log('Container element:', container);
         
         // Sort to show vacancies first
         const sortedMembers = [...teamMembers].sort((a, b) => {
@@ -122,7 +105,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }).join('');
         
         container.innerHTML = `<div class="team-grid">${teamGrid}</div>`;
-        console.log('Team content rendered successfully!');
         
         // Setup typewriter effect after rendering
         setTimeout(() => {
@@ -159,9 +141,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Setup hover event listeners for typewriter effect
     function setupTypewriterEffect() {
-        console.log('Setting up typewriter effect...');
         const teamMembers = document.querySelectorAll('.team-member');
-        console.log('Found team members:', teamMembers.length);
         
         teamMembers.forEach((member) => {
             const quoteElement = member.querySelector('.quote-text');
@@ -207,7 +187,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Call the function with a slight delay to ensure DOM is ready
     setTimeout(() => {
-        console.log('Attempting to load team content...');
         loadTeamContentFromJSON();
     }, 100);
 });

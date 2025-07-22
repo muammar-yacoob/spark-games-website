@@ -131,7 +131,6 @@ function setupFormListener() {
 
 // Global function for careers application modal
 window.openModal = function(button) {
-    console.log('openModal called with button:', button);
     
     const modal = document.getElementById('application-modal');
     const modalJobTitle = document.getElementById('modal-job-title');
@@ -155,12 +154,15 @@ window.openModal = function(button) {
         // Show team member info if available
         const modalMemberInfo = document.getElementById('modal-member-info');
         const modalDefaultInfo = document.getElementById('modal-default-info');
-        const modalMemberName = document.getElementById('modal-member-name');
         const modalJobTitleDefault = document.getElementById('modal-job-title-default');
         const modalHeader = document.getElementById('modal-header');
         
         if (memberAvatar && memberName && modalMemberInfo && modalDefaultInfo) {
-            modalMemberName.textContent = memberName;
+            // Update the text in modal-member-info to show member name
+            const memberInfoText = modalMemberInfo.querySelector('p');
+            if (memberInfoText) {
+                memberInfoText.textContent = `Join ${memberName}'s team!`;
+            }
             modalMemberInfo.style.display = 'flex';
             modalDefaultInfo.style.display = 'none';
             
@@ -184,7 +186,6 @@ window.openModal = function(button) {
         
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
-        console.log('Modal activated successfully from data attributes');
         return;
     }
     
@@ -194,15 +195,12 @@ window.openModal = function(button) {
         const jobTitle = posting.querySelector('h3');
         const jobType = posting.querySelector('div[style*="color: #9bf1ff"]');
         
-        console.log('Found job elements:', {jobTitle: jobTitle?.textContent, jobType: jobType?.textContent});
-        
         if (jobTitle && jobType) {
             modalJobTitle.textContent = jobTitle.textContent;
             jobPositionInput.value = `${jobTitle.textContent} (${jobType.textContent})`;
             
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
-            console.log('Modal activated successfully');
         }
     }
 };
