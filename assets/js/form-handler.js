@@ -181,13 +181,13 @@ window.openModal = function(button) {
             modalMemberInfo.style.display = 'flex';
             modalDefaultInfo.style.display = 'none';
             
-            // Set the team member's avatar as background of the modal header
-            if (modalHeader) {
-                modalHeader.style.backgroundImage = `url('${memberAvatar}')`;
-                modalHeader.style.backgroundSize = 'cover';
-                modalHeader.style.backgroundPosition = 'top right';
-                modalHeader.style.backgroundRepeat = 'no-repeat';
-            }
+            			// Set the team member's avatar as background of the modal header
+			if (modalHeader) {
+				modalHeader.style.backgroundImage = `url('${memberAvatar}')`;
+				modalHeader.style.backgroundSize = 'auto 100%';
+				modalHeader.style.backgroundPosition = 'top right';
+				modalHeader.style.backgroundRepeat = 'no-repeat';
+			}
         } else {
             modalJobTitleDefault.textContent = jobTitle;
             modalMemberInfo.style.display = 'none';
