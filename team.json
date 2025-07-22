@@ -4,7 +4,12 @@
       "id": "environment_artist",
       "name": "Join Our Team",
       "role": "Environment Artist",
-      "quote": "Winter is coming... but first, coffee.",
+      "quotes": [
+        "Winter is coming... but first, coffee.",
+        "I don't always build worlds, but when I do, they're procedural.",
+        "My terrains are so realistic, even the NPCs get lost.",
+        "Ctrl+Z is my best friend, Ctrl+S is my religion."
+      ],
       "show": "Game of Thrones (sort of)",
       "avatar": "images/Team/env_artist.png",
       "skills": ["World Building", "Unreal Engine", "Blender", "Photoshop"],
@@ -15,7 +20,14 @@
       "id": "lead_developer",
       "name": "Muammar Yacoob",
       "role": "Lead Developer",
-      "quote": "I am the one who codes!",
+      "quotes": [
+        "I am the one who codes!",
+        "Say my namespace.",
+        "We need to cook... more features.",
+        "I am not in danger, I AM the debugger!",
+        "Yeah, science! Yeah, C#!",
+        "Wubba Lubba dub-dub!"
+      ],
       "show": "Breaking Bad",
       "avatar": "images/Team/lead_dev.png",
       "skills": ["Unity", "C#", "Coffee Addiction", "Dad Jokes"],
@@ -25,8 +37,14 @@
       "id": "artist_3d",
       "name": "Maya Rodriguez",
       "role": "3D Artist",
-      "quote": "That's what she said!",
-      "show": "The Office",
+      "quotes": [
+        "I put the 'art' in 'particle effects'... and sometimes the 'particle' in 'my computer crashed'.",
+        "My UV maps are so clean, Marie Kondo would be jealous.",
+        "I don't make mistakes, I make happy little polygons.",
+        "Yes, I can make it more realistic. No, your GPU can't handle it.",
+        "I'm not procrastinating, I'm waiting for the render to finish... for the 47th time."
+      ],
+      "show": "Bob Ross meets Silicon Valley",
       "avatar": "images/Team/artist.png",
       "skills": ["Blender", "Maya", "Pixel Perfectionist", "Texture Wizard"],
       "isVacancy": false
@@ -35,7 +53,13 @@
       "id": "unity_developer",
       "name": "Jordan Kim",
       "role": "Unity Developer",
-      "quote": "Could this BE any more buggy?",
+      "quotes": [
+        "Could this BE any more buggy?",
+        "We were on a break... point!",
+        "How you doin'... with that null reference exception?",
+        "PIVOT! PIVOT! (when rotating GameObjects)",
+        "It's not a bug, it's a feature. They don't know that we know they know it's a bug."
+      ],
       "show": "Friends",
       "avatar": "images/Team/dev.png",
       "skills": ["Unity", "Shader Graph", "Bug Hunter", "Async Master"],
@@ -45,7 +69,13 @@
       "id": "project_manager",
       "name": "Sam Patel",
       "role": "Project Manager",
-      "quote": "You know who else manages projects? MY MOM!",
+      "quotes": [
+        "You know who else manages projects? MY MOM!",
+        "OOOOOOHHHHH! We hit the milestone!",
+        "Good show! Jolly good show! (when the sprint ends)",
+        "Dude, bro, we need to update the Kanban board.",
+        "It's not about the deadlines, it's about sending a message... in Slack."
+      ],
       "show": "Regular Show",
       "avatar": "images/Team/project_manager.png",
       "skills": ["Jira Jedi", "Deadline Whisperer", "Gantt Charts", "Team Therapy"],
@@ -55,7 +85,13 @@
       "id": "social_media_wizard",
       "name": "Casey Rivers",
       "role": "Social Media Wizard",
-      "quote": "Going viral is not a bug, it's a feature!",
+      "quotes": [
+        "Going viral is not a bug, it's a feature!",
+        "I don't always post, but when I do, it's at 3:47 PM on a Tuesday.",
+        "SEO? More like CEO of making things trend.",
+        "My engagement rate is higher than my coffee intake. That's saying something.",
+        "I put the 'gram' in 'programmer'... wait, that's not right."
+      ],
       "show": "Tech Life",
       "avatar": "images/Team/marketing.png",
       "skills": ["Social Media", "Viral Content", "Meme Lord", "Analytics Ninja"],

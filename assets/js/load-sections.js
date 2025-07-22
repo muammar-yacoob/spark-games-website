@@ -52,8 +52,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     </button>
                 </div>` : '';
             
+            // Vacancy banner if isVacancy is true
+            const vacancyBanner = member.isVacancy ? 
+                '<div class="vacancy-banner" style="position: absolute; top: -10px; right: -10px; width: 110px; height: 110px; z-index: 10; pointer-events: none;">\n' +
+                '  <img src="images/Team/vacancy_banner.png" alt="Coming soon!" style="width: 100%; height: 100%; object-fit: contain; display: block;">\n' +
+                '</div>' : '';
+            
             return `
                 <div class="team-member">
+                    ${vacancyBanner}
                     <div class="member-avatar-wrapper">
                         <div class="avatar-glow"></div>
                         <img src="${member.avatar}" alt="${member.role}" class="member-avatar">
