@@ -25,7 +25,7 @@ This is the Spark Games website - a static HTML site showcasing games and develo
 
 ### Key JavaScript Files
 - `assets/js/load-sections.js` - Loads content sections dynamically
-- `assets/js/form-handler.js` - Handles contact form (uses Web3Forms)
+- `assets/js/form-handler.js` - Handles contact form (uses Resend API)
 - `assets/js/seasonal-banner.js` - Manages seasonal promotional banners
 - `assets/js/ad-banner-fade.js` - Banner rotation/animation
 - `assets/js/main.js` - Main site functionality
@@ -35,7 +35,7 @@ This is the Spark Games website - a static HTML site showcasing games and develo
 The site is deployed to GitHub Pages via GitHub Actions:
 - Workflow: `.github/workflows/deploy_website.yml`
 - Deploys on push to `main` branch
-- No secrets replacement needed (Web3Forms access key is public and safe to commit)
+- Replaces Resend API key placeholder during deployment
 - DNS configured to point to GitHub Pages (see README.md)
 
 ## Development Commands
@@ -57,7 +57,7 @@ The SASS files are pre-compiled. If you need to modify styles:
 
 ## Important Notes
 
-- Web3Forms integration with 10MB file upload support (much better than previous 30KB EmailJS limit)
+- Resend API integration with 10MB file upload support and professional email delivery
 - The site loads all content sections on page load (no routing)
 - Seasonal banners are managed through `assets/js/seasonal-banner.js`
 - Images for affiliate banners are in `images/AffiliateBanners/`
