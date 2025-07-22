@@ -120,6 +120,40 @@
 			line-height: 1.4;
 			margin: 12px 0;
 			min-height: 2.8em;
+			position: relative;
+		}
+
+		/* Typewriter effect */
+		.typewriter {
+			border-right: 2px solid #9bf1ff;
+			animation: blink 0.8s infinite;
+			display: inline;
+			white-space: normal;
+			word-wrap: break-word;
+		}
+
+		@keyframes blink {
+			0%, 50% { border-color: #9bf1ff; }
+			51%, 100% { border-color: transparent; }
+		}
+
+		.member-quote::before,
+		.member-quote::after {
+			content: '"';
+			color: #9bf1ff;
+			font-size: 1.2em;
+			position: absolute;
+			opacity: 0.5;
+		}
+
+		.member-quote::before {
+			left: -15px;
+			top: -5px;
+		}
+
+		.member-quote::after {
+			right: -15px;
+			bottom: -5px;
 		}
 
 		.member-show {
