@@ -5,11 +5,11 @@
       "name": "Join Our Team",
       "role": "Environment Artist",
       "quotes": [
-        "Mathematical!",
-        "Algebraic!",
-        "Oh my glob!",
-        "Unacceptable!",
-        "Come on grab your friends!"
+        "Mathematical! My worlds are algebraic!",
+        "What time is it? ENVIRONMENT TIME!",
+        "Oh my glob! These terrains are lumpy space amazing!",
+        "Unacceptable level design? UNACCEPTABLE!",
+        "Come on grab your brushes, we'll go to very distant lands!"
       ],
       "show": "Adventure Time",
       "avatar": "images/Team/env_artist.png",
@@ -22,11 +22,11 @@
       "name": "Muammar Yacoob",
       "role": "Lead Developer",
       "quotes": [
-        "Wubba lubba dub dub!",
-        "Get your sh*t together.",
-        "I'm Pickle Rick!",
-        "And that's the waaaaay the news goes!",
-        "Nobody exists on purpose."
+        "Wubba lubba dub dub! (I am in great coding pain)",
+        "Get your sh*t together... get it all together and put it in a backlog.",
+        "I'm Pickle Rick! I turned myself into a developer, Morty!",
+        "Nobody exists on purpose, nobody codes for a reason, come debug.",
+        "And that's the waaaaay the code goes!"
       ],
       "show": "Rick and Morty",
       "avatar": "images/Team/lead_dev.png",
@@ -38,11 +38,11 @@
       "name": "Maya Rodriguez",
       "role": "3D Artist",
       "quotes": [
-        "Omelette du fromage!",
-        "Dee Dee! Get out of my laboratory!",
-        "What does THIS button do?",
-        "Oh my stars!",
-        "That's all you can say!"
+        "Omelette du fromage! (It's all I can model)",
+        "Dee Dee! Get out of my laboratory! These renders are delicate!",
+        "What does THIS button do? *crashes Blender*",
+        "By my calculations, this mesh needs more polygons!",
+        "Oh the things I do for art!"
       ],
       "show": "Dexter's Laboratory",
       "avatar": "images/Team/artist.png",
@@ -54,11 +54,11 @@
       "name": "Jordan Kim",
       "role": "Unity Developer",
       "quotes": [
-        "OOOOOHHHH!",
-        "You know who else codes?",
-        "Stop talking!",
-        "Good show!",
-        "WOOOOOAAAHHH!"
+        "Could this BE any more buggy?",
+        "We were on a break... point! (debugging joke)",
+        "How you doin'... with that null reference exception?",
+        "PIVOT! PIVOT! PIVOT! *rotating GameObjects*",
+        "It's not a bug, it's a... feature. Could I BE more wrong?"
       ],
       "show": "The Regular Show",
       "avatar": "images/Team/dev.png",
@@ -71,10 +71,10 @@
       "role": "Project Manager",
       "quotes": [
         "You know who else manages projects? MY MOM!",
-        "OOOOOOHHHHH!",
-        "Jolly good show!",
-        "Hmm hmm hmm hmm hmm!",
-        "A bunch of baby ducks!"
+        "OOOOOOHHHHH! We shipped on time!",
+        "Jolly good show! That sprint went perfectly!",
+        "Hmm hmm hmm hmm hmm! *organizing tasks*",
+        "Stop talking! We have a standup to run!"
       ],
       "show": "The Regular Show",
       "avatar": "images/Team/project_manager.png",
@@ -86,11 +86,11 @@
       "name": "Casey Rivers",
       "role": "Social Media Wizard",
       "quotes": [
-        "Sugar, spice, and everything nice!",
-        "Fighting crime, trying to save the world!",
-        "So once again, the day is saved!",
-        "Curses!",
-        "Not so fast!"
+        "Sugar, spice, and everything nice! Plus viral content!",
+        "Fighting trolls and spam by bedtime!",
+        "So once again, the algorithm is saved!",
+        "The city of Townsville needs more followers!",
+        "Using my ultra superpowers... of social media!"
       ],
       "show": "Powerpuff Girls",
       "avatar": "images/Team/marketing.png",

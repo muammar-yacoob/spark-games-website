@@ -171,10 +171,10 @@
 		}
 
 		.skill-tag {
-			padding: 4px 12px;
+			padding: 3px 8px;
 			background: rgba(155, 241, 255, 0.1);
 			color: #9bf1ff;
-			border-radius: 16px;
+			border-radius: 6px;
 			font-size: 0.8em;
 			border: 1px solid rgba(155, 241, 255, 0.2);
 		}
@@ -719,19 +719,32 @@
 		}
 
 		.file-remove-btn {
-			background: rgba(244, 67, 54, 0.05);
-			border: 1px solid rgba(244, 67, 54, 0.2);
-			color: #f44336;
+			position: relative;
+			width: 32px;
+			height: 32px;
+			border: 1px solid rgba(255, 255, 255, 0.1);
+			background: rgba(255, 255, 255, 0.05);
+			color: #a1a1a1;
+			border-radius: 50%;
 			cursor: pointer;
-			padding: 4px 8px;
-			border-radius: 4px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
 			transition: all 0.3s ease;
+			flex-shrink: 0;
+			min-width: 32px;
+			min-height: 32px;
+			background-image: url('images/UI/close.png');
+			background-size: contain;
+			background-repeat: no-repeat;
+			background-position: center;
 		}
 
 		.file-remove-btn:hover {
-			background: rgba(244, 67, 54, 0.1);
-			border-color: rgba(244, 67, 54, 0.4);
-			transform: scale(1.05);
+			background: rgba(255, 255, 255, 0.1);
+			border: 1px solid rgba(155, 241, 255, 0.3);
+			color: #9bf1ff;
+			transform: scale(1.05) rotate(90deg);
 		}
 
 		#application-form button[type="submit"] {
@@ -989,10 +1002,10 @@
 		}
 
 		.skill-tag {
-			padding: 6px 14px;
+			padding: 0.25px 10px;
 			background: rgba(155, 241, 255, 0.1);
 			color: #9bf1ff;
-			border-radius: 20px;
+			border-radius: 6px;
 			font-size: 0.85em;
 			border: 1px solid rgba(155, 241, 255, 0.2);
 			transition: all 0.3s ease;
@@ -1098,9 +1111,9 @@
 	<div class="modal-overlay" id="application-modal">
 		<div class="modal-content">
 			<div class="modal-header">
-				<div class="modal-header-content">
+				<div class="modal-header-content" style="position: relative;">
+					<img id="modal-member-avatar" src="" alt="Team member" style="position: absolute; top: -10px; right: -10px; width: 60px; height: 60px; border-radius: 50%; object-fit: cover; z-index: -1; opacity: 0.3; border: 2px solid rgba(155, 241, 255, 0.5); display: none;">
 					<div class="modal-member-info" id="modal-member-info" style="display: none;">
-						<img id="modal-member-avatar" src="" alt="Team member" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover; margin-right: 16px;">
 						<div>
 							<h3>Apply for <span id="modal-job-title">Position</span></h3>
 							<p>Join <span id="modal-member-name"></span>'s team!</p>
@@ -1176,8 +1189,7 @@
 										<i class="fas fa-file-alt"></i>
 										<span id="file-name"></span>
 									</div>
-									<button type="button" class="file-remove-btn" onclick="removeFile()">
-										<i class="fas fa-times"></i>
+									<button type="button" class="file-remove-btn" onclick="removeFile()" aria-label="Remove file">
 									</button>
 								</div>
 							</div>
@@ -1220,7 +1232,7 @@
 						<textarea class="form-control" id="contact-message" name="message" rows="4" required placeholder="Tell us about your project or ask us anything..."></textarea>
 					</div>
 					
-					<button type="submit" class="submit-button">
+					<button type="submit" class="submit-button" style="background: #0099cc; color: #000; padding: 8px 16px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s ease; text-align: center; display: flex; align-items: center; justify-content: center;" onmouseover="this.style.background='#00d4ff'" onmouseout="this.style.background='#0099cc'">
 						<i class="fas fa-paper-plane" style="margin-right: 8px;"></i>
 						Send Message
 					</button>
