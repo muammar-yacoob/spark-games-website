@@ -980,7 +980,8 @@ body.is-preload #bg:before {
 	border: solid 1px #ffffff;
 	border-radius: 4px;
 	flex-wrap: nowrap;
-	max-width: 100%;
+	width: 100%;
+	max-width: 400px;
 	justify-content: center;
 	height: 2.2rem;
 	overflow: hidden;
@@ -1466,12 +1467,18 @@ body.is-preload #footer {
 	#header nav ul {
 		flex-direction: column;
 		min-width: 10rem;
-		max-width: 100%;
+		width: 100%;
+		max-width: 300px;
+		height: auto;
 	}
 
 	#header nav ul li {
 		border-left: 0;
 		border-top: solid 1px #ffffff;
+		flex: none;
+		max-width: none;
+		min-width: 0;
+		height: 3rem;
 	}
 
 	#header nav ul li:first-child {
@@ -1483,6 +1490,8 @@ body.is-preload #footer {
 		line-height: 3rem;
 		min-width: 0;
 		width: 100%;
+		position: relative;
+		padding: 0 1rem;
 	}
 
 	#header nav.use-middle:after {
