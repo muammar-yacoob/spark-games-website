@@ -3,11 +3,42 @@
 <p>Welcome to Spark Games, where we bring each season to life through our unique games. Our journey began with a spark of inspiration to create games that bring joy to players of all ages. We also build tools to empower fellow developers in their game-making journey. Explore the magic of our seasonal gaming world!</p>
 
 <!-- InteractivePortfolio3D iframe wrapper for responsiveness -->
-<div style="overflow: hidden; padding-top: 56.25%; position: relative;">
-    <iframe src="https://muammar-yacoob.github.io/InteractivePortfolio3D/" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
-
-    
+<div style="overflow: hidden; padding-top: 56.25%; position: relative;" id="portfolio-container">
+    <div id="portfolio-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); display: flex; align-items: center; justify-content: center; z-index: 10; cursor: pointer;">
+        <div style="text-align: center; color: white;">
+            <i class="fas fa-play-circle" style="font-size: 4em; margin-bottom: 20px; color: #9bf1ff;"></i>
+            <h3 style="margin: 0 0 10px 0;">Interactive 3D Portfolio</h3>
+            <p style="margin: 0; opacity: 0.8;">Click to start exploring</p>
+        </div>
+    </div>
+    <iframe id="portfolio-iframe" src="" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const overlay = document.getElementById('portfolio-overlay');
+    const iframe = document.getElementById('portfolio-iframe');
+    
+    overlay.addEventListener('click', function() {
+        // Load iframe after user interaction
+        iframe.src = 'https://muammar-yacoob.github.io/InteractivePortfolio3D/';
+        overlay.style.display = 'none';
+        
+        // Add a small delay to ensure iframe starts loading
+        setTimeout(() => {
+            // Try to resume audio context in the iframe (if accessible)
+            try {
+                if (iframe.contentWindow && iframe.contentWindow.unityInstance) {
+                    iframe.contentWindow.unityInstance.SendMessage('', 'ResumeAudio');
+                }
+            } catch (e) {
+                // Cross-origin, can't access iframe content - that's expected
+                console.log('Audio will be initialized on first user interaction within the game');
+            }
+        }, 1000);
+    });
+});
+</script>
 <!-- Start of Selection -->
 <div style="text-align: center; margin: 20px 0;">
     <p style="font-size: 1em; font-weight: bold;">Make it yours with <a href="https://github.com/muammar-yacoob/InteractivePortfolio3D#setup" target="_blank" style="color:steelblue; text-decoration: none;">this tool</a>.</p>

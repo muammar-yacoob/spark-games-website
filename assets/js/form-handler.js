@@ -74,5 +74,36 @@ function setupFormListener() {
     });
 }
 
+// Global function for careers application modal
+window.openModal = function(button) {
+    console.log('openModal called with button:', button);
+    
+    const modal = document.getElementById('application-modal');
+    const modalJobTitle = document.getElementById('modal-job-title');
+    const jobPositionInput = document.getElementById('job-position-input');
+    
+    if (!modal || !modalJobTitle || !jobPositionInput) {
+        console.error('Modal elements not found:', {modal, modalJobTitle, jobPositionInput});
+        return;
+    }
+    
+    const posting = button.closest('.job-posting');
+    if (posting) {
+        const jobTitle = posting.querySelector('.job-title');
+        const jobType = posting.querySelector('.job-type');
+        
+        console.log('Found job elements:', {jobTitle: jobTitle?.textContent, jobType: jobType?.textContent});
+        
+        if (jobTitle && jobType) {
+            modalJobTitle.textContent = jobTitle.textContent;
+            jobPositionInput.value = `${jobTitle.textContent} (${jobType.textContent})`;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            console.log('Modal activated successfully');
+        }
+    }
+};
+
 initEmailJS();
 document.addEventListener('DOMContentLoaded', setupFormListener);

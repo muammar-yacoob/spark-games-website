@@ -314,6 +314,228 @@
 			font-size: 1.2em;
 		}
 
+		/* Modal overlay */
+		.modal-overlay {
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: rgba(0, 0, 0, 0.9);
+			backdrop-filter: blur(4px);
+			display: none;
+			z-index: 1000;
+			overflow-y: auto;
+		}
+
+		.modal-overlay.active {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			animation: fadeIn 0.3s ease;
+		}
+
+		@keyframes fadeIn {
+			from { opacity: 0; }
+			to { opacity: 1; }
+		}
+
+		.modal-content {
+			background: #1a1a1a;
+			border: 1px solid rgba(255, 255, 255, 0.1);
+			border-radius: 16px;
+			width: 90%;
+			max-width: 600px;
+			max-height: 90vh;
+			overflow-y: auto;
+			position: relative;
+			animation: slideUp 0.3s ease;
+		}
+
+		@keyframes slideUp {
+			from {
+				opacity: 0;
+				transform: translateY(20px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		.modal-header {
+			padding: 32px 32px 24px;
+			border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+			position: sticky;
+			top: 0;
+			background: #1a1a1a;
+			z-index: 10;
+		}
+
+		.modal-header h3 {
+			color: #ffffff;
+			font-size: 1.6em;
+			margin: 0;
+		}
+
+		.modal-header p {
+			color: #a1a1a1;
+			margin: 8px 0 0;
+		}
+
+		.close-modal {
+			position: absolute;
+			top: 24px;
+			right: 24px;
+			width: 40px;
+			height: 40px;
+			border: none;
+			background: rgba(255, 255, 255, 0.05);
+			color: #a1a1a1;
+			border-radius: 50%;
+			cursor: pointer;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			transition: all 0.3s ease;
+		}
+
+		.close-modal:hover {
+			background: rgba(255, 255, 255, 0.1);
+			color: #ffffff;
+			transform: rotate(90deg);
+		}
+
+		.modal-body {
+			padding: 32px;
+		}
+
+		/* Form styling for modal */
+		.form-group {
+			margin-bottom: 24px;
+		}
+
+		.form-group label {
+			display: block;
+			color: #ffffff;
+			font-weight: 500;
+			margin-bottom: 8px;
+			font-size: 0.95em;
+		}
+
+		.form-control {
+			width: 100%;
+			padding: 12px 16px;
+			background: rgba(255, 255, 255, 0.05);
+			border: 1px solid rgba(255, 255, 255, 0.1);
+			border-radius: 8px;
+			color: #ffffff;
+			font-size: 1em;
+			transition: all 0.3s ease;
+		}
+
+		.form-control:focus {
+			outline: none;
+			border-color: #9bf1ff;
+			background: rgba(255, 255, 255, 0.08);
+			box-shadow: 0 0 0 3px rgba(155, 241, 255, 0.1);
+		}
+
+		.form-control::placeholder {
+			color: #a1a1a1;
+		}
+
+		textarea.form-control {
+			resize: vertical;
+			min-height: 100px;
+		}
+
+		.form-row {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 16px;
+		}
+
+		/* File upload */
+		.file-upload-wrapper {
+			position: relative;
+		}
+
+		.file-upload-button {
+			display: flex;
+			align-items: center;
+			gap: 12px;
+			padding: 12px 20px;
+			background: rgba(155, 241, 255, 0.1);
+			border: 1px dashed rgba(155, 241, 255, 0.3);
+			border-radius: 8px;
+			color: #9bf1ff;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			font-weight: 500;
+		}
+
+		.file-upload-button:hover {
+			background: rgba(155, 241, 255, 0.15);
+			border-color: rgba(155, 241, 255, 0.5);
+		}
+
+		.file-input {
+			display: none;
+		}
+
+		.file-info {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding: 12px 16px;
+			background: rgba(76, 175, 80, 0.1);
+			border: 1px solid rgba(76, 175, 80, 0.3);
+			border-radius: 8px;
+			margin-top: 12px;
+		}
+
+		.file-info-text {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			color: #4CAF50;
+		}
+
+		.remove-file {
+			background: none;
+			border: none;
+			color: #f44336;
+			cursor: pointer;
+			padding: 4px 8px;
+			border-radius: 4px;
+			transition: all 0.3s ease;
+		}
+
+		.remove-file:hover {
+			background: rgba(244, 67, 54, 0.1);
+		}
+
+		.submit-button {
+			width: 100%;
+			padding: 14px 28px;
+			background: #9bf1ff;
+			color: #000;
+			border: none;
+			border-radius: 8px;
+			font-weight: 600;
+			font-size: 1.05em;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			margin-top: 32px;
+		}
+
+		.submit-button:hover {
+			background: #7dd8e6;
+			transform: translateY(-2px);
+			box-shadow: 0 8px 20px rgba(155, 241, 255, 0.3);
+		}
+
 		/* Responsive design */
 		@media screen and (max-width: 736px) {
 			.job-posting {
@@ -328,6 +550,23 @@
 			.contact-info {
 				flex-direction: column;
 				gap: 15px;
+			}
+
+			.modal-content {
+				width: 95%;
+				margin: 20px;
+			}
+
+			.modal-header {
+				padding: 24px 24px 20px;
+			}
+
+			.modal-body {
+				padding: 24px;
+			}
+
+			.form-row {
+				grid-template-columns: 1fr;
 			}
 		}
 	</style>
@@ -398,6 +637,87 @@
 	</div>
 	<div id="bg"></div>
 
+	<!-- Application Modal for careers section -->
+	<div class="modal-overlay" id="application-modal">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3>Apply for <span id="modal-job-title">Position</span></h3>
+				<p>We're excited to learn more about you!</p>
+				<button class="close-modal" aria-label="Close">
+					<i class="fas fa-times"></i>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form id="application-form">
+					<input type="hidden" name="job_position" id="job-position-input">
+					
+					<div class="form-row">
+						<div class="form-group">
+							<label for="full-name">Full Name *</label>
+							<input type="text" class="form-control" id="full-name" name="full_name" required>
+						</div>
+						<div class="form-group">
+							<label for="email">Email Address *</label>
+							<input type="email" class="form-control" id="email" name="email" required>
+						</div>
+					</div>
+
+					<div class="form-row">
+						<div class="form-group">
+							<label for="phone">Phone Number</label>
+							<input type="tel" class="form-control" id="phone" name="phone" placeholder="Optional">
+						</div>
+						<div class="form-group">
+							<label for="location">Your Location</label>
+							<input type="text" class="form-control" id="location" name="location" placeholder="City, Country">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="portfolio">Portfolio / Website</label>
+						<input type="url" class="form-control" id="portfolio" name="portfolio" placeholder="https://...">
+					</div>
+
+					<div class="form-group">
+						<label for="message">Why are you interested in this role? *</label>
+						<textarea class="form-control" id="message" name="message" rows="4" required placeholder="Tell us what excites you about this opportunity..."></textarea>
+					</div>
+
+					<div class="form-group">
+						<label for="experience">Relevant Experience *</label>
+						<textarea class="form-control" id="experience" name="experience" rows="3" required placeholder="Brief overview of your relevant skills and experience..."></textarea>
+					</div>
+
+					<div class="form-group">
+						<label>Resume / CV *</label>
+						<div class="file-upload-wrapper">
+							<div class="file-upload-button" onclick="document.getElementById('cv-file').click()">
+								<i class="fas fa-upload"></i>
+								<span>Choose file or drag here</span>
+							</div>
+							<input type="file" id="cv-file" class="file-input" accept=".pdf,.doc,.docx" required>
+							<div id="file-info" style="display: none;">
+								<div class="file-info">
+									<div class="file-info-text">
+										<i class="fas fa-file-alt"></i>
+										<span id="file-name"></span>
+									</div>
+									<button type="button" class="remove-file" onclick="removeFile()">
+										<i class="fas fa-times"></i> Remove
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<button type="submit" class="submit-button">
+						Submit Application
+					</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
 <script src="assets/js/browser.min.js"></script>
 <script src="assets/js/breakpoints.min.js"></script>
 <script src="assets/js/util.js"></script>
@@ -410,163 +730,159 @@
 <script src="assets/js/form-handler.js"></script>
 
 <script>
-// Careers functionality
+// Modal functionality for careers section in index.html
 document.addEventListener('DOMContentLoaded', function() {
-    // Wait for content to load
-    setTimeout(() => {
-        const jobPostings = document.querySelectorAll('.job-posting');
-        const applicationForm = document.getElementById('application-form-container');
-        const selectedJobTitle = document.getElementById('selected-job-title');
-        const selectedJobInput = document.getElementById('selected-job-input');
+    // Wait for dynamic content to load
+    setTimeout(function() {
+        const modal = document.getElementById('application-modal');
+        if (!modal) return;
 
-        if (jobPostings.length > 0) {
-            jobPostings.forEach(job => {
-                job.addEventListener('click', function() {
-                    // Remove selected class from all jobs
-                    jobPostings.forEach(j => j.classList.remove('selected'));
-                    
-                    // Add selected class to clicked job
-                    this.classList.add('selected');
-                    
-                    // Update form with job information
-                    const jobTitle = this.querySelector('.job-title').textContent;
-                    const jobType = this.querySelector('.job-type').textContent;
-                    selectedJobTitle.textContent = jobTitle;
-                    selectedJobInput.value = jobTitle + ' (' + jobType + ')';
-                    
-                    // Show application form
-                    applicationForm.classList.add('active');
-                    
-                    // Scroll to form
-                    applicationForm.scrollIntoView({ behavior: 'smooth' });
-                });
+        // Close modal functionality
+        const closeBtn = document.querySelector('.close-modal');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function() {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
             });
         }
 
-        // File upload functionality
-        const fileUploadArea = document.getElementById('file-upload-area');
+        // Close on background click
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // File upload handling
         const fileInput = document.getElementById('cv-file');
-        const selectedFile = document.getElementById('selected-file');
+        const fileInfo = document.getElementById('file-info');
+        const fileName = document.getElementById('file-name');
+        const uploadButton = document.querySelector('.file-upload-button');
+        let selectedFile = null;
 
-        if (fileUploadArea && fileInput && selectedFile) {
-            // Drag and drop functionality
-            fileUploadArea.addEventListener('dragover', function(e) {
-                e.preventDefault();
-                this.classList.add('dragover');
-            });
-
-            fileUploadArea.addEventListener('dragleave', function(e) {
-                e.preventDefault();
-                this.classList.remove('dragover');
-            });
-
-            fileUploadArea.addEventListener('drop', function(e) {
-                e.preventDefault();
-                this.classList.remove('dragover');
-                const files = e.dataTransfer.files;
-                if (files.length > 0) {
-                    handleFileSelect(files[0]);
-                }
-            });
-
-            // File input change
+        if (fileInput && uploadButton) {
+            // File selection
             fileInput.addEventListener('change', function(e) {
                 if (e.target.files.length > 0) {
                     handleFileSelect(e.target.files[0]);
                 }
             });
 
-            function handleFileSelect(file) {
-                // Validate file type
-                const allowedTypes = ['.pdf', '.doc', '.docx', '.txt'];
-                const fileExtension = '.' + file.name.split('.').pop().toLowerCase();
+            // Drag and drop
+            uploadButton.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                this.style.borderColor = '#9bf1ff';
+                this.style.background = 'rgba(155, 241, 255, 0.15)';
+            });
+
+            uploadButton.addEventListener('dragleave', function(e) {
+                e.preventDefault();
+                this.style.borderColor = '';
+                this.style.background = '';
+            });
+
+            uploadButton.addEventListener('drop', function(e) {
+                e.preventDefault();
+                this.style.borderColor = '';
+                this.style.background = '';
                 
-                if (!allowedTypes.includes(fileExtension)) {
-                    Swal.fire({
-                        title: 'Invalid File Type',
-                        text: 'Please upload a PDF, DOC, DOCX, or TXT file.',
-                        icon: 'error',
-                        confirmButtonText: 'OK',
-                        background: '#19191a',
-                        color: '#fff'
-                    });
-                    return;
+                const files = e.dataTransfer.files;
+                if (files.length > 0) {
+                    handleFileSelect(files[0]);
                 }
-
-                // Validate file size (max 5MB)
-                if (file.size > 5 * 1024 * 1024) {
-                    Swal.fire({
-                        title: 'File Too Large',
-                        text: 'Please upload a file smaller than 5MB.',
-                        icon: 'error',
-                        confirmButtonText: 'OK',
-                        background: '#19191a',
-                        color: '#fff'
-                    });
-                    return;
-                }
-
-                // Display selected file
-                selectedFile.style.display = 'block';
-                selectedFile.innerHTML = `
-                    <i class="fas fa-file-alt"></i>
-                    <strong>${file.name}</strong> (${(file.size / 1024 / 1024).toFixed(2)} MB)
-                `;
-
-                // Store file for form submission
-                window.selectedCVFile = file;
-            }
+            });
         }
 
-        // Enhanced form submission for careers
-        document.addEventListener('submit', function(event) {
-            if (event.target.id === 'career-form') {
-                event.preventDefault();
+        function handleFileSelect(file) {
+            const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+            
+            if (!allowedTypes.includes(file.type)) {
+                Swal.fire({
+                    title: 'Invalid File Type',
+                    text: 'Please upload a PDF or Word document.',
+                    icon: 'error',
+                    confirmButtonText: 'OK',
+                    background: '#1a1a1a',
+                    color: '#fff'
+                });
+                return;
+            }
+
+            if (file.size > 5 * 1024 * 1024) {
+                Swal.fire({
+                    title: 'File Too Large',
+                    text: 'Please upload a file smaller than 5MB.',
+                    icon: 'error',
+                    confirmButtonText: 'OK',
+                    background: '#1a1a1a',
+                    color: '#fff'
+                });
+                return;
+            }
+
+            selectedFile = file;
+            fileName.textContent = `${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`;
+            fileInfo.style.display = 'block';
+            uploadButton.style.display = 'none';
+        }
+
+        // Global removeFile function
+        window.removeFile = function() {
+            selectedFile = null;
+            fileInput.value = '';
+            fileInfo.style.display = 'none';
+            uploadButton.style.display = 'flex';
+        }
+
+        // Form submission
+        const applicationForm = document.getElementById('application-form');
+        if (applicationForm) {
+            applicationForm.addEventListener('submit', function(e) {
+                e.preventDefault();
                 
-                if (!window.selectedCVFile) {
+                if (!selectedFile) {
                     Swal.fire({
-                        title: 'CV Required',
-                        text: 'Please upload your CV/Resume before submitting.',
+                        title: 'Resume Required',
+                        text: 'Please upload your resume or CV.',
                         icon: 'warning',
                         confirmButtonText: 'OK',
-                        background: '#19191a',
+                        background: '#1a1a1a',
                         color: '#fff'
                     });
                     return;
                 }
 
-                // Show loading state
                 Swal.fire({
-                    title: 'Submitting Application...',
-                    text: 'Please wait while we process your application.',
+                    title: 'Sending Application...',
+                    text: 'Please wait while we process your submission.',
                     allowOutsideClick: false,
                     didOpen: () => {
                         Swal.showLoading();
                     }
                 });
 
-                // Simulate form submission (since we can't actually send files via EmailJS)
+                // Simulate submission
                 setTimeout(() => {
                     Swal.fire({
-                        title: 'Application Submitted!',
-                        text: 'Thank you for your application. We\'ll review your submission and get back to you soon.',
+                        title: 'Application Sent!',
+                        text: 'Thank you for your interest. We\'ll review your application and get back to you soon.',
                         icon: 'success',
-                        confirmButtonText: 'OK',
-                        background: '#19191a',
+                        confirmButtonText: 'Great!',
+                        background: '#1a1a1a',
                         color: '#fff'
                     });
                     
-                    // Reset form
-                    event.target.reset();
-                    if (selectedFile) selectedFile.style.display = 'none';
-                    window.selectedCVFile = null;
-                    jobPostings.forEach(j => j.classList.remove('selected'));
-                    if (applicationForm) applicationForm.classList.remove('active');
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                    applicationForm.reset();
+                    removeFile();
                 }, 2000);
-            }
-        });
-    }, 2000); // Wait 2 seconds for content to load
+            });
+        }
+    }, 2000);
 });
 </script>
+
 </body>
 </html>
