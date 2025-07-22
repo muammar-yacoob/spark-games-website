@@ -12,7 +12,7 @@
       ],
       "show": "Game of Thrones (sort of)",
       "avatar": "images/Team/env_artist.png",
-      "skills": ["World Building", "Unreal Engine", "Blender", "Photoshop"],
+      "skills": ["Unity", "Blender", "World Building"],
       "isVacancy": true,
       "jobType": "Full-time/Contract • Remote"
     },
@@ -28,9 +28,9 @@
         "Yeah, science! Yeah, C#!",
         "Wubba Lubba dub-dub!"
       ],
-      "show": "Breaking Bad",
+      "show": "Rick and Morty",
       "avatar": "images/Team/lead_dev.png",
-      "skills": ["Unity", "C#", "Coffee Addiction", "Dad Jokes"],
+      "skills": ["Unity", "C#", "Dad Jokes"],
       "isVacancy": false
     },
     {
@@ -44,9 +44,9 @@
         "Yes, I can make it more realistic. No, your GPU can't handle it.",
         "I'm not procrastinating, I'm waiting for the render to finish... for the 47th time."
       ],
-      "show": "Bob Ross meets Silicon Valley",
+      "show": "Adventure Time",
       "avatar": "images/Team/artist.png",
-      "skills": ["Blender", "Maya", "Pixel Perfectionist", "Texture Wizard"],
+      "skills": ["Blender", "Maya", "Texture Wizard"],
       "isVacancy": false
     },
     {
@@ -60,9 +60,9 @@
         "PIVOT! PIVOT! (when rotating GameObjects)",
         "It's not a bug, it's a feature. They don't know that we know they know it's a bug."
       ],
-      "show": "Friends",
+      "show": "The Regular Show",
       "avatar": "images/Team/dev.png",
-      "skills": ["Unity", "Shader Graph", "Bug Hunter", "Async Master"],
+      "skills": ["Unity", "Shader Graph", "Bug Hunter"],
       "isVacancy": false
     },
     {
@@ -76,9 +76,9 @@
         "Dude, bro, we need to update the Kanban board.",
         "It's not about the deadlines, it's about sending a message... in Slack."
       ],
-      "show": "Regular Show",
+      "show": "The Regular Show",
       "avatar": "images/Team/project_manager.png",
-      "skills": ["Jira Jedi", "Deadline Whisperer", "Gantt Charts", "Team Therapy"],
+      "skills": ["Jira Jedi", "Gantt Charts", "Deadline Whisperer"],
       "isVacancy": false
     },
     {
@@ -92,9 +92,9 @@
         "My engagement rate is higher than my coffee intake. That's saying something.",
         "I put the 'gram' in 'programmer'... wait, that's not right."
       ],
-      "show": "Tech Life",
+      "show": "Powerpuff Girls",
       "avatar": "images/Team/marketing.png",
-      "skills": ["Social Media", "Viral Content", "Meme Lord", "Analytics Ninja"],
+      "skills": ["Social Media", "Analytics", "Meme Lord"],
       "isVacancy": false
     }
   ]

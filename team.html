@@ -177,6 +177,29 @@
 			margin: 16px 0;
 			position: relative;
 			padding: 0 20px;
+			height: 3em;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			overflow: hidden;
+		}
+
+		/* Typewriter effect */
+		.typewriter {
+			border-right: 2px solid var(--primary-color);
+			animation: blink 0.8s infinite;
+			display: inline-block;
+		}
+
+		@keyframes blink {
+			0%, 50% { border-color: var(--primary-color); }
+			51%, 100% { border-color: transparent; }
+		}
+
+		/* Quote text styling */
+		.member-quote .quote-text {
+			display: inline-block;
+			transition: opacity 0.3s ease;
 		}
 
 		.member-quote::before,
@@ -371,20 +394,41 @@
 <script src="assets/js/util.js"></script>
 
 <script>
+console.log('Team page script loading...');
+
 // Load team data from JSON
 async function loadTeamData() {
+    console.log('loadTeamData called');
     try {
+        console.log('Fetching team.json...');
         const response = await fetch('team.json');
+        console.log('Response status:', response.status);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
         const data = await response.json();
+        console.log('Team data loaded:', data);
         renderTeamMembers(data.team);
     } catch (error) {
         console.error('Error loading team data:', error);
+        // Fallback: show error message in the grid
+        const teamGrid = document.getElementById('team-grid');
+        if (teamGrid) {
+            teamGrid.innerHTML = '<p style="color: #ff6b6b; text-align: center; grid-column: 1/-1;">Error loading team data. Please refresh the page.</p>';
+        }
     }
 }
 
+// Store quotes globally for easier access
+let memberQuotes = {};
+
 function renderTeamMembers(teamMembers) {
+    console.log('renderTeamMembers called with:', teamMembers);
     const teamGrid = document.getElementById('team-grid');
-    if (!teamGrid) return;
+    if (!teamGrid) {
+        console.error('team-grid element not found!');
+        return;
+    }
     
     // Sort to show vacancies first
     const sortedMembers = [...teamMembers].sort((a, b) => {
@@ -393,26 +437,20 @@ function renderTeamMembers(teamMembers) {
         return 0;
     });
     
-    teamGrid.innerHTML = sortedMembers.map(member => {
+    teamGrid.innerHTML = sortedMembers.map((member, index) => {
         const skillTags = member.skills.map(skill => 
             `<span class="skill-tag">${skill}</span>`
         ).join('');
         
-        // Handle both single quote and multiple quotes
-        let selectedQuote;
-        console.log('Member:', member.name, 'Quotes:', member.quotes, 'Quote:', member.quote);
+        // Store quotes globally with member index
+        const quotes = member.quotes && Array.isArray(member.quotes) && member.quotes.length > 0 
+            ? member.quotes 
+            : member.quote 
+                ? [member.quote] 
+                : ["No quote available"];
         
-        if (member.quotes && Array.isArray(member.quotes) && member.quotes.length > 0) {
-            // Pick a random quote from the array
-            selectedQuote = member.quotes[Math.floor(Math.random() * member.quotes.length)];
-        } else if (member.quote) {
-            // Fallback to single quote if exists
-            selectedQuote = member.quote;
-        } else {
-            selectedQuote = "No quote available";
-        }
-        
-        console.log('Selected quote for', member.name, ':', selectedQuote);
+        memberQuotes[index] = quotes;
+        console.log(`Stored quotes for member ${index}:`, quotes);
         
         const applyButton = member.isVacancy ? 
             `<div style="margin-top: 20px;">
@@ -425,13 +463,8 @@ function renderTeamMembers(teamMembers) {
         const vacancyBanner = member.isVacancy ? 
             '<div class="vacancy-banner"><img src="images/Team/vacancy_banner.png" alt="Coming soon"></div>' : '';
         
-        // Debug log
-        if (member.isVacancy) {
-            console.log('Vacancy member:', member.name, 'Banner HTML:', vacancyBanner);
-        }
-        
         return `
-            <div class="team-member">
+            <div class="team-member" data-member-index="${index}">
                 ${vacancyBanner}
                 <div class="member-avatar-wrapper">
                     <div class="avatar-glow"></div>
@@ -439,7 +472,9 @@ function renderTeamMembers(teamMembers) {
                 </div>
                 <h3 class="member-name">${member.name}</h3>
                 <p class="member-role">${member.role}</p>
-                <p class="member-quote">${selectedQuote}</p>
+                <div class="member-quote">
+                    <span class="quote-text typewriter">Hover to see a quote...</span>
+                </div>
                 <p class="member-show">- ${member.show}</p>
                 <div class="member-skills">
                     ${skillTags}
@@ -448,10 +483,96 @@ function renderTeamMembers(teamMembers) {
             </div>
         `;
     }).join('');
+    
+    // Add hover event listeners for typewriter effect
+    console.log('About to setup typewriter effect...');
+    setTimeout(() => {
+        setupTypewriterEffect();
+    }, 500); // Increased timeout to ensure DOM is ready
+}
+
+// Typewriter effect for quotes
+function setupTypewriterEffect() {
+    console.log('Setting up typewriter effect...');
+    const teamMembers = document.querySelectorAll('.team-member');
+    console.log('Found team members:', teamMembers.length);
+    console.log('Available member quotes:', memberQuotes);
+    
+    teamMembers.forEach((member, index) => {
+        console.log('Setting up member', index);
+        const quoteElement = member.querySelector('.quote-text');
+        const memberIndex = member.getAttribute('data-member-index');
+        const quotes = memberQuotes[memberIndex];
+        
+        if (!quotes || !quoteElement) {
+            console.log('No quotes or quote element found for member', memberIndex);
+            return;
+        }
+        
+        console.log('Found quotes for member', memberIndex, ':', quotes);
+        
+        let currentQuoteIndex = 0;
+        let isTyping = false;
+        let hoverTimeout;
+        
+        member.addEventListener('mouseenter', () => {
+            console.log('Hover detected on:', member.querySelector('.member-name').textContent);
+            if (isTyping) return;
+            
+            clearTimeout(hoverTimeout);
+            isTyping = true;
+            const currentQuote = quotes[currentQuoteIndex];
+            console.log('Showing quote:', currentQuote);
+            
+            // Start typewriter effect
+            typewriterEffect(quoteElement, currentQuote, () => {
+                // Move to next quote for next hover
+                currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+                isTyping = false;
+            });
+        });
+        
+        member.addEventListener('mouseleave', () => {
+            hoverTimeout = setTimeout(() => {
+                if (!isTyping) {
+                    quoteElement.textContent = 'Hover to see a quote...';
+                    quoteElement.classList.remove('typing');
+                }
+            }, 500);
+        });
+    });
+}
+
+function typewriterEffect(element, text, callback) {
+    if (!element || !text) return;
+    
+    element.textContent = '';
+    element.classList.remove('typing');
+    element.style.width = '0';
+    
+    let i = 0;
+    const typingSpeed = 50; // ms per character
+    
+    function typeCharacter() {
+        if (i < text.length) {
+            element.textContent += text.charAt(i);
+            i++;
+            setTimeout(typeCharacter, typingSpeed);
+        } else {
+            // Animation complete
+            if (callback) callback();
+        }
+    }
+    
+    // Start typing
+    element.classList.add('typing');
+    element.style.width = 'auto';
+    typeCharacter();
 }
 
 // Custom script for team page - override main.js behavior
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM Content Loaded - team page');
     // Show the team article immediately
     const body = document.body;
     const main = document.getElementById('main');

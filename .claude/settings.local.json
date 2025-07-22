@@ -6,7 +6,10 @@
       "Bash(mv:*)",
       "Bash(rm:*)",
       "Bash(ls:*)",
-      "Bash(cp:*)"
+      "Bash(cp:*)",
+      "Bash(node:*)",
+      "Bash(python:*)",
+      "Bash(npx http-server:*)"
     ],
     "deny": []
   }

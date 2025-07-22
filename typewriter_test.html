@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .typewriter {
+            border-right: 2px solid #9bf1ff;
+            animation: blink 0.8s infinite;
+            display: inline-block;
+            font-family: monospace;
+            font-size: 18px;
+        }
+        
+        @keyframes blink {
+            0%, 50% { border-color: #9bf1ff; }
+            51%, 100% { border-color: transparent; }
+        }
+        
+        .test-card {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Typewriter Test</h1>
+    
+    <div class="test-card" onmouseover="startTypewriter()">
+        <h3>Test Member</h3>
+        <div class="quote-container">
+            <span class="typewriter">Hover to see quote...</span>
+        </div>
+    </div>
+    
+    <script>
+        const quotes = ["This is test quote 1", "This is test quote 2", "This is test quote 3"];
+        let currentIndex = 0;
+        
+        function startTypewriter() {
+            const element = document.querySelector('.typewriter');
+            const currentQuote = quotes[currentIndex];
+            
+            console.log('Starting typewriter with:', currentQuote);
+            
+            typewriterEffect(element, currentQuote, () => {
+                currentIndex = (currentIndex + 1) % quotes.length;
+                console.log('Next quote index:', currentIndex);
+            });
+        }
+        
+        function typewriterEffect(element, text, callback) {
+            console.log('Typewriter effect called with:', text);
+            if (!element || !text) return;
+            
+            element.textContent = '';
+            
+            let i = 0;
+            const typingSpeed = 50;
+            
+            function typeCharacter() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeCharacter, typingSpeed);
+                } else {
+                    if (callback) callback();
+                }
+            }
+            
+            typeCharacter();
+        }
+    </script>
+</body>
+</html>
