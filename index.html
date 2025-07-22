@@ -1162,7 +1162,7 @@
 					</div>
 
 					<div class="form-group">
-						<label>Resume / CV *</label>
+						<label>Resume / CV * <span style="color: #a1a1a1; font-size: 0.8em;">(Max 1.5MB)</span></label>
 						<div class="file-upload-wrapper">
 							<div class="file-upload-button" onclick="document.getElementById('cv-file').click()">
 								<i class="fas fa-upload"></i>
@@ -1183,7 +1183,7 @@
 						</div>
 					</div>
 
-					<button type="submit" id="submit-application" disabled>
+					<button type="submit" id="submit-application" class="apply-button" disabled>
 						<i class="fas fa-rocket" style="margin-right: 8px;"></i>
 						Submit Application
 					</button>
@@ -1435,96 +1435,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
             
-            // Form submission
-            applicationForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                if (!selectedFile) {
-                    Swal.fire({
-                        title: 'Resume Required',
-                        text: 'Please upload your resume or CV.',
-                        icon: 'warning',
-                        confirmButtonText: 'OK',
-                        background: '#1a1a1a',
-                        color: '#fff',
-                        customClass: {
-                            popup: 'swal2-popup',
-                            title: 'swal2-title',
-                            content: 'swal2-content',
-                            confirmButton: 'swal2-confirm'
-                        }
-                    });
-                    return;
-                }
-                
-                // Validate description word count
-                const messageField = document.getElementById('message');
-                if (messageField) {
-                    const message = messageField.value.trim();
-                    const wordCount = message.split(/\s+/).filter(word => word.length > 0).length;
-                    
-                    if (wordCount < 5 || wordCount > 40) {
-                        Swal.fire({
-                            title: 'Description Length Invalid',
-                            text: `Please provide a description between 5 and 40 words. Current word count: ${wordCount}`,
-                            icon: 'warning',
-                            confirmButtonText: 'OK',
-                            background: '#1a1a1a',
-                            color: '#fff',
-                            customClass: {
-                                popup: 'swal2-popup',
-                                title: 'swal2-title',
-                                content: 'swal2-content',
-                                confirmButton: 'swal2-confirm'
-                            }
-                        });
-                        return;
-                    }
-                }
-
-                Swal.fire({
-                    title: 'Sending Application...',
-                    text: 'Please wait while we process your submission.',
-                    allowOutsideClick: false,
-                    showConfirmButton: false,
-                    background: '#1a1a1a',
-                    color: '#fff',
-                    customClass: {
-                        popup: 'swal2-popup',
-                        title: 'swal2-title',
-                        content: 'swal2-content'
-                    },
-                    didOpen: () => {
-                        Swal.showLoading();
-                    }
-                });
-
-                // Simulate submission
-                setTimeout(() => {
-                    Swal.fire({
-                        title: 'Application Sent!',
-                        text: 'Thank you for your interest. We\'ll review your application and get back to you soon.',
-                        icon: 'success',
-                        confirmButtonText: 'Great!',
-                        background: '#1a1a1a',
-                        color: '#fff',
-                        customClass: {
-                            popup: 'swal2-popup',
-                            title: 'swal2-title',
-                            content: 'swal2-content',
-                            confirmButton: 'swal2-confirm'
-                        }
-                    });
-                    
-                    modal.classList.remove('active');
-                    document.body.style.overflow = '';
-                    applicationForm.reset();
-                    removeFile();
-                    formHasBeenModified = false;
-                    updateWordCounter(0);
-                    validateForm();
-                }, 2000);
-            });
+            // Form submission is handled by form-handler.js
         }
         
         // Warning dialog functions

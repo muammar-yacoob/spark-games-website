@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const applyButton = member.isVacancy ? 
                 `<div style="margin-top: 32px;">
-                    <button class="apply-button" onclick="window.openModal && window.openModal(this)" data-job-title="${member.role}" data-job-type="${member.jobType || 'Full-time • Remote'}" data-member-avatar="${member.avatar}" data-member-name="${member.name}" style="background: #0099cc; color: #000; padding: 8px 16px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s ease;" onmouseover="this.style.background='#00d4ff'" onmouseout="this.style.background='#0099cc'">
+                    <button class="apply-button" onclick="window.openModal && window.openModal(this)" data-job-title="${member.role}" data-job-type="${member.jobType || 'Full-time • Remote'}" data-member-avatar="${member.avatar}" data-member-name="${member.name}">
                         <i class="fas fa-rocket"></i>
                         Apply Now
                     </button>
