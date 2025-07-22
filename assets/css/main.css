@@ -831,14 +831,19 @@ body {
 				line-height: 2.25rem;
 				text-align: center;
 				width: 2.25rem;
+				transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
 			}
 
 				ul.icons li a:hover {
-					background-color: rgba(255, 255, 255, 0.075);
+					background-color: rgba(255, 255, 255, 0.3);
+					box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+					transform: scale(1.1);
 				}
 
 				ul.icons li a:active {
-					background-color: rgba(255, 255, 255, 0.175);
+					background-color: rgba(255, 255, 255, 0.4);
+					box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 1);
+					transform: scale(1.05);
 				}
 
 /* Table */
@@ -917,7 +922,7 @@ body {
 	button,
 	.button {
 		appearance: none;
-		transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+		transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, transform 0.2s ease-in-out;
 		background-color: transparent;
 		border-radius: 4px;
 		border: 0;
@@ -943,7 +948,9 @@ body {
 		input[type="button"]:hover,
 		button:hover,
 		.button:hover {
-			background-color: rgba(255, 255, 255, 0.075);
+			background-color: rgba(255, 255, 255, 0.3);
+			box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+			transform: scale(1.05);
 		}
 
 		input[type="submit"]:active,
@@ -951,7 +958,9 @@ body {
 		input[type="button"]:active,
 		button:active,
 		.button:active {
-			background-color: rgba(255, 255, 255, 0.175);
+			background-color: rgba(255, 255, 255, 0.4);
+			box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 1);
+			transform: scale(1.02);
 		}
 
 		input[type="submit"].icon:before,
@@ -1194,35 +1203,46 @@ body {
 			flex-wrap: wrap;
 			max-width: 100%;
 			justify-content: center;
+			height: 2.2rem;
 		}
 
 			#header nav ul li {
-				padding-left: 0;
-				border-left: solid 1px #ffffff;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				height: 2.2rem;
+				position: relative;
 			}
 
-				#header nav ul li:first-child {
-					border-left: 0;
-				}
-
 				#header nav ul li a {
-					display: block;
+					display: flex;
+					align-items: center;
+					justify-content: center;
 					min-width: 5.5rem;
-					height: 2.75rem;
-					line-height: 2.75rem;
-					padding: 0 0.8rem 0 1rem;
+					height: 2.2rem;
+					line-height: 2.2rem;
+					padding: 0 0.7rem 0 0.7rem;
 					text-transform: uppercase;
 					letter-spacing: 0.2rem;
-					font-size: 0.8rem;
+					font-size: 0.85rem;
 					border-bottom: 0;
+					text-align: center;
+					font-weight: 600;
+					position: relative;
+					width: 100%;
+					box-sizing: border-box;
 				}
 
 					#header nav ul li a:hover {
-						background-color: rgba(255, 255, 255, 0.075);
+						background-color: rgba(255, 255, 255, 0.3);
+						transform: scale(1.05);
+						color: #ffffff;
+						transition: all 0.3s ease;
 					}
 
 					#header nav ul li a:active {
-						background-color: rgba(255, 255, 255, 0.175);
+						background-color: rgba(255, 255, 255, 0.4);
+						transform: scale(1.02);
 					}
 
 		#header nav.use-middle:after {
@@ -1465,12 +1485,12 @@ body {
 
 /* Ad Banner */
 #ad-banner {
-    margin: 1em 0;
+    margin: 3em 0 1em 0;
     border-radius: 10px;
     display: block;
     overflow: hidden;
-    opacity: 0; /* Start with the banner invisible */
-    transition: opacity 1s ease; /* Smooth transition for opacity */
+    opacity: 0;
+    transition: opacity 1s ease;
 }
 
 /* Rest of your ad banner styles remain the same */
@@ -1497,4 +1517,58 @@ body {
     font-size: 1.2em;
     margin: 0 0 0.5em 0;
     color: #888;
+}
+
+/* Careers page specific button and input styles */
+.apply-button, .network-button {
+    background: #9bf1ff;
+    color: #000;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-weight: 600;
+    font-size: 0.8em;
+    height: 32px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+    min-width: 80px;
+    flex-shrink: 0;
+}
+
+.apply-button:hover, .network-button:hover:not(:disabled) {
+    background: #5ac8d9;
+    border: 1px solid #9bf1ff;
+    transform: scale(1.05);
+}
+
+.network-button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+    background: rgba(155, 241, 255, 0.3);
+    color: rgba(0, 0, 0, 0.5);
+}
+
+/* Careers page email input styling */
+#network-email, .careers-email-input {
+    padding: 6px 12px;
+    height: 32px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 0.8em;
+    transition: all 0.3s ease;
+    flex: 1;
+    min-width: 200px;
+}
+
+#network-email:focus, .careers-email-input:focus {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(155, 241, 255, 0.5);
+    outline: none;
 }

@@ -87,10 +87,25 @@ window.openModal = function(button) {
         return;
     }
     
+    // Check if button has data attributes (for team page)
+    if (button.hasAttribute('data-job-title')) {
+        const jobTitle = button.getAttribute('data-job-title');
+        const jobType = button.getAttribute('data-job-type');
+        
+        modalJobTitle.textContent = jobTitle;
+        jobPositionInput.value = `${jobTitle} (${jobType})`;
+        
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        console.log('Modal activated successfully from data attributes');
+        return;
+    }
+    
+    // Fall back to job posting structure (for careers page)
     const posting = button.closest('.job-posting');
     if (posting) {
-        const jobTitle = posting.querySelector('.job-title');
-        const jobType = posting.querySelector('.job-type');
+        const jobTitle = posting.querySelector('h3');
+        const jobType = posting.querySelector('div[style*="color: #9bf1ff"]');
         
         console.log('Found job elements:', {jobTitle: jobTitle?.textContent, jobType: jobType?.textContent});
         

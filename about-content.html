@@ -15,32 +15,81 @@
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const overlay = document.getElementById('portfolio-overlay');
-    const iframe = document.getElementById('portfolio-iframe');
-    
-    overlay.addEventListener('click', function() {
-        // Load iframe after user interaction
-        iframe.src = 'https://muammar-yacoob.github.io/InteractivePortfolio3D/';
-        overlay.style.display = 'none';
+(function() {
+    function initializePortfolio() {
+        const overlay = document.getElementById('portfolio-overlay');
+        const iframe = document.getElementById('portfolio-iframe');
         
-        // Add a small delay to ensure iframe starts loading
-        setTimeout(() => {
-            // Try to resume audio context in the iframe (if accessible)
-            try {
-                if (iframe.contentWindow && iframe.contentWindow.unityInstance) {
-                    iframe.contentWindow.unityInstance.SendMessage('', 'ResumeAudio');
+        if (overlay && iframe) {
+            // Remove any existing event listeners
+            overlay.removeEventListener('click', handlePortfolioClick);
+            overlay.addEventListener('click', handlePortfolioClick);
+        }
+    }
+    
+    function handlePortfolioClick() {
+        const overlay = document.getElementById('portfolio-overlay');
+        const iframe = document.getElementById('portfolio-iframe');
+        
+        if (overlay && iframe) {
+            // Load iframe after user interaction
+            iframe.src = 'https://muammar-yacoob.github.io/InteractivePortfolio3D/';
+            overlay.style.display = 'none';
+            
+            // Add a small delay to ensure iframe starts loading
+            setTimeout(() => {
+                // Try to resume audio context in the iframe (if accessible)
+                try {
+                    if (iframe.contentWindow && iframe.contentWindow.unityInstance) {
+                        iframe.contentWindow.unityInstance.SendMessage('', 'ResumeAudio');
+                    }
+                } catch (e) {
+                    // Cross-origin, can't access iframe content - that's expected
+                    console.log('Audio will be initialized on first user interaction within the game');
                 }
-            } catch (e) {
-                // Cross-origin, can't access iframe content - that's expected
-                console.log('Audio will be initialized on first user interaction within the game');
-            }
-        }, 1000);
-    });
-});
+            }, 1000);
+        }
+    }
+    
+    // Initialize immediately if DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializePortfolio);
+    } else {
+        initializePortfolio();
+    }
+    
+    // Also initialize after a delay to ensure dynamic content is loaded
+    setTimeout(initializePortfolio, 100);
+    setTimeout(initializePortfolio, 500);
+    setTimeout(initializePortfolio, 1000);
+})();
 </script>
 <!-- Start of Selection -->
 <div style="text-align: center; margin: 20px 0;">
     <p style="font-size: 1em; font-weight: bold;">Make it yours with <a href="https://github.com/muammar-yacoob/InteractivePortfolio3D#setup" target="_blank" style="color:steelblue; text-decoration: none;">this tool</a>.</p>
 </div>
 <!-- End of Selection -->
+
+<!-- Contact Section -->
+<div style="text-align: center; margin: 40px 0 20px;">
+    <p style="color: #e0e0e0; font-size: 1em;">Got a project in mind, questions about our services, or collaboration ideas? 
+        <a href="#" onclick="window.openContactModal(); return false;" style="color: #9bf1ff; text-decoration: none; font-weight: 500; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;" 
+           onmouseover="this.style.color='#7dd8e6'; this.style.textDecoration='underline';" 
+           onmouseout="this.style.color='#9bf1ff'; this.style.textDecoration='none';">
+           <i class="fas fa-envelope" style="margin-right: 8px; font-size: 0.9em;"></i>
+            
+            Get in Touch
+        </a>
+    </p>
+</div>
+
+<!-- Social Links -->
+<center>
+    <hr style="margin: 40px 0 30px; border-color: rgba(255, 255, 255, 0.1);">
+    <ul class="icons">
+        <li><a href="https://www.youtube.com/@spark-games-uk" class="icon brands fa-youtube" target="_blank"><span class="label">YouTube</span></a></li>
+        <li><a href="https://sketchfab.com/spark-games/models" class="icon solid fa-tree" target="_blank"><span class="label">Sketchfab</span></a></li>
+        <li><a href="https://github.com/muammar-yacoob" class="icon brands fa-github" target="_blank"><span class="label">GitHub</span></a></li>
+        <li><a href="https://assetstore.unity.com/publishers/46749?aid=1011lds77" class="icon brands fa-unity" target="_blank"><span class="label">Unity Asset Store</span></a></li>
+    </ul>
+</center>

@@ -1,0 +1,66 @@
+{
+  "team": [
+    {
+      "id": "environment_artist",
+      "name": "Join Our Team",
+      "role": "Environment Artist",
+      "quote": "Winter is coming... but first, coffee.",
+      "show": "Game of Thrones (sort of)",
+      "avatar": "images/Team/env_artist.png",
+      "skills": ["World Building", "Unreal Engine", "Blender", "Photoshop"],
+      "isVacancy": true,
+      "jobType": "Full-time/Contract • Remote"
+    },
+    {
+      "id": "lead_developer",
+      "name": "Muammar Yacoob",
+      "role": "Lead Developer",
+      "quote": "I am the one who codes!",
+      "show": "Breaking Bad",
+      "avatar": "images/Team/lead_dev.png",
+      "skills": ["Unity", "C#", "Coffee Addiction", "Dad Jokes"],
+      "isVacancy": false
+    },
+    {
+      "id": "artist_3d",
+      "name": "Maya Rodriguez",
+      "role": "3D Artist",
+      "quote": "That's what she said!",
+      "show": "The Office",
+      "avatar": "images/Team/artist.png",
+      "skills": ["Blender", "Maya", "Pixel Perfectionist", "Texture Wizard"],
+      "isVacancy": false
+    },
+    {
+      "id": "unity_developer",
+      "name": "Jordan Kim",
+      "role": "Unity Developer",
+      "quote": "Could this BE any more buggy?",
+      "show": "Friends",
+      "avatar": "images/Team/dev.png",
+      "skills": ["Unity", "Shader Graph", "Bug Hunter", "Async Master"],
+      "isVacancy": false
+    },
+    {
+      "id": "project_manager",
+      "name": "Sam Patel",
+      "role": "Project Manager",
+      "quote": "You know who else manages projects? MY MOM!",
+      "show": "Regular Show",
+      "avatar": "images/Team/project_manager.png",
+      "skills": ["Jira Jedi", "Deadline Whisperer", "Gantt Charts", "Team Therapy"],
+      "isVacancy": false
+    },
+    {
+      "id": "social_media_wizard",
+      "name": "Casey Rivers",
+      "role": "Social Media Wizard",
+      "quote": "Going viral is not a bug, it's a feature!",
+      "show": "Tech Life",
+      "avatar": "images/Team/marketing.png",
+      "skills": ["Social Media", "Viral Content", "Meme Lord", "Analytics Ninja"],
+      "isVacancy": false
+    }
+  ]
+}
+ 
