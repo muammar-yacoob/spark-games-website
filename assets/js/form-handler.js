@@ -1,8 +1,8 @@
 const CONTACT_EMAIL = 'support@spark-games.co.uk';
 const CONTACT_LINK = `<a href="mailto:${CONTACT_EMAIL}" style="color: #00ccff;">${CONTACT_EMAIL}</a>`;
 
-// Web3Forms configuration
-const WEB3FORMS_KEY = 'WEB3FORMS_PUBLIC_KEY';
+// Resend configuration
+const RESEND_API_KEY = 'RESEND_API_KEY_PLACEHOLDER'; // Will be replaced during deployment
 
 function showMessage(title, message) {
     if (typeof Swal !== 'undefined') {
@@ -24,14 +24,13 @@ function showMessage(title, message) {
 }
 
 async function submitForm(form) {
-    const formData = new FormData(form);
-    
     // Check if we're in local development
     const isLocalHost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
     
     if (isLocalHost) {
         // Local development - simulate success
         console.log('Local development mode - simulating form submission');
+        const formData = new FormData(form);
         console.log('Form data:', Object.fromEntries(formData.entries()));
         
         // Simulate delay
@@ -60,13 +59,7 @@ async function submitForm(form) {
         return true;
     }
     
-    // Add Web3Forms access key
-    formData.append('access_key', WEB3FORMS_KEY);
-    
-    // Add redirect URL (optional)
-    formData.append('redirect', 'false');
-    
-    // File size validation for application forms with CV
+    // File validation for application forms with CV
     if (form.id === 'application-form') {
         const fileInput = form.querySelector('#cv-file');
         const file = fileInput?.files[0];
@@ -76,7 +69,7 @@ async function submitForm(form) {
             return false;
         }
         
-        // Web3Forms allows 10MB files
+        // Resend allows up to 10MB attachments
         const maxSizeMB = 10;
         const fileSizeMB = file.size / (1024 * 1024);
         
@@ -86,15 +79,74 @@ async function submitForm(form) {
         }
     }
     
+    const formData = new FormData(form);
+    
     try {
-        const response = await fetch('https://api.web3forms.com/submit', {
+        // Prepare email data
+        const emailData = {
+            from: 'noreply@spark-games.co.uk',
+            to: [CONTACT_EMAIL],
+            replyTo: formData.get('email'),
+            subject: form.id === 'application-form' 
+                ? `Job Application: ${formData.get('job_position')}` 
+                : 'Contact Form Submission - Spark Games',
+            attachments: []
+        };
+        
+        // Handle file attachment for application forms
+        if (form.id === 'application-form') {
+            const fileInput = form.querySelector('#cv-file');
+            const file = fileInput?.files[0];
+            
+            if (file) {
+                // Convert file to base64
+                const base64 = await new Promise((resolve) => {
+                    const reader = new FileReader();
+                    reader.onload = () => resolve(reader.result.split(',')[1]);
+                    reader.readAsDataURL(file);
+                });
+                
+                emailData.attachments.push({
+                    filename: file.name,
+                    content: base64
+                });
+            }
+            
+            // Application email content
+            emailData.html = `
+                <h2>New Job Application</h2>
+                <p><strong>Position:</strong> ${formData.get('job_position')}</p>
+                <p><strong>Name:</strong> ${formData.get('full_name')}</p>
+                <p><strong>Email:</strong> ${formData.get('email')}</p>
+                <p><strong>Portfolio:</strong> ${formData.get('portfolio') || 'Not provided'}</p>
+                <p><strong>Location:</strong> ${formData.get('location') || 'Not specified'}</p>
+                <p><strong>Message:</strong></p>
+                <p>${formData.get('message')}</p>
+                <p><strong>CV:</strong> ${file ? file.name : 'No file attached'}</p>
+            `;
+        } else {
+            // Contact email content
+            emailData.html = `
+                <h2>New Contact Form Message</h2>
+                <p><strong>Name:</strong> ${formData.get('name')}</p>
+                <p><strong>Email:</strong> ${formData.get('email')}</p>
+                <p><strong>Message:</strong></p>
+                <p>${formData.get('message')}</p>
+            `;
+        }
+        
+        const response = await fetch('https://api.resend.com/emails', {
             method: 'POST',
-            body: formData
+            headers: {
+                'Authorization': `Bearer ${RESEND_API_KEY}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(emailData)
         });
         
         const data = await response.json();
         
-        if (data.success) {
+        if (response.ok) {
             if (form.id === 'application-form') {
                 showMessage('Success', 'Your application has been submitted successfully! We\'ll be in touch soon.');
                 
@@ -117,7 +169,7 @@ async function submitForm(form) {
             form.reset();
             return true;
         } else {
-            throw new Error(data.message || 'Submission failed');
+            throw new Error(data.message || 'Email sending failed');
         }
     } catch (error) {
         console.error('Form submission error:', error);

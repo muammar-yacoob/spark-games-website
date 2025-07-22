@@ -10,7 +10,10 @@
       "Bash(node:*)",
       "Bash(python:*)",
       "Bash(npx http-server:*)",
-      "Bash(git checkout:*)"
+      "Bash(git checkout:*)",
+      "WebFetch(domain:docs.web3forms.com)",
+      "WebFetch(domain:web3forms.com)",
+      "WebFetch(domain:github.com)"
     ],
     "deny": []
   }
