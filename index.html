@@ -1203,6 +1203,37 @@ window.closeContactModal = function() {
     }
 };
 
+// Unity game loading function
+window.loadUnityGame = function() {
+    const container = document.getElementById('unity-game-container');
+    const placeholder = document.getElementById('unity-placeholder');
+    const loading = document.getElementById('unity-loading');
+    
+    if (!container || !placeholder || !loading) {
+        console.error('Unity game elements not found');
+        return;
+    }
+    
+    // Show loading state
+    placeholder.style.display = 'none';
+    loading.style.display = 'flex';
+    
+    // Create iframe after a short delay to show loading animation
+    setTimeout(() => {
+        const iframe = document.createElement('iframe');
+        iframe.src = 'https://muammar-yacoob.github.io/InteractivePortfolio3D/';
+        iframe.style.cssText = 'position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;';
+        iframe.setAttribute('allowfullscreen', '');
+        
+        // Hide loading and show iframe when it loads
+        iframe.onload = function() {
+            loading.style.display = 'none';
+        };
+        
+        container.appendChild(iframe);
+    }, 500);
+};
+
 // Contact modal event listeners
 document.addEventListener('DOMContentLoaded', function() {
     const contactModal = document.getElementById('contact-modal');
