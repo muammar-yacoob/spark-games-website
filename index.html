@@ -555,7 +555,7 @@
 			color: #4CAF50;
 		}
 
-		.remove-file {
+		.file-remove-btn {
 			background: rgba(244, 67, 54, 0.05);
 			border: 1px solid rgba(244, 67, 54, 0.2);
 			color: #f44336;
@@ -565,7 +565,7 @@
 			transition: all 0.3s ease;
 		}
 
-		.remove-file:hover {
+		.file-remove-btn:hover {
 			background: rgba(244, 67, 54, 0.1);
 			border-color: rgba(244, 67, 54, 0.4);
 			transform: scale(1.05);
@@ -1013,9 +1013,7 @@
 										<i class="fas fa-file-alt"></i>
 										<span id="file-name"></span>
 									</div>
-									<button type="button" class="remove-file" onclick="removeFile()">
-										<i class="fas fa-times"></i>
-									</button>
+									<button type="button" class="file-remove-btn" onclick="removeFile()"></button>
 								</div>
 							</div>
 						</div>
