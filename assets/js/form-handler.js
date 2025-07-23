@@ -29,19 +29,12 @@ function showMessage(title, message) {
 }
 
 async function submitForm(form) {
-    // Debug logging
-    console.log('🚀 Spark Games Form Handler v3.0 - Vercel + Resend');
-    console.log('📍 Form ID:', form.id);
-    console.log('🌐 Using Vercel serverless function (CORS-safe)');
     
     // Check if we're in local development
     const isLocalHost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
     
     if (isLocalHost) {
         // Local development - simulate success
-        console.log('Local development mode - simulating form submission');
-        const formData = new FormData(form);
-        console.log('Form data:', Object.fromEntries(formData.entries()));
         
         // Simulate delay
         await new Promise(resolve => setTimeout(resolve, 1000));
@@ -124,9 +117,6 @@ async function submitForm(form) {
             }
         }
         
-        console.log('📡 Calling Vercel serverless function...');
-        console.log('🎯 Endpoint: /api/send-email');
-        console.log('📦 Email data:', emailData);
         
         const response = await fetch('/api/send-email', {
             method: 'POST',
@@ -136,7 +126,6 @@ async function submitForm(form) {
             body: JSON.stringify(emailData)
         });
         
-        console.log('📨 Response status:', response.status);
         const data = await response.json();
         
         if (response.ok) {

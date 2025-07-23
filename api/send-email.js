@@ -82,6 +82,13 @@ export default async function handler(req, res) {
             `;
         }
         
+        // Debug logging
+        console.log('📧 Email routing:', {
+            formType,
+            targetEmail: emailData.to[0],
+            subject: emailData.subject
+        });
+        
         // Make API call to Resend
         const response = await fetch('https://api.resend.com/emails', {
             method: 'POST',
@@ -95,17 +102,27 @@ export default async function handler(req, res) {
         const data = await response.json();
         
         if (response.ok) {
-            console.log('Email sent successfully:', data.id);
+            console.log('✅ Email sent successfully:', {
+                id: data.id,
+                to: emailData.to[0],
+                subject: emailData.subject
+            });
             res.status(200).json({ 
                 success: true, 
                 id: data.id,
+                targetEmail: emailData.to[0],
                 message: 'Email sent successfully' 
             });
         } else {
-            console.error('Resend API error:', data);
+            console.error('❌ Resend API error:', {
+                status: response.status,
+                error: data,
+                targetEmail: emailData.to[0]
+            });
             res.status(response.status).json({ 
                 error: data.message || 'Failed to send email',
-                details: data
+                details: data,
+                targetEmail: emailData.to[0]
             });
         }
     } catch (error) {
