@@ -69,10 +69,10 @@
 		/* Vacancy corner banner - ribbon style */
 		.vacancy-banner {
 			position: absolute !important;
-			top: -5px !important;
-			right: -5px !important;
-			width: 100px !important;
-			height: 100px !important;
+			top: 0 !important;
+			right: 0 !important;
+			width: 150px !important;
+			height: 150px !important;
 			overflow: hidden !important;
 			z-index: 100 !important;
 			pointer-events: none !important;
@@ -81,34 +81,35 @@
 		.vacancy-banner::before {
 			content: "NEW OPENING";
 			position: absolute;
-			top: 20px;
-			right: -30px;
-			width: 140px;
-			height: 30px;
+			top: 30px;
+			right: -40px;
+			width: 180px;
+			height: 40px;
 			background: #ff6b6b;
 			display: flex;
 			align-items: center;
 			justify-content: center;
 			transform: rotate(45deg);
 			color: white;
-			font-size: 0.7em;
-			font-weight: 700;
+			font-size: 0.65em;
+			font-weight: 800;
 			text-transform: uppercase;
-			letter-spacing: 0.5px;
-			box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+			letter-spacing: 1px;
+			padding: 10px 24px;
+			box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6), 0 4px 10px rgba(0, 0, 0, 0.8), 0 -4px 8px rgba(0, 0, 0, 0.4);
 		}
 
 		/* Cut-off corners */
 		.vacancy-banner::after {
 			content: "";
 			position: absolute;
-			top: 48px;
-			right: -35px;
+			top: 68px;
+			right: -48px;
 			width: 0;
 			height: 0;
-			border-left: 5px solid transparent;
-			border-right: 5px solid transparent;
-			border-top: 5px solid #cc5555;
+			border-left: 8px solid transparent;
+			border-right: 8px solid transparent;
+			border-top: 8px solid #cc5555;
 			transform: rotate(45deg);
 		}
 
