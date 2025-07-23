@@ -68,11 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </button>
                 </div>` : '';
             
-            // Vacancy banner if isVacancy is true
-            const vacancyBanner = member.isVacancy ? 
-                '<div class="vacancy-banner">\n' +
-                '  <img src="images/Team/vacancy_banner.png" alt="Coming soon!" style="width: 100%; height: 100%; object-fit: contain; display: block;">\n' +
-                '</div>' : '';
+
             
             // Store quotes for this member
             const quotes = member.quotes && Array.isArray(member.quotes) && member.quotes.length > 0 
@@ -82,6 +78,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     : ["No quote available"];
             
             memberQuotes[index] = quotes;
+            
+            const vacancyBanner = member.isVacancy ? '<div class="vacancy-banner"></div>' : '';
             
             return `
                 <div class="team-member" data-member-index="${index}">

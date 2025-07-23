@@ -66,23 +66,35 @@
             margin: 0 auto; /* Center individual cards when in a single column or if max-width is hit */
 		}
 
-		/* Vacancy corner banner */
+		/* Vacancy corner banner - improved design */
 		.vacancy-banner {
 			position: absolute !important;
-			top: -20px !important;
-			right: -20px !important;
-			width: 120px !important;
-			height: 120px !important;
+			top: 0 !important;
+			right: 0 !important;
+			width: 0 !important;
+			height: 0 !important;
+			border-style: solid !important;
+			border-width: 0 120px 120px 0 !important; /* Bigger banner */
+			border-color: transparent #00FF00 transparent transparent !important; /* Vivid green */
 			z-index: 100 !important;
 			pointer-events: none !important;
-			display: block !important;
+			box-shadow: -2px 2px 8px rgba(0, 0, 0, 0.3) !important; /* Add shadow */
 		}
 
-		.vacancy-banner img {
-			width: 100%;
-			height: 100%;
-			object-fit: contain;
-			display: block;
+		.vacancy-banner::after {
+			content: "NEW VACANCY!";
+			position: absolute;
+			top: 20px; /* Adjusted for bigger banner */
+			right: -95px; /* Adjusted for bigger banner */
+			transform: rotate(45deg);
+			color: #000; /* Black text for better contrast */
+			font-size: 0.85em; /* Bigger font */
+			font-weight: 900; /* Bolder */
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			width: 80px; /* Wider text area */
+			text-align: center;
+			text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3); /* Subtle text shadow */
 		}
 
 		.team-member::before {
@@ -446,7 +458,7 @@ function renderTeamMembers(teamMembers) {
             </div>` : '';
         
         const vacancyBanner = member.isVacancy ? 
-            '<div class="vacancy-banner"><img src="images/Team/vacancy_banner.png" alt="Coming soon"></div>' : '';
+            '<div class="vacancy-banner"></div>' : '';
         
         return `
             <div class="team-member" data-member-index="${index}">
