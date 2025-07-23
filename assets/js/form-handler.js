@@ -198,10 +198,10 @@ window.openModal = function(button) {
         const modalHeader = document.getElementById('modal-header');
         
         if (memberAvatar && memberName && modalMemberInfo && modalDefaultInfo) {
-            // Update the text in modal-member-info to show member name
+            // Keep the static welcoming message
             const memberInfoText = modalMemberInfo.querySelector('p');
             if (memberInfoText) {
-                memberInfoText.textContent = `Join ${memberName}'s team!`;
+                memberInfoText.textContent = "We'd love to have you aboard!";
             }
             modalMemberInfo.style.display = 'flex';
             modalDefaultInfo.style.display = 'none';
