@@ -1,36 +1,40 @@
-name: Deploying Website 🚀
+# DISABLED: Now using Vercel for deployment instead of GitHub Pages
+# This workflow was used for GitHub Pages deployment with Resend API key replacement
+# Now the site is deployed via Vercel with serverless functions to handle Resend API calls
 
-on:
-  push:
-    branches: ["main"]
-  workflow_dispatch:
+# name: Deploying Website 🚀
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+# on:
+#   push:
+#     branches: ["main"]
+#   workflow_dispatch:
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+# permissions:
+#   contents: read
+#   pages: write
+#   id-token: write
 
-      - name: Replace Resend API Key 🔑
-        run: |
-          sed -i 's|RESEND_API_KEY_PLACEHOLDER|${{ secrets.RESEND_API_KEY }}|g' assets/js/form-handler.js
-          echo "Replacement done. Checking result:"
-          grep -n "RESEND_API_KEY" assets/js/form-handler.js
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v4
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
+#       - name: Replace Resend API Key 🔑
+#         run: |
+#           sed -i 's|RESEND_API_KEY_PLACEHOLDER|${{ secrets.RESEND_API_KEY }}|g' assets/js/form-handler.js
+#           echo "Replacement done. Checking result:"
+#           grep -n "RESEND_API_KEY" assets/js/form-handler.js
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: '.'
+#       - name: Setup Pages
+#         uses: actions/configure-pages@v5
 
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+#       - name: Upload artifact
+#         uses: actions/upload-pages-artifact@v3
+#         with:
+#           path: '.'
+
+#       - name: Deploy to GitHub Pages
+#         id: deployment
+#         uses: actions/deploy-pages@v4

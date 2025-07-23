@@ -1,0 +1,12 @@
+{
+  "name": "spark-games-website",
+  "version": "1.0.0",
+  "description": "Spark Games - Static website with Vercel serverless functions",
+  "scripts": {
+    "dev": "vercel dev",
+    "start": "python -m http.server 8000"
+  },
+  "devDependencies": {
+    "vercel": "^32.0.0"
+  }
+}
