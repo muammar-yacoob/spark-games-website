@@ -50,6 +50,23 @@
 			gap: 24px;
 			margin: 40px 0;
 			padding: 10px;
+			max-width: 1200px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		
+		/* Force 2 columns on medium screens and up */
+		@media screen and (min-width: 737px) {
+			.team-grid {
+				grid-template-columns: repeat(2, 1fr);
+			}
+		}
+		
+		/* Allow more columns on very wide screens */
+		@media screen and (min-width: 1281px) {
+			.team-grid {
+				grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+			}
 		}
 
 		/* Team member card */
