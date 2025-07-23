@@ -863,17 +863,15 @@
 		/* Team page specific styles - 2 columns unless narrow */
 		.team-grid {
 			display: grid;
-			grid-template-columns: minmax(0, 400px) minmax(0, 400px);
+			grid-template-columns: 1fr 1fr;
 			gap: 24px;
 			margin: 40px auto;
-			justify-content: center;
 		}
 		
 		/* Single column on narrow screens */
 		@media screen and (max-width: 600px) {
 			.team-grid {
 				grid-template-columns: 1fr;
-				max-width: 400px;
 			}
 		}
 
