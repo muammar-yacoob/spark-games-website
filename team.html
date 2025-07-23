@@ -66,35 +66,50 @@
             margin: 0 auto; /* Center individual cards when in a single column or if max-width is hit */
 		}
 
-		/* Vacancy corner banner - improved design */
+		/* Vacancy corner banner - ribbon style */
 		.vacancy-banner {
 			position: absolute !important;
-			top: 0 !important;
-			right: 0 !important;
-			width: 0 !important;
-			height: 0 !important;
-			border-style: solid !important;
-			border-width: 0 120px 120px 0 !important; /* Bigger banner */
-			border-color: transparent #00FF00 transparent transparent !important; /* Vivid green */
+			top: -5px !important;
+			right: -5px !important;
+			width: 100px !important;
+			height: 100px !important;
+			overflow: hidden !important;
 			z-index: 100 !important;
 			pointer-events: none !important;
-			box-shadow: -2px 2px 8px rgba(0, 0, 0, 0.3) !important; /* Add shadow */
 		}
 
-		.vacancy-banner::after {
-			content: "NEW VACANCY!";
+		.vacancy-banner::before {
+			content: "NEW OPENING";
 			position: absolute;
-			top: 20px; /* Adjusted for bigger banner */
-			right: -95px; /* Adjusted for bigger banner */
+			top: 20px;
+			right: -30px;
+			width: 140px;
+			height: 30px;
+			background: #ff6b6b;
+			display: flex;
+			align-items: center;
+			justify-content: center;
 			transform: rotate(45deg);
-			color: #000; /* Black text for better contrast */
-			font-size: 0.85em; /* Bigger font */
-			font-weight: 900; /* Bolder */
+			color: white;
+			font-size: 0.7em;
+			font-weight: 700;
 			text-transform: uppercase;
-			letter-spacing: 1px;
-			width: 80px; /* Wider text area */
-			text-align: center;
-			text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3); /* Subtle text shadow */
+			letter-spacing: 0.5px;
+			box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+		}
+
+		/* Cut-off corners */
+		.vacancy-banner::after {
+			content: "";
+			position: absolute;
+			top: 48px;
+			right: -35px;
+			width: 0;
+			height: 0;
+			border-left: 5px solid transparent;
+			border-right: 5px solid transparent;
+			border-top: 5px solid #cc5555;
+			transform: rotate(45deg);
 		}
 
 		.team-member::before {
