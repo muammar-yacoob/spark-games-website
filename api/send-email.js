@@ -42,7 +42,7 @@ export default async function handler(req, res) {
         const emailData = {
             from: 'Spark Games Website <website@spark-games.co.uk>',
             to: formType === 'application' 
-                ? ['hr@spark-games.co.uk'] 
+                ? ['support@spark-games.co.uk'] // Temporarily route HR to support until Zoho is fixed
                 : ['support@spark-games.co.uk'],
             replyTo: email,
             subject: formType === 'application' 
