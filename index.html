@@ -860,12 +860,19 @@
 			}
 		}
 
-		/* Team page specific styles */
+		/* Team page specific styles - 2 columns unless narrow */
 		.team-grid {
 			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-			gap: 32px;
-			margin: 20px 0;
+			grid-template-columns: 1fr 1fr;
+			gap: 24px;
+			margin: 40px auto;
+		}
+		
+		/* Single column on narrow screens */
+		@media screen and (max-width: 600px) {
+			.team-grid {
+				grid-template-columns: 1fr;
+			}
 		}
 
 		.team-member {
