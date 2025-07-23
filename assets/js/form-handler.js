@@ -1,8 +1,13 @@
-const CONTACT_EMAIL = 'support@spark-games.co.uk';
-const CONTACT_LINK = `<a href="mailto:${CONTACT_EMAIL}" style="color: #00ccff;">${CONTACT_EMAIL}</a>`;
+/**
+ * Spark Games Form Handler v3.0
+ * Uses Vercel serverless functions + Resend API (CORS-safe)
+ * NO direct API calls from browser
+ */
 
-// Resend configuration
-const RESEND_API_KEY = 'RESEND_API_KEY_PLACEHOLDER'; // Will be replaced during deployment
+const CONTACT_EMAIL = 'support@spark-games.co.uk';
+const HR_EMAIL = 'hr@spark-games.co.uk';
+const CONTACT_LINK = `<a href="mailto:${CONTACT_EMAIL}" style="color: #00ccff;">${CONTACT_EMAIL}</a>`;
+const HR_LINK = `<a href="mailto:${HR_EMAIL}" style="color: #00ccff;">${HR_EMAIL}</a>`;
 
 function showMessage(title, message) {
     if (typeof Swal !== 'undefined') {
@@ -24,6 +29,11 @@ function showMessage(title, message) {
 }
 
 async function submitForm(form) {
+    // Debug logging
+    console.log('🚀 Spark Games Form Handler v3.0 - Vercel + Resend');
+    console.log('📍 Form ID:', form.id);
+    console.log('🌐 Using Vercel serverless function (CORS-safe)');
+    
     // Check if we're in local development
     const isLocalHost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
     
@@ -69,8 +79,8 @@ async function submitForm(form) {
             return false;
         }
         
-        // Resend allows up to 10MB attachments
-        const maxSizeMB = 10;
+        // CV file size limit: 3MB
+        const maxSizeMB = 3;
         const fileSizeMB = file.size / (1024 * 1024);
         
         if (fileSizeMB > maxSizeMB) {
@@ -82,15 +92,16 @@ async function submitForm(form) {
     const formData = new FormData(form);
     
     try {
-        // Prepare email data
+        // Prepare data for Vercel serverless function
         const emailData = {
-            from: 'noreply@spark-games.co.uk',
-            to: [CONTACT_EMAIL],
-            replyTo: formData.get('email'),
-            subject: form.id === 'application-form' 
-                ? `Job Application: ${formData.get('job_position')}` 
-                : 'Contact Form Submission - Spark Games',
-            attachments: []
+            formType: form.id === 'application-form' ? 'application' : 'contact',
+            name: formData.get('name'),
+            full_name: formData.get('full_name'),
+            email: formData.get('email'),
+            message: formData.get('message'),
+            job_position: formData.get('job_position'),
+            portfolio: formData.get('portfolio'),
+            location: formData.get('location')
         };
         
         // Handle file attachment for application forms
@@ -106,44 +117,26 @@ async function submitForm(form) {
                     reader.readAsDataURL(file);
                 });
                 
-                emailData.attachments.push({
+                emailData.cvFile = {
                     filename: file.name,
                     content: base64
-                });
+                };
             }
-            
-            // Application email content
-            emailData.html = `
-                <h2>New Job Application</h2>
-                <p><strong>Position:</strong> ${formData.get('job_position')}</p>
-                <p><strong>Name:</strong> ${formData.get('full_name')}</p>
-                <p><strong>Email:</strong> ${formData.get('email')}</p>
-                <p><strong>Portfolio:</strong> ${formData.get('portfolio') || 'Not provided'}</p>
-                <p><strong>Location:</strong> ${formData.get('location') || 'Not specified'}</p>
-                <p><strong>Message:</strong></p>
-                <p>${formData.get('message')}</p>
-                <p><strong>CV:</strong> ${file ? file.name : 'No file attached'}</p>
-            `;
-        } else {
-            // Contact email content
-            emailData.html = `
-                <h2>New Contact Form Message</h2>
-                <p><strong>Name:</strong> ${formData.get('name')}</p>
-                <p><strong>Email:</strong> ${formData.get('email')}</p>
-                <p><strong>Message:</strong></p>
-                <p>${formData.get('message')}</p>
-            `;
         }
         
-        const response = await fetch('https://api.resend.com/emails', {
+        console.log('📡 Calling Vercel serverless function...');
+        console.log('🎯 Endpoint: /api/send-email');
+        console.log('📦 Email data:', emailData);
+        
+        const response = await fetch('/api/send-email', {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${RESEND_API_KEY}`,
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(emailData)
         });
         
+        console.log('📨 Response status:', response.status);
         const data = await response.json();
         
         if (response.ok) {
@@ -173,7 +166,8 @@ async function submitForm(form) {
         }
     } catch (error) {
         console.error('Form submission error:', error);
-        showMessage('Error', `Failed to send message. Please try again or email us directly at ${CONTACT_LINK}`);
+        const errorEmail = form.id === 'application-form' ? HR_LINK : CONTACT_LINK;
+        showMessage('Error', `Failed to send message. Please try again or email us directly at ${errorEmail}`);
         return false;
     }
 }
