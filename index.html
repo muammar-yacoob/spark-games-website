@@ -542,7 +542,7 @@
 		}
 
 		.modal-header {
-			padding: 32px 32px 24px;
+			padding: 20px 20px 16px;
 			border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 			position: sticky;
 			top: 0;
@@ -561,37 +561,39 @@
 		}
 		
 		.modal-member-info h3 {
-			margin: 0 0 4px 0;
+			margin: 0 0 2px 0;
 			color: #ffffff;
-			font-size: 1.6em;
+			font-size: 1.3em;
 		}
 		
 		.modal-member-info p {
 			margin: 0;
 			color: #a1a1a1;
+			font-size: 0.9em;
 		}
 
 		.modal-header h3 {
 			color: #ffffff;
-			font-size: 1.6em;
+			font-size: 1.3em;
 			margin: 0;
 			text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 		}
 
 		.modal-header p {
 			color: #a1a1a1;
-			margin: 8px 0 0;
+			margin: 4px 0 0;
+			font-size: 0.9em;
 			text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
 		}
 
 		.close-modal {
 			position: absolute;
-			top: 24px;
-			right: 24px;
+			top: -20px;
+			right: -20px;
 			width: 40px;
 			height: 40px;
-			border: 1px solid rgba(255, 255, 255, 0.1);
-			background: rgba(255, 255, 255, 0.05);
+			border: 2px solid rgba(255, 255, 255, 0.2);
+			background: rgba(25, 25, 26, 0.95);
 			color: #a1a1a1;
 			border-radius: 50%;
 			cursor: pointer;
@@ -606,6 +608,8 @@
 			background-size: contain;
 			background-repeat: no-repeat;
 			background-position: center;
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+			z-index: 1001;
 		}
 
 		.close-modal:hover {
@@ -620,20 +624,20 @@
 		}
 
 		.modal-body {
-			padding: 24px;
+			padding: 16px 16px 4px 16px;
 		}
 
 		/* Form styling for modal - using main.css styles */
 		.form-group {
-			margin-bottom: 20px;
+			margin-bottom: 16px;
 		}
 
 		.form-group label {
 			display: block;
 			color: #ffffff;
 			font-weight: 600;
-			margin-bottom: 6px;
-			font-size: 0.9em;
+			margin-bottom: 4px;
+			font-size: 0.85em;
 			letter-spacing: 0.075rem;
 		}
 
@@ -848,11 +852,11 @@
 			}
 
 			.modal-header {
-				padding: 24px 24px 20px;
+				padding: 16px 16px 12px;
 			}
 
 			.modal-body {
-				padding: 24px;
+				padding: 16px 16px 4px 16px;
 			}
 
 			.form-row {
@@ -1109,12 +1113,12 @@
 					<div class="modal-member-info" id="modal-member-info" style="display: none;">
 						<div>
 							<h3>Apply for <span id="modal-job-title">Position</span></h3>
-							<p>Join our amazing team!</p>
+							<p>We'd love to have you aboard!</p>
 						</div>
 					</div>
 					<div class="modal-default-info" id="modal-default-info">
 						<h3>Apply for <span id="modal-job-title-default">Position</span></h3>
-						<p>Join our amazing team!</p>
+						<p>We'd love to have you aboard!</p>
 					</div>
 				</div>
 				<button class="close-modal" aria-label="Close">
@@ -1162,7 +1166,7 @@
 
 					<div class="form-group">
 						<label for="message">Why are you perfect for this role? *</label>
-						<textarea class="form-control" id="message" name="message" rows="3" required placeholder="Tell us what makes you excited about this opportunity and why you'd be a great fit..." maxlength="250"></textarea>
+						<textarea class="form-control" id="message" name="message" rows="2" required placeholder="Tell us what makes you excited about this opportunity and why you'd be a great fit..." maxlength="250"></textarea>
 						<div id="word-counter" style="margin-top: 8px; font-size: 0.85em; color: #a1a1a1; text-align: right;">
 							<span id="word-count">40</span> words remaining (5-40 words required)
 						</div>
@@ -1191,7 +1195,7 @@
 					</div>
 
 					<button type="submit" id="submit-application" class="apply-button" disabled>
-						<i class="fas fa-rocket" style="margin-right: 8px;"></i>
+						<i class="fas fa-rocket"></i>
 						Submit Application
 					</button>
 				</form>
