@@ -7,14 +7,6 @@
       "description": "Fun and engaging games for all platforms",
       "items": [
         {
-          "id": "laser-lockdown",
-          "name": "Laser Lockdown",
-          "description": "A Fun and engaging Multiplayer Laser tag battle in VR.",
-          "icon": "images/LazerTag.gif",
-          "shareImage": "images/LazerTag.gif",
-          "links": {}
-        },
-        {
           "id": "space-trace",
           "name": "Space Trace",
           "description": "A fun fusion of Amongus, Rick and Morty & Cartoon Network characters.",
