@@ -1,0 +1,180 @@
+{
+  "categories": [
+    {
+      "id": "games",
+      "name": "Games",
+      "icon": "fa-gamepad",
+      "description": "Fun and engaging games for all platforms",
+      "items": [
+        {
+          "id": "laser-lockdown",
+          "name": "Laser Lockdown",
+          "description": "A Fun and engaging Multiplayer Laser tag battle in VR.",
+          "icon": "images/LazerTag.gif",
+          "shareImage": "images/LazerTag.gif",
+          "links": {}
+        },
+        {
+          "id": "space-trace",
+          "name": "Space Trace",
+          "description": "A fun fusion of Amongus, Rick and Morty & Cartoon Network characters.",
+          "icon": "images/SpaceTrace.jpg",
+          "shareImage": "images/SpaceTrace.jpg",
+          "links": {
+            "itch": "https://spark8.itch.io/"
+          }
+        }
+      ]
+    },
+    {
+      "id": "dev-tools",
+      "name": "Game Dev Tools",
+      "icon": "fa-tools",
+      "description": "Professional tools for Unity and game development",
+      "items": [
+        {
+          "id": "multiplay",
+          "name": "MultiPlay",
+          "description": "Opens Multiple Unity Editor Windows to test Multiplayer games without building every time!",
+          "icon": "images/MPlay.gif",
+          "shareImage": "images/MPlay.gif",
+          "links": {
+            "unity": "https://assetstore.unity.com/publishers/46749?aid=1011lds77"
+          }
+        },
+        {
+          "id": "tidy-monkey",
+          "name": "Tidy Monkey",
+          "description": "Batch operations to Organize, Decimate, Change pivot point, Fix Rotation, Clean up unused Materials & Textures and easily export assets in FBX format.",
+          "icon": "images/TMonkey.png",
+          "shareImage": "images/TMonkey.png",
+          "links": {
+            "blender": "https://blendermarket.com/products/tidy-monkey"
+          }
+        },
+        {
+          "id": "spark-core",
+          "name": "Spark Core",
+          "description": "A simple to use Unity3D framework built for code reusability and testability. Simplifies Unity development by automating dependency injection.",
+          "icon": "images/sparkcore1920x1080.png",
+          "shareImage": "images/sparkcore1920x1080.png",
+          "links": {
+            "github": "https://github.com/muammar-yacoob/SparkCore"
+          }
+        },
+        {
+          "id": "unity-git-actions",
+          "name": "Unity Git-Actions",
+          "description": "Automate Unity Tests, Builds & Deployment with Ease.",
+          "icon": "images/UnityActions.jpg",
+          "shareImage": "images/UnityActions.jpg",
+          "links": {
+            "github": "https://github.com/muammar-yacoob/Unity-GitActions"
+          }
+        },
+        {
+          "id": "sketchfab-browser",
+          "name": "Sketchfab Browser",
+          "description": "A Unity Editor extension to search, preview, and import 3D models from Sketchfab directly.",
+          "icon": "images/SketchfabBrowser-HD.png",
+          "shareImage": "images/SketchfabBrowser-HD.png",
+          "links": {
+            "github": "https://github.com/muammar-yacoob/Unity-Sketchfab-Browser"
+          }
+        },
+        {
+          "id": "poseidon",
+          "name": "Poseidon",
+          "description": "A generic Unity Pooling System that you can easily use without making major modifications to your existing code.",
+          "icon": "images/Pose.gif",
+          "shareImage": "images/Pose.gif",
+          "links": {
+            "unity": "https://assetstore.unity.com/publishers/46749?aid=1011lds77"
+          }
+        },
+        {
+          "id": "scriptable-observer",
+          "name": "Scriptable Observer",
+          "description": "A clean implementation of Observer Game Design Pattern utilizing Unity's Scriptable Objects.",
+          "icon": "images/Observer.gif",
+          "shareImage": "images/Observer.gif",
+          "links": {
+            "unity": "https://assetstore.unity.com/publishers/46749?aid=1011lds77"
+          }
+        },
+        {
+          "id": "collider-x",
+          "name": "Collider X",
+          "description": "Generates & replaces colliders easily based on mesh topology - Vertices Count and Mesh Dimensions.",
+          "icon": "images/colliderxlogo.gif",
+          "shareImage": "images/colliderxlogo.gif",
+          "links": {
+            "unity": "https://assetstore.unity.com/publishers/46749?aid=1011lds77"
+          }
+        },
+        {
+          "id": "unity-injectinator",
+          "name": "Unity Injectinator",
+          "description": "Lightweight dependency injection framework for Unity.",
+          "icon": "images/Injectinator.jpg",
+          "shareImage": "images/Injectinator.jpg",
+          "links": {
+            "github": "https://github.com/muammar-yacoob/Injectinator"
+          }
+        }
+      ]
+    },
+    {
+      "id": "mobile-apps",
+      "name": "Mobile Apps",
+      "icon": "fa-mobile-alt",
+      "description": "Apps for iOS and Android devices",
+      "items": [
+        {
+          "id": "full-house",
+          "name": "Full House",
+          "description": "An app that lets you know when's the quietest time to be in a place.",
+          "subtitle": "Timing is Everything!",
+          "icon": "images/UI/Apps/house.png",
+          "shareImage": "images/UI/Apps/house.png",
+          "links": {
+            "playstore": "https://play.google.com/store/apps/dev?id=4823916099446067430",
+            "appstore": "https://play.google.com/store/apps/dev?id=4823916099446067430"
+          }
+        }
+      ]
+    },
+    {
+      "id": "chrome-extensions",
+      "name": "Chrome Extensions",
+      "icon": "fab fa-chrome",
+      "description": "Browser extensions to boost productivity",
+      "items": [
+        {
+          "id": "calendify",
+          "name": "Calendify",
+          "description": "Detects event details on webpages and add them to your Google Calendar with just one click.",
+          "icon": "images/Calendify.png",
+          "shareImage": "images/Calendify.png",
+          "links": {
+            "chrome": "https://chromewebstore.google.com/detail/calendify/jphgemnlnggiimgclghleogeiigpchji"
+          }
+        }
+      ]
+    },
+    {
+      "id": "saas-apps",
+      "name": "SaaS Apps",
+      "icon": "fa-cloud",
+      "description": "Cloud-based software solutions",
+      "items": []
+    },
+    {
+      "id": "others",
+      "name": "Others",
+      "icon": "fa-box",
+      "description": "Other tools and utilities",
+      "items": []
+    }
+  ]
+}

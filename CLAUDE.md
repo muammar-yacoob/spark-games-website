@@ -10,12 +10,12 @@ This is the Spark Games website - a static HTML site showcasing games and develo
 
 ### Content Structure
 - Main entry point: `index.html`
-- Content sections are loaded dynamically from separate HTML files:
-  - `games-content.html`
-  - `tools-content.html`
-  - `about-content.html`
-  - `contact-content.html`
-  - `careers-content.html`
+- Product data driven by `products.json` with categories:
+  - Games, Game Dev Tools, Mobile Apps, Chrome Extensions, SaaS Apps, Others
+- Static content files:
+  - `about-content.html` - About section
+  - `team.json` - Team member data
+- Shareable app pages in `apps/` folder (e.g., `apps/full-house.html`)
 - Content is loaded via `assets/js/load-sections.js`
 
 ### Styling
