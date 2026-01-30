@@ -1249,6 +1249,19 @@
 				height: 120px;
 			}
 		}
+
+		/* Footer about link styling */
+		.footer-about-link {
+			color: rgba(255, 255, 255, 0.5);
+			text-decoration: none;
+			transition: color 0.3s ease;
+			font-size: 0.9em;
+		}
+
+		.footer-about-link:hover {
+			color: rgba(255, 255, 255, 0.9);
+			text-decoration: underline;
+		}
 	</style>
 </head>
 <body class="is-preload" data-swal-dark-mode="true">
@@ -1269,8 +1282,8 @@
 					<li><a href="#dev-tools">Dev Tools</a></li>
 					<li><a href="#mobile-apps">Mobile Apps</a></li>
 					<li><a href="#chrome-extensions">Extensions</a></li>
-					<li><a href="#about">About</a></li>
-					<li><a href="#team">Team</a></li>
+					<li><a href="#saas-apps">SaaS Apps</a></li>
+					<li><a href="#others">Others</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -1319,7 +1332,7 @@
 		</div>
 	
 		<footer id="footer">
-			<p class="copyright">© Spark Games 2025.</p>
+			<p class="copyright">© Spark Games 2025. <a href="#about" class="footer-about-link">About</a></p>
 		</footer>
 	
 		<div id="ad-banner" class="section major">

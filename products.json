@@ -159,14 +159,112 @@
       "name": "SaaS Apps",
       "icon": "fa-cloud",
       "description": "Cloud-based software solutions",
-      "items": []
+      "items": [
+        {
+          "id": "bottled",
+          "name": "Bottled",
+          "description": "Professional email on your domain. Send messages in bottles across the digital ocean.",
+          "icon": "images/Bottled.png",
+          "shareImage": "images/Bottled.png",
+          "links": {
+            "website": "https://bottled.email"
+          }
+        },
+        {
+          "id": "quickpeek",
+          "name": "QuickPeek",
+          "description": "AI-powered demo video generation - Auto-generate polished demo videos of web SaaS applications.",
+          "icon": "images/QuickPeek.png",
+          "shareImage": "images/QuickPeek.png",
+          "links": {
+            "github": "https://github.com/user/quickpeak"
+          }
+        },
+        {
+          "id": "secret-xmas",
+          "name": "Secret Xmas",
+          "description": "Free Secret Santa gift exchange platform - Organize your holiday gift exchanges easily.",
+          "icon": "images/SecretXmas.png",
+          "shareImage": "images/SecretXmas.png",
+          "links": {
+            "website": "https://secretxmas.com",
+            "github": "https://github.com/secretxmas/secret-xmas"
+          }
+        },
+        {
+          "id": "spark-ai",
+          "name": "Spark AI",
+          "description": "AI Chat widget and API backend for apps - Integrate intelligent chat into your applications.",
+          "icon": "images/SparkAI.png",
+          "shareImage": "images/SparkAI.png",
+          "links": {}
+        },
+        {
+          "id": "susu-fun",
+          "name": "SusuFun",
+          "description": "A collection of fun, interactive web applications - Educational, entertaining, and user-friendly tools.",
+          "icon": "images/SusuFun.png",
+          "shareImage": "images/SusuFun.png",
+          "links": {
+            "website": "https://sundus.fun",
+            "github": "https://github.com/muammar-yacoob/Susu-Toy-Box"
+          }
+        }
+      ]
     },
     {
       "id": "others",
       "name": "Others",
       "icon": "fa-box",
       "description": "Other tools and utilities",
-      "items": []
+      "items": [
+        {
+          "id": "piclet",
+          "name": "PicLet",
+          "description": "Lightweight image tools for content creators - Compress, convert, and optimize images with Windows shell integration.",
+          "icon": "images/PicLet.png",
+          "shareImage": "images/PicLet.png",
+          "links": {
+            "website": "https://piclet.app",
+            "github": "https://github.com/muammar-yacoob/PicLet"
+          }
+        },
+        {
+          "id": "vidlet",
+          "name": "VidLet",
+          "description": "Video utility toolkit with Windows shell integration - Compress, convert, create GIFs, loops, and more.",
+          "icon": "images/VidLet.png",
+          "shareImage": "images/VidLet.png",
+          "links": {
+            "website": "https://vidlet.app",
+            "github": "https://github.com/muammar-yacoob/VidLet"
+          }
+        },
+        {
+          "id": "flexcel",
+          "name": "Flexcel",
+          "description": "AI-Powered Excel Add-in with Groq integration - Bring AI capabilities directly into your spreadsheets.",
+          "icon": "images/Flexcel.png",
+          "shareImage": "images/Flexcel.png",
+          "links": {}
+        },
+        {
+          "id": "daily-nuggets",
+          "name": "DailyNuggets",
+          "description": "Automated daily video generator for Arabic educational content targeting TikTok, Instagram, and YouTube.",
+          "icon": "images/logo.png",
+          "shareImage": "images/logo.png",
+          "links": {}
+        },
+        {
+          "id": "3d-spriter",
+          "name": "3DSpriter",
+          "description": "3D to sprite conversion tool - Convert 3D models into sprite sheets for game development.",
+          "icon": "images/3DSpriter.ico",
+          "shareImage": "images/3DSpriter.ico",
+          "links": {}
+        }
+      ]
     }
   ]
 }
