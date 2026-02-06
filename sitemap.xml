@@ -3,103 +3,147 @@
    <!-- Homepage -->
    <url>
       <loc>https://spark-games.co.uk/</loc>
-      <lastmod>2024-02-09</lastmod>
-      <changefreq>monthly</changefreq>
+      <lastmod>2026-02-06</lastmod>
+      <changefreq>weekly</changefreq>
       <priority>1.0</priority>
    </url>
 
-   <!-- Main Sections -->
+   <!-- Category Sections -->
    <url>
       <loc>https://spark-games.co.uk/#games</loc>
-      <lastmod>2024-02-09</lastmod>
+      <lastmod>2026-02-06</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.9</priority>
    </url>
    <url>
-      <loc>https://spark-games.co.uk/#tools</loc>
-      <lastmod>2024-02-09</lastmod>
+      <loc>https://spark-games.co.uk/#dev-tools</loc>
+      <lastmod>2026-02-06</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.9</priority>
+   </url>
+   <url>
+      <loc>https://spark-games.co.uk/#mobile-apps</loc>
+      <lastmod>2026-02-06</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.9</priority>
+   </url>
+   <url>
+      <loc>https://spark-games.co.uk/#chrome-extensions</loc>
+      <lastmod>2026-02-06</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.9</priority>
+   </url>
+   <url>
+      <loc>https://spark-games.co.uk/#saas-apps</loc>
+      <lastmod>2026-02-06</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.9</priority>
+   </url>
+   <url>
+      <loc>https://spark-games.co.uk/#others</loc>
+      <lastmod>2026-02-06</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.8</priority>
    </url>
    <url>
       <loc>https://spark-games.co.uk/#about</loc>
-      <lastmod>2024-02-09</lastmod>
+      <lastmod>2026-02-06</lastmod>
       <changefreq>yearly</changefreq>
-      <priority>0.8</priority>
+      <priority>0.7</priority>
    </url>
    <url>
-      <loc>https://spark-games.co.uk/#contact</loc>
-      <lastmod>2024-02-09</lastmod>
+      <loc>https://spark-games.co.uk/#team</loc>
+      <lastmod>2026-02-06</lastmod>
       <changefreq>yearly</changefreq>
-      <priority>0.8</priority>
+      <priority>0.7</priority>
    </url>
 
    <!-- Games -->
    <url>
-      <loc>https://spark-games.co.uk/games/laser-lockdown</loc>
-      <lastmod>2024-02-09</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.8</priority>
-   </url>
-   <url>
-      <loc>https://spark-games.co.uk/games/space-trace</loc>
-      <lastmod>2024-02-09</lastmod>
+      <loc>https://spark-games.co.uk/#games</loc>
+      <lastmod>2026-02-06</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.8</priority>
    </url>
 
-   <!-- Tools -->
+   <!-- Game Dev Tools -->
    <url>
-      <loc>https://spark-games.co.uk/tools/multiplay</loc>
-      <lastmod>2024-02-09</lastmod>
+      <loc>https://assetstore.unity.com/publishers/46749?aid=1011lds77</loc>
+      <lastmod>2026-02-06</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.8</priority>
    </url>
    <url>
-      <loc>https://spark-games.co.uk/tools/spark-core</loc>
-      <lastmod>2024-02-09</lastmod>
+      <loc>https://blendermarket.com/products/tidy-monkey</loc>
+      <lastmod>2026-02-06</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+   <url>
+      <loc>https://github.com/muammar-yacoob/SparkCore</loc>
+      <lastmod>2026-02-06</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+   <url>
+      <loc>https://github.com/muammar-yacoob/Unity-GitActions</loc>
+      <lastmod>2026-02-06</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+   <url>
+      <loc>https://github.com/muammar-yacoob/Unity-Sketchfab-Browser</loc>
+      <lastmod>2026-02-06</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+
+   <!-- Mobile Apps -->
+   <url>
+      <loc>https://spark-games.co.uk/apps/full-house.html</loc>
+      <lastmod>2026-02-06</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.8</priority>
+   </url>
+
+   <!-- Chrome Extensions -->
+   <url>
+      <loc>https://chromewebstore.google.com/detail/calendify/jphgemnlnggiimgclghleogeiigpchji</loc>
+      <lastmod>2026-02-06</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+
+   <!-- SaaS Apps -->
+   <url>
+      <loc>https://bottled.email</loc>
+      <lastmod>2026-02-06</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.8</priority>
    </url>
    <url>
-      <loc>https://spark-games.co.uk/tools/unity-git-actions</loc>
-      <lastmod>2024-02-09</lastmod>
+      <loc>https://secretxmas.com</loc>
+      <lastmod>2026-02-06</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.7</priority>
    </url>
    <url>
-      <loc>https://spark-games.co.uk/tools/sketchfab-browser</loc>
-      <lastmod>2024-02-09</lastmod>
+      <loc>https://sundus.fun</loc>
+      <lastmod>2026-02-06</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+
+   <!-- Other Tools -->
+   <url>
+      <loc>https://piclet.app</loc>
+      <lastmod>2026-02-06</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.7</priority>
    </url>
    <url>
-      <loc>https://spark-games.co.uk/tools/tidy-monkey</loc>
-      <lastmod>2024-02-09</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.7</priority>
-   </url>
-   <url>
-      <loc>https://spark-games.co.uk/tools/poseidon</loc>
-      <lastmod>2024-02-09</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.7</priority>
-   </url>
-   <url>
-      <loc>https://spark-games.co.uk/tools/scriptable-observer</loc>
-      <lastmod>2024-02-09</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.7</priority>
-   </url>
-   <url>
-      <loc>https://spark-games.co.uk/tools/collider-x</loc>
-      <lastmod>2024-02-09</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.7</priority>
-   </url>
-   <url>
-      <loc>https://spark-games.co.uk/tools/unity-injectinator</loc>
-      <lastmod>2024-02-09</lastmod>
+      <loc>https://vidlet.app</loc>
+      <lastmod>2026-02-06</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.7</priority>
    </url>
