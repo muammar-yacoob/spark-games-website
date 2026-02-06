@@ -55,7 +55,7 @@ function updateSeasonalBanner() {
             adContainer.appendChild(img);
         }
 
-        console.log("Loading banner:", fullPath);
+        // console.log("Loading banner:", fullPath);
     } catch (error) {
         console.error("Error in updateSeasonalBanner:", error);
     }
