@@ -96,6 +96,12 @@
             letter-spacing: -0.5px;
         }
 
+        .app-subtitle {
+            color: #9bf1ff;
+            font-size: 1.2em;
+            margin: 0 0 8px 0;
+        }
+
         .app-description {
             color: rgba(255, 255, 255, 0.7);
             font-size: 1.1em;
@@ -255,6 +261,7 @@
             document.getElementById('app-content').innerHTML = `
                 <img src="../${app.icon}" alt="${app.name}" class="app-icon">
                 <h1 class="app-title">${app.name}</h1>
+                ${app.subtitle ? `<p class="app-subtitle">${app.subtitle}</p>` : ''}
                 <p class="app-description">${app.description}</p>
 
                 <div class="store-badges">
@@ -295,7 +302,7 @@
             document.getElementById('app-content').innerHTML = `
                 <img src="../images/UI/Apps/house.png" alt="Full House" class="app-icon">
                 <h1 class="app-title">Full House</h1>
-                <p class="app-subtitle" style="color: #9bf1ff; font-size: 1.2em; margin-bottom: 8px;">Timing is Everything!</p>
+                <p class="app-subtitle">Timing is Everything!</p>
                 <p class="app-description">An app that lets you know when's the quietest time to be in a place.</p>
 
                 <div class="store-badges">

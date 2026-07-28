@@ -1087,7 +1087,7 @@ body.is-preload #header .content .inner {
 	width: 2.5rem;
 	height: 2.5rem;
 	border-radius: 50%;
-	background-image: url('images/UI/close.png');
+	background-image: url('../../images/UI/close.png');
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center;
