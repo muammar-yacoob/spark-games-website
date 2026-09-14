@@ -6,16 +6,36 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is the Spark Games website - a static HTML site showcasing games and developer tools. The site uses a modular approach with separate content files loaded dynamically via JavaScript.
 
+## There are two Spark sites. This is one of them.
+
+The newer **spark-apps-website** repo (`~/projects/spark-apps-website`) serves
+**https://spark-apps.co** - a Next.js site on Vercel. It is not a replacement for
+this one and this repo is not deprecated. The two split by subject:
+
+| | spark-games.co.uk (here) | spark-apps.co |
+|---|---|---|
+| Owns | Games, Unity/Blender dev tools, and the pre-2026 back-catalogue | Apps, SaaS, developer tooling |
+| Stack | Static HTML/SASS, GitHub Pages | Next.js, Vercel |
+| Catalogue source | `products.json` | `lib/data/apps.ts` |
+
+**Every product belongs to exactly one of the two.** Both sites used to list Full
+House, Bottled, QuickPeek, Spark AI, PicLet, VidLet and Flexcel; those entries
+were removed from here in favour of spark-apps.co, which took the Mobile Apps
+category with them. Before adding a product to `products.json`, check it is not
+already in the other repo's `lib/data/apps.ts`, and vice versa. Each site links
+to the other from its nav.
+
 ## Architecture
 
 ### Content Structure
 - Main entry point: `index.html`
 - Product data driven by `products.json` with categories:
-  - Games, Game Dev Tools, Mobile Apps, Chrome Extensions, SaaS Apps, Others
+  - Games, Game Dev Tools, Chrome Extensions, SaaS Apps, Others
 - Static content files:
   - `about-content.html` - About section
   - `team.json` - Team member data
-- Shareable app pages in `apps/` folder (e.g., `apps/full-house.html`)
+- Shareable app pages in `apps/` folder. `apps/full-house.html` is now only a
+  redirect to spark-apps.co, kept so existing shares and search results resolve.
 - Content is loaded via `assets/js/load-sections.js`
 
 ### Styling
