@@ -117,24 +117,6 @@
       ]
     },
     {
-      "id": "chrome-extensions",
-      "name": "Chrome Extensions",
-      "icon": "fab fa-chrome",
-      "description": "Browser extensions to boost productivity",
-      "items": [
-        {
-          "id": "calendify",
-          "name": "Calendify",
-          "description": "Detects event details on webpages and add them to your Google Calendar with just one click.",
-          "icon": "images/Calendify.png",
-          "shareImage": "images/Calendify.png",
-          "links": {
-            "chrome": "https://chromewebstore.google.com/detail/calendify/jphgemnlnggiimgclghleogeiigpchji"
-          }
-        }
-      ]
-    },
-    {
       "id": "saas-apps",
       "name": "SaaS Apps",
       "icon": "fa-cloud",
