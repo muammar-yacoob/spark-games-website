@@ -82,3 +82,20 @@ The SASS files are pre-compiled. If you need to modify styles:
 - Seasonal banners are managed through `assets/js/seasonal-banner.js`
 - Images for affiliate banners are in `images/AffiliateBanners/`
 - The site supports both light and dark themes
+## Secrets: strict rules
+
+Non-negotiable. Added 14 Oct 2026 after a scaffold copied live keys between
+projects.
+
+- **Never commit** `.env`, `.env.local`, or any file holding a real secret.
+  Verify with `git check-ignore` and `git diff --cached --name-only` before
+  committing in any repo that has env files.
+- **Never copy env files between projects.** Scaffolds, templates and rsync
+  must exclude `.env`, `.env.local`, `.env.*.local`, `.env.vercel`. New
+  projects start from `.env.example`.
+- **Never print a secret value** in chat, logs, commit messages or tool
+  output. Key names and at most the first 6 characters. If one is printed by
+  accident, say so immediately and add it to the rotation list.
+- **Never `console.log`** a token, key or connection string.
+- A **sellable repo ships its history**. Removing a secret from HEAD does not
+  remove it from what a buyer receives.
