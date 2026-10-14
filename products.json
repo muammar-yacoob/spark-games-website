@@ -123,17 +123,6 @@
       "description": "Cloud-based software solutions",
       "items": [
         {
-          "id": "secret-xmas",
-          "name": "Secret Xmas",
-          "description": "Free Secret Santa gift exchange platform - Organize your holiday gift exchanges easily.",
-          "icon": "images/SecretXmas.png",
-          "shareImage": "images/SecretXmas.png",
-          "links": {
-            "website": "https://secretxmas.com",
-            "github": "https://github.com/secretxmas/secret-xmas"
-          }
-        },
-        {
           "id": "susu-fun",
           "name": "SusuFun",
           "description": "A collection of fun, interactive web applications - Educational, entertaining, and user-friendly tools.",
